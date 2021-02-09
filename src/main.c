@@ -105,6 +105,7 @@ void AgbMain()
 #ifdef BUGFIX
     SeedRngWithRtc(); // see comment at SeedRngWithRtc definition below
 #endif
+    SeedRngAndSetTrainerId();
     ClearDma3Requests();
     ResetBgs();
     SetDefaultFontsPointer();
