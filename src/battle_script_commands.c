@@ -6219,18 +6219,18 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
             break;
         }
 
-        for (; gTrainerMoneyTable[i].classId != 0xFF; i++)
+        for (; gTrainerDataTable[i].classId != 0xFF; i++)
         {
-            if (gTrainerMoneyTable[i].classId == gTrainers[trainerId].trainerClass)
+            if (gTrainerDataTable[i].classId == gTrainers[trainerId].trainerClass)
                 break;
         }
 
         if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
-            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * gTrainerMoneyTable[i].value;
+            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * gTrainerDataTable[i].value;
         else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * 2 * gTrainerMoneyTable[i].value;
+            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * 2 * gTrainerDataTable[i].value;
         else
-            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * gTrainerMoneyTable[i].value;
+            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * gTrainerDataTable[i].value;
     }
 
     return moneyReward;

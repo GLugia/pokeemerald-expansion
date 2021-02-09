@@ -1,10 +1,11 @@
 #ifndef GUARD_BATTLE_MAIN_H
 #define GUARD_BATTLE_MAIN_H
 
-struct TrainerMoney
+struct TrainerData
 {
     u8 classId;
     u8 value;
+	u8 ball;
 };
 
 struct UnknownPokemonStruct4
@@ -78,7 +79,7 @@ extern const struct SpriteTemplate gUnknown_0831AC88;
 extern const struct OamData gOamData_831ACA8;
 extern const struct OamData gOamData_831ACB0;
 extern const u8 gTypeNames[NUMBER_OF_MON_TYPES][TYPE_NAME_LENGTH + 1];
-extern const struct TrainerMoney gTrainerMoneyTable[];
+extern const struct TrainerData gTrainerDataTable[];
 extern const u8 gAbilityNames[][ABILITY_NAME_LENGTH + 1];
 extern const u8 *const gAbilityDescriptionPointers[];
 
