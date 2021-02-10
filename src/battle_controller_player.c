@@ -331,11 +331,6 @@ static void HandleInputChooseAction(void)
     {
         SwapHpBarsWithHpText();
     }
-    else if (B_ENABLE_DEBUG && gMain.newKeys & SELECT_BUTTON)
-    {
-        BtlController_EmitTwoReturnValues(1, B_ACTION_DEBUG, 0);
-        PlayerBufferExecCompleted();
-    }
 }
 
 static void UnusedEndBounceEffect(void)
@@ -389,49 +384,45 @@ static void HandleInputChooseTarget(void)
         PlaySE(SE_SELECT);
         gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCb_HideAsMoveTarget;
 
-        if (gBattleMoves[move].target == (MOVE_TARGET_USER | MOVE_TARGET_ALLY))
+        do
         {
-            gMultiUsePlayerCursor ^= BIT_FLANK;
-        }
-        else
-        {
+            u8 currSelIdentity = GetBattlerPosition(gMultiUsePlayerCursor);
+
+            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            {
+                if (currSelIdentity == identities[i])
+                    break;
+            }
             do
             {
-                u8 currSelIdentity = GetBattlerPosition(gMultiUsePlayerCursor);
+                if (--i < 0)
+#ifdef UBFIX
+                    i = MAX_BATTLERS_COUNT - 1;
+#else
+                    i = MAX_BATTLERS_COUNT; // UB: array out of range
+#endif
+                gMultiUsePlayerCursor = GetBattlerAtPosition(identities[i]);
+            } while (gMultiUsePlayerCursor == gBattlersCount);
 
-                for (i = 0; i < MAX_BATTLERS_COUNT; i++)
-                {
-                    if (currSelIdentity == identities[i])
-                        break;
-                }
-
-                do
-                {
-                    if (--i < 0)
-                        i = MAX_BATTLERS_COUNT - 1;
-                    gMultiUsePlayerCursor = GetBattlerAtPosition(identities[i]);
-                } while (gMultiUsePlayerCursor == gBattlersCount);
-
-                i = 0;
-                switch (GetBattlerPosition(gMultiUsePlayerCursor))
-                {
-                case B_POSITION_PLAYER_LEFT:
-                case B_POSITION_PLAYER_RIGHT:
-                    if (gActiveBattler != gMultiUsePlayerCursor)
-                        i++;
-                    else if (gBattleMoves[move].target & MOVE_TARGET_USER_OR_SELECTED)
-                        i++;
-                    break;
-                case B_POSITION_OPPONENT_LEFT:
-                case B_POSITION_OPPONENT_RIGHT:
+            i = 0;
+            switch (GetBattlerPosition(gMultiUsePlayerCursor))
+            {
+            case B_POSITION_PLAYER_LEFT:
+            case B_POSITION_PLAYER_RIGHT:
+                if (gActiveBattler != gMultiUsePlayerCursor)
                     i++;
-                    break;
-                }
+                else if (gBattleMoves[GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_MOVE1 + gMoveSelectionCursor[gActiveBattler])].target & MOVE_TARGET_USER_OR_SELECTED)
+                    i++;
+                break;
+            case B_POSITION_OPPONENT_LEFT:
+            case B_POSITION_OPPONENT_RIGHT:
+                i++;
+                break;
+            }
 
-                if (gAbsentBattlerFlags & gBitTable[gMultiUsePlayerCursor])
-                    i = 0;
-            } while (i == 0);
-        }
+            if (gAbsentBattlerFlags & gBitTable[gMultiUsePlayerCursor])
+                i = 0;
+        } while (i == 0);
         gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCb_ShowAsMoveTarget;
     }
     else if (JOY_NEW(DPAD_RIGHT | DPAD_DOWN))
@@ -439,49 +430,41 @@ static void HandleInputChooseTarget(void)
         PlaySE(SE_SELECT);
         gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCb_HideAsMoveTarget;
 
-        if (gBattleMoves[move].target == (MOVE_TARGET_USER | MOVE_TARGET_ALLY))
+        do
         {
-            gMultiUsePlayerCursor ^= BIT_FLANK;
-        }
-        else
-        {
+            u8 currSelIdentity = GetBattlerPosition(gMultiUsePlayerCursor);
+
+            for (i = 0; i < MAX_BATTLERS_COUNT; i++)
+            {
+                if (currSelIdentity == identities[i])
+                    break;
+            }
             do
             {
-                u8 currSelIdentity = GetBattlerPosition(gMultiUsePlayerCursor);
-
-                for (i = 0; i < MAX_BATTLERS_COUNT; i++)
-                {
-                    if (currSelIdentity == identities[i])
-                        break;
-                }
-                do
-                {
-                    if (++i > 3)
-                        i = 0;
-                    gMultiUsePlayerCursor = GetBattlerAtPosition(identities[i]);
-                } while (gMultiUsePlayerCursor == gBattlersCount);
-
-                i = 0;
-                switch (GetBattlerPosition(gMultiUsePlayerCursor))
-                {
-                case B_POSITION_PLAYER_LEFT:
-                case B_POSITION_PLAYER_RIGHT:
-                    if (gActiveBattler != gMultiUsePlayerCursor)
-                        i++;
-                    else if (gBattleMoves[move].target & MOVE_TARGET_USER_OR_SELECTED)
-                        i++;
-                    break;
-                case B_POSITION_OPPONENT_LEFT:
-                case B_POSITION_OPPONENT_RIGHT:
-                    i++;
-                    break;
-                }
-
-                if (gAbsentBattlerFlags & gBitTable[gMultiUsePlayerCursor])
+                if (++i > 3)
                     i = 0;
-            } while (i == 0);
-        }
+                gMultiUsePlayerCursor = GetBattlerAtPosition(identities[i]);
+            } while (gMultiUsePlayerCursor == gBattlersCount);
 
+            i = 0;
+            switch (GetBattlerPosition(gMultiUsePlayerCursor))
+            {
+            case B_POSITION_PLAYER_LEFT:
+            case B_POSITION_PLAYER_RIGHT:
+                if (gActiveBattler != gMultiUsePlayerCursor)
+                    i++;
+                else if (gBattleMoves[GetMonData(&gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], MON_DATA_MOVE1 + gMoveSelectionCursor[gActiveBattler])].target & MOVE_TARGET_USER_OR_SELECTED)
+                    i++;
+                break;
+            case B_POSITION_OPPONENT_LEFT:
+            case B_POSITION_OPPONENT_RIGHT:
+                i++;
+                break;
+            }
+
+            if (gAbsentBattlerFlags & gBitTable[gMultiUsePlayerCursor])
+                i = 0;
+        } while (i == 0);
         gSprites[gBattlerSpriteIds[gMultiUsePlayerCursor]].callback = SpriteCb_ShowAsMoveTarget;
     }
 }

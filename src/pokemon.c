@@ -6357,6 +6357,8 @@ u16 HoennToNationalOrder(u16 hoennNum)
     return gHoennToNationalOrder[hoennNum - 1];
 }
 
+//#include "data/pokemon/cry_ids.h"
+
 u16 SpeciesToCryId(u16 species)
 {
     if (species <= SPECIES_CELEBI - 1)
@@ -6365,7 +6367,9 @@ u16 SpeciesToCryId(u16 species)
     if (species < SPECIES_TREECKO - 1)
         return SPECIES_UNOWN - 1;
 
-    return gSpeciesIdToCryId[species - (SPECIES_TREECKO - 1)];
+// TODO (lilua): fix cry ids being broken
+//  return gSpeciesIdToCryId(species - (SPECIES_TREEKO - 1));
+    return species;
 }
 
 #define DRAW_SPINDA_SPOTS                                                       \
@@ -6592,24 +6596,6 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
     u16 heldItem;
     u8 holdEffect;
     int i, multiplier;
-    u8 stat;
-    u8 bonus;
-
-    heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
-    if (heldItem == ITEM_ENIGMA_BERRY)
-    {
-        if (gMain.inBattle)
-            holdEffect = gEnigmaBerries[0].holdEffect;
-        else
-            holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
-    }
-    else
-    {
-        holdEffect = ItemId_GetHoldEffect(heldItem);
-    }
-
-    stat = ItemId_GetSecondaryId(heldItem);
-    bonus = ItemId_GetHoldEffectParam(heldItem);
 
     for (i = 0; i < NUM_STATS; i++)
     {
@@ -6630,41 +6616,40 @@ void MonGainEVs(struct Pokemon *mon, u16 defeatedSpecies)
         switch (i)
         {
         case STAT_HP:
-            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_HP)
-                evIncrease = (gBaseStats[defeatedSpecies].evYield_HP + bonus) * multiplier;
-            else
-                evIncrease = gBaseStats[defeatedSpecies].evYield_HP * multiplier;
+            evIncrease = gBaseStats[defeatedSpecies].evYield_HP * multiplier;
             break;
         case STAT_ATK:
-            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_ATK)
-                evIncrease = (gBaseStats[defeatedSpecies].evYield_Attack + bonus) * multiplier;
-            else
-                evIncrease = gBaseStats[defeatedSpecies].evYield_Attack * multiplier;
+            evIncrease = gBaseStats[defeatedSpecies].evYield_Attack * multiplier;
             break;
         case STAT_DEF:
-            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_DEF)
-                evIncrease = (gBaseStats[defeatedSpecies].evYield_Defense + bonus) * multiplier;
-            else
-                evIncrease = gBaseStats[defeatedSpecies].evYield_Defense * multiplier;
+            evIncrease = gBaseStats[defeatedSpecies].evYield_Defense * multiplier;
             break;
         case STAT_SPEED:
-            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPEED)
-                evIncrease = (gBaseStats[defeatedSpecies].evYield_Speed + bonus) * multiplier;
-            else
-                evIncrease = gBaseStats[defeatedSpecies].evYield_Speed * multiplier;
+            evIncrease = gBaseStats[defeatedSpecies].evYield_Speed * multiplier;
             break;
         case STAT_SPATK:
-            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPATK)
-                evIncrease = (gBaseStats[defeatedSpecies].evYield_SpAttack + bonus) * multiplier;
-            else
-                evIncrease = gBaseStats[defeatedSpecies].evYield_SpAttack * multiplier;
+            evIncrease = gBaseStats[defeatedSpecies].evYield_SpAttack * multiplier;
             break;
         case STAT_SPDEF:
-            if (holdEffect == HOLD_EFFECT_POWER_ITEM && stat == STAT_SPDEF)
-                evIncrease = (gBaseStats[defeatedSpecies].evYield_SpDefense + bonus) * multiplier;
-            else
-                evIncrease = gBaseStats[defeatedSpecies].evYield_SpDefense * multiplier;
+            evIncrease = gBaseStats[defeatedSpecies].evYield_SpDefense * multiplier;
             break;
+        }
+
+        heldItem = GetMonData(mon, MON_DATA_HELD_ITEM, 0);
+        if (heldItem == ITEM_ENIGMA_BERRY)
+        {
+            if (gMain.inBattle)
+                holdEffect = gEnigmaBerries[0].holdEffect;
+            else
+                #ifndef FREE_ENIGMA_BERRY
+                holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
+                #else
+                holdEffect = 0;
+                #endif
+        }
+        else
+        {
+            holdEffect = ItemId_GetHoldEffect(heldItem);
         }
 
         if (holdEffect == HOLD_EFFECT_MACHO_BRACE)

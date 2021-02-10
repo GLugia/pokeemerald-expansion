@@ -1918,7 +1918,9 @@ static void Cmd_attackanimation(void)
             gActiveBattler = gBattlerAttacker;
 
             if (gBattleMons[gBattlerTarget].status2 & STATUS2_SUBSTITUTE)
+            {
                 multihit = gMultiHitCounter;
+            }
             else if (gMultiHitCounter != 0 && gMultiHitCounter != 1)
             {
                 if (gBattleMons[gBattlerTarget].hp <= gBattleMoveDamage)
@@ -1927,7 +1929,9 @@ static void Cmd_attackanimation(void)
                     multihit = gMultiHitCounter;
             }
             else
+            {
                 multihit = gMultiHitCounter;
+            }
 
             BtlController_EmitMoveAnimation(0, gCurrentMove, gBattleScripting.animTurn, gBattleMovePower, gBattleMoveDamage, gBattleMons[gBattlerAttacker].friendship, &gDisableStructs[gBattlerAttacker], multihit);
             gBattleScripting.animTurn += 1;
@@ -2374,13 +2378,13 @@ static void CheckSetUnburden(u8 battlerId)
 #define INCREMENT_RESET_RETURN                  \
 {                                               \
     gBattlescriptCurrInstr++;                   \
-    gBattleScripting.moveEffect = 0; \
+    gBattleScripting.moveEffect = 0;            \
     return;                                     \
 }
 
 #define RESET_RETURN                            \
 {                                               \
-    gBattleScripting.moveEffect = 0; \
+    gBattleScripting.moveEffect = 0;            \
     return;                                     \
 }
 
@@ -3647,13 +3651,17 @@ static void Cmd_getexp(void)
                 item = GetMonData(&gPlayerParty[i], MON_DATA_HELD_ITEM);
 
                 if (item == ITEM_ENIGMA_BERRY)
+				{
                     #ifndef FREE_ENIGMA_BERRY
                     holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
                     #else
                     holdEffect = 0;
                     #endif
+				}
                 else
+				{
                     holdEffect = ItemId_GetHoldEffect(item);
+				}
 
                 if (holdEffect == HOLD_EFFECT_EXP_SHARE)
                     viaExpShare++;
@@ -3700,13 +3708,17 @@ static void Cmd_getexp(void)
             item = GetMonData(&gPlayerParty[gBattleStruct->expGetterMonId], MON_DATA_HELD_ITEM);
 
             if (item == ITEM_ENIGMA_BERRY)
+			{
                 #ifndef FREE_ENIGMA_BERRY
                 holdEffect = gSaveBlock1Ptr->enigmaBerry.holdEffect;
                 #else
                 holdEffect = 0;
                 #endif
+			}
             else
+			{
                 holdEffect = ItemId_GetHoldEffect(item);
+			}
 
             if (holdEffect != HOLD_EFFECT_EXP_SHARE && !(gBattleStruct->sentInPokes & 1))
             {
@@ -7019,7 +7031,7 @@ static bool32 ClearDefogHazards(u8 battlerAtk, bool32 clear)
     for (i = 0; i < 2; i++)
     {
         struct SideTimer *sideTimer = &gSideTimers[i];
-        u32 *sideStatuses = &gSideStatuses[i];
+        u32 *sideStatuses = (u32*)((u32) gSideStatuses[i]);
 
         gBattlerAttacker = i;
         if (GetBattlerSide(battlerAtk) != i)
@@ -11928,7 +11940,7 @@ static void Cmd_handleballthrow(void)
         else
             catchRate = gBaseStats[gBattleMons[gBattlerTarget].species].catchRate;
 
-        
+
         #ifdef POKEMON_EXPANSION
         if (gBaseStats[gBattleMons[gBattlerTarget].species].flags & F_ULTRA_BEAST)
         {
@@ -12651,4 +12663,3 @@ static bool32 CriticalCapture(u32 odds)
         return FALSE;
     #endif
 }
-

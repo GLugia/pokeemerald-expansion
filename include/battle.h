@@ -36,7 +36,6 @@
 
 #define B_ACTION_CANCEL_PARTNER         12 // when choosing an action
 #define B_ACTION_NOTHING_FAINTED        13 // when choosing an action
-#define B_ACTION_DEBUG                  20
 #define B_ACTION_NONE                   0xFF
 
 #define MAX_TRAINER_ITEMS 4
@@ -640,6 +639,8 @@ struct BattleAnimationInfo
     u8 field_6;
     u8 field_7;
     u8 ballThrowCaseId;
+    u8 isCriticalCapture:1;
+    u8 criticalCaptureSuccess:1;
     u8 introAnimActive:1;
     u8 wildMonInvisible:1;
     u8 field_9_x1C:3;
@@ -743,6 +744,8 @@ extern u8 gBattleTerrain;
 extern u32 gUnusedFirstBattleVar1;
 extern u8 *gUnknown_0202305C;
 extern u8 *gUnknown_02023060;
+extern u8 gBattleBufferA[MAX_BATTLERS_COUNT][0x200];
+extern u8 gBattleBufferB[MAX_BATTLERS_COUNT][0x200];
 extern u8 gActiveBattler;
 extern u32 gBattleControllerExecFlags;
 extern u8 gBattlersCount;
@@ -840,5 +843,7 @@ extern u8 gHealthboxSpriteIds[MAX_BATTLERS_COUNT];
 extern u8 gMultiUsePlayerCursor;
 extern u8 gNumberOfMovesToChoose;
 extern u8 gBattleControllerData[MAX_BATTLERS_COUNT];
+extern bool8 gHasFetchedBall;
+extern u8 gLastUsedBall;
 
 #endif // GUARD_BATTLE_H
