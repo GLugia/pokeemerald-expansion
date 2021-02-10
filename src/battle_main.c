@@ -242,7 +242,7 @@ void (*gBattlerControllerFuncs[MAX_BATTLERS_COUNT])(void);
 u8 gHealthboxSpriteIds[MAX_BATTLERS_COUNT];
 u8 gMultiUsePlayerCursor;
 u8 gNumberOfMovesToChoose;
-u8 gUnknown_03005D7C[MAX_BATTLERS_COUNT];
+u8 gBattleControllerData[MAX_BATTLERS_COUNT];
 
 // rom const data
 static const struct ScanlineEffectParams sIntroScanlineParams16Bit =
@@ -2529,7 +2529,7 @@ static void SpriteCb_WildMonShowHealthbox(struct Sprite *sprite)
 {
     if (sprite->animEnded)
     {
-        sub_8076918(sprite->sBattler);
+        StartHealthboxSlideIn(sprite->sBattler);
         SetHealthboxSpriteVisible(gHealthboxSpriteIds[sprite->sBattler]);
         sprite->callback = SpriteCb_WildMonAnimate;
         StartSpriteAnimIfDifferent(sprite, 0);

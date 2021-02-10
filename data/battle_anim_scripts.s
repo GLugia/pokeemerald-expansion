@@ -13889,7 +13889,7 @@ Move_METEOR_ASSAULT::
 	playsewithpan SE_M_CHARGE, SOUND_PAN_ATTACKER
 	waitforvisualfinish
 	invisible ANIM_ATTACKER
-	launchtemplate gGrowingSuperpowerTemplate, 0x83, 0x1 0x0
+//	launchtemplate gGrowingSuperpowerTemplate, 0x83, 0x1 0x0
 	playsewithpan SE_M_SWAGGER, SOUND_PAN_ATTACKER
 	delay 0xF
 	createvisualtask AnimTask_BlendBattleAnimPal, 10, (ANIM_PAL_ATK | ANIM_PAL_BG), 1, 0x10, 0x10, 0x7FFF @Screen flash white

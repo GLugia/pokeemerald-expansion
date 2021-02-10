@@ -297,22 +297,22 @@ static void sub_816864C(void)
 
     if (!gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].ballAnimActive
         && !gBattleSpritesDataPtr->healthBoxesData[gActiveBattler ^ BIT_FLANK].ballAnimActive
-        && gSprites[gUnknown_03005D7C[gActiveBattler]].callback == SpriteCallbackDummy
+        && gSprites[gBattleControllerData[gActiveBattler]].callback == SpriteCallbackDummy
         && gSprites[gBattlerSpriteIds[gActiveBattler]].callback == SpriteCallbackDummy)
     {
         if (IsDoubleBattle() && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))
         {
-            DestroySprite(&gSprites[gUnknown_03005D7C[gActiveBattler ^ BIT_FLANK]]);
+            DestroySprite(&gSprites[gBattleControllerData[gActiveBattler ^ BIT_FLANK]]);
             UpdateHealthboxAttribute(gHealthboxSpriteIds[gActiveBattler ^ BIT_FLANK], &gPlayerParty[gBattlerPartyIndexes[gActiveBattler ^ BIT_FLANK]], HEALTHBOX_ALL);
-            sub_8076918(gActiveBattler ^ BIT_FLANK);
+            StartHealthboxSlideIn(gActiveBattler ^ BIT_FLANK);
             SetHealthboxSpriteVisible(gHealthboxSpriteIds[gActiveBattler ^ BIT_FLANK]);
         }
-        DestroySprite(&gSprites[gUnknown_03005D7C[gActiveBattler]]);
+        DestroySprite(&gSprites[gBattleControllerData[gActiveBattler]]);
         UpdateHealthboxAttribute(gHealthboxSpriteIds[gActiveBattler], &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], HEALTHBOX_ALL);
-        sub_8076918(gActiveBattler);
+        StartHealthboxSlideIn(gActiveBattler);
         SetHealthboxSpriteVisible(gHealthboxSpriteIds[gActiveBattler]);
 
-        gBattleSpritesDataPtr->animationData->field_9_x1 = 0;
+        gBattleSpritesDataPtr->animationData->introAnimActive = 0;
         gBattlerControllerFuncs[gActiveBattler] = sub_8168818;
     }
 
@@ -1449,7 +1449,7 @@ static void WallyHandleIntroTrainerBallThrow(void)
     if (gBattleSpritesDataPtr->healthBoxesData[gActiveBattler].partyStatusSummaryShown)
         gTasks[gBattlerStatusSummaryTaskId[gActiveBattler]].func = Task_HidePartyStatusSummary;
 
-    gBattleSpritesDataPtr->animationData->field_9_x1 = 1;
+    gBattleSpritesDataPtr->animationData->introAnimActive = 1;
     gBattlerControllerFuncs[gActiveBattler] = nullsub_21;
 }
 
@@ -1460,15 +1460,15 @@ static void sub_816AA80(u8 battlerId)
     gBattleSpritesDataPtr->battlerData[battlerId].transformSpecies = 0;
     gBattlerPartyIndexes[battlerId] = gBattleResources->bufferA[battlerId][1];
     species = GetMonData(&gPlayerParty[gBattlerPartyIndexes[battlerId]], MON_DATA_SPECIES);
-    gUnknown_03005D7C[battlerId] = CreateInvisibleSpriteWithCallback(sub_805D714);
+    gBattleControllerData[battlerId] = CreateInvisibleSpriteWithCallback(sub_805D714);
     SetMultiuseSpriteTemplateToPokemon(species, GetBattlerPosition(battlerId));
     gBattlerSpriteIds[battlerId] = CreateSprite(&gMultiuseSpriteTemplate,
                                         GetBattlerSpriteCoord(battlerId, 2),
                                         GetBattlerSpriteDefault_Y(battlerId),
                                         GetBattlerSpriteSubpriority(battlerId));
 
-    gSprites[gUnknown_03005D7C[battlerId]].data[1] = gBattlerSpriteIds[battlerId];
-    gSprites[gUnknown_03005D7C[battlerId]].data[2] = battlerId;
+    gSprites[gBattleControllerData[battlerId]].data[1] = gBattlerSpriteIds[battlerId];
+    gSprites[gBattleControllerData[battlerId]].data[2] = battlerId;
 
     gSprites[gBattlerSpriteIds[battlerId]].data[0] = battlerId;
     gSprites[gBattlerSpriteIds[battlerId]].data[2] = species;
@@ -1477,7 +1477,7 @@ static void sub_816AA80(u8 battlerId)
     StartSpriteAnim(&gSprites[gBattlerSpriteIds[battlerId]], gBattleMonForms[battlerId]);
     gSprites[gBattlerSpriteIds[battlerId]].invisible = TRUE;
     gSprites[gBattlerSpriteIds[battlerId]].callback = SpriteCallbackDummy;
-    gSprites[gUnknown_03005D7C[battlerId]].data[0] = DoPokeballSendOutAnimation(0, POKEBALL_PLAYER_SENDOUT);
+    gSprites[gBattleControllerData[battlerId]].data[0] = DoPokeballSendOutAnimation(0, POKEBALL_PLAYER_SENDOUT);
 }
 
 static void sub_816AC04(u8 taskId)

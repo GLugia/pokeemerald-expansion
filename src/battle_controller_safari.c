@@ -629,7 +629,7 @@ static void SafariHandleIntroSlide(void)
 static void SafariHandleIntroTrainerBallThrow(void)
 {
     UpdateHealthboxAttribute(gHealthboxSpriteIds[gActiveBattler], &gPlayerParty[gBattlerPartyIndexes[gActiveBattler]], HEALTHBOX_SAFARI_ALL_TEXT);
-    sub_8076918(gActiveBattler);
+    StartHealthboxSlideIn(gActiveBattler);
     SetHealthboxSpriteVisible(gHealthboxSpriteIds[gActiveBattler]);
     gBattlerControllerFuncs[gActiveBattler] = CompleteOnHealthboxSpriteCallbackDummy;
 }

@@ -641,7 +641,7 @@ struct BattleAnimationInfo
     u8 criticalCaptureSuccess:1;
     u8 introAnimActive:1;
     u8 wildMonInvisible:1;
-    u8 field_9_x1C:3;
+    u8 introAnimActiveC:3;
     u8 field_9_x20:1;
     u8 field_9_x40:1;
     u8 field_9_x80:1;
