@@ -107,8 +107,8 @@ static void Cmd_get_considered_move_effect(void);
 static void Cmd_get_ability(void);
 static void Cmd_get_highest_type_effectiveness(void);
 static void Cmd_if_type_effectiveness(void);
-static void Cmd_nop_32(void);
-static void Cmd_nop_33(void);
+static void Cmd_nullsub_32(void);
+static void Cmd_nullsub_33(void);
 static void Cmd_if_status_in_party(void);
 static void Cmd_if_status_not_in_party(void);
 static void Cmd_get_weather(void);
@@ -239,8 +239,8 @@ static const BattleAICmdFunc sBattleAICmdTable[] =
     Cmd_get_ability,                                // 0x2F
     Cmd_get_highest_type_effectiveness,             // 0x30
     Cmd_if_type_effectiveness,                      // 0x31
-    Cmd_nop_32,                                     // 0x32
-    Cmd_nop_33,                                     // 0x33
+    Cmd_nullsub_32,                                 // 0x32
+    Cmd_nullsub_33,                                 // 0x33
     Cmd_if_status_in_party,                         // 0x34
     Cmd_if_status_not_in_party,                     // 0x35
     Cmd_get_weather,                                // 0x36
@@ -1606,11 +1606,11 @@ static void Cmd_if_user_goes(void)
     }
 }
 
-static void Cmd_nop_2A(void)
+static void Cmd_nullsub_2A(void)
 {
 }
 
-static void Cmd_nop_2B(void)
+static void Cmd_nullsub_2B(void)
 {
 }
 
@@ -1801,11 +1801,11 @@ static void Cmd_if_type_effectiveness(void)
         gAIScriptPtr += 6;
 }
 
-static void Cmd_nop_32(void)
+static void Cmd_nullsub_32(void)
 {
 }
 
-static void Cmd_nop_33(void)
+static void Cmd_nullsub_33(void)
 {
 }
 
@@ -2393,7 +2393,7 @@ static void Cmd_call_if_move_flag(void)
     }
 }
 
-static void Cmd_nop_57(void)
+static void Cmd_nullsub_57(void)
 {
 }
 

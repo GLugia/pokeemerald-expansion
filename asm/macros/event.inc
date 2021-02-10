@@ -930,17 +930,6 @@
 	.4byte \text
 	.endm
 
-	@ Formatting for the braille window, to be put at the start of a pointer used by braillemessage.
-	@ These are from RS and are ignored in Emerald (see ScrCmd_braillemessage, and comment above)
-	.macro brailleformat winLeft:req, winTop:req, winRight:req, winBottom:req, textLeft:req, textTop:req
-	.byte \winLeft
-	.byte \winTop
-	.byte \winRight
-	.byte \winBottom
-	.byte \textLeft
-	.byte \textTop
-	.endm
-
 	@ Gives the player one of the specified (species) Pokemon at level level holding item. The trailing 0s are unused parameters
 	.macro givemon species:req, level:req, item:req
 	.byte 0x79
@@ -1567,11 +1556,11 @@
 	.2byte \y
 	.endm
 
-	.macro selectapproachingtrainer
+	.macro cmdD8
 	.byte 0xd8
 	.endm
 
-	.macro lockfortrainer
+	.macro cmdD9
 	.byte 0xd9
 	.endm
 
@@ -1579,7 +1568,7 @@
 	.byte 0xda
 	.endm
 
-	.macro messageinstant pointer:req
+	.macro message3 pointer:req
 	.byte 0xdb
 	.4byte \pointer
 	.endm
