@@ -1787,11 +1787,11 @@ static bool8 Fishing_ShowDots(struct Task *task)
 
     AlignFishingAnimationFrames();
     task->tFrameCounter++;
-    if (JOY_NEW(A_BUTTON))
+    if (JOY_NEW(B_BUTTON))  // A_BUTTON
     {
         task->tStep = FISHING_NO_BITE;
-        if (task->tRoundsPlayed != 0)
-            task->tStep = FISHING_GOT_AWAY;
+        //if (task->tRoundsPlayed != 0)
+        //    task->tStep = FISHING_GOT_AWAY;
         return TRUE;
     }
     else
@@ -1830,9 +1830,21 @@ static bool8 Fishing_CheckForBite(struct Task *task)
     }
     else
     {
-        if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
+        int i;
+        struct Pokemon mon = NULL;
+
+        for (i = 0; i < 6; i++)
         {
-            u16 ability = GetMonAbility(&gPlayerParty[0]);
+            if (gPlayerParty[i] == SPECIES_NONE)
+                break;
+
+            if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG))
+                mon = gPlayerParty[i];
+        }
+
+        if (mon != NULL)
+        {
+            u16 ability = GetMonAbility(&mon);
             if (ability == ABILITY_SUCTION_CUPS || ability  == ABILITY_STICKY_HOLD)
             {
                 if (Random() % 100 > 14)
@@ -1866,17 +1878,17 @@ static bool8 Fishing_GotBite(struct Task *task)
 // We have a bite. Now, wait for the player to press A, or the timer to expire.
 static bool8 Fishing_WaitForA(struct Task *task)
 {
-    const s16 reelTimeouts[3] = {
-        [OLD_ROD]   = 36,
-        [GOOD_ROD]  = 33,
-        [SUPER_ROD] = 30
-    };
+    //const s16 reelTimeouts[3] = {
+    //    [OLD_ROD]   = 36,
+    //    [GOOD_ROD]  = 33,
+    //    [SUPER_ROD] = 30
+    //};
 
     AlignFishingAnimationFrames();
-    task->tFrameCounter++;
-    if (task->tFrameCounter >= reelTimeouts[task->tFishingRod])
-        task->tStep = FISHING_GOT_AWAY;
-    else if (JOY_NEW(A_BUTTON))
+    //task->tFrameCounter++;
+    //if (task->tFrameCounter >= reelTimeouts[task->tFishingRod])
+    //    task->tStep = FISHING_GOT_AWAY;
+    if (JOY_NEW(A_BUTTON)) // else if
         task->tStep++;
     return FALSE;
 }
