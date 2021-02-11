@@ -270,7 +270,7 @@ static void OpenBagAfterPaletteFade(void)
     if (!gPaletteFade.active)
     {
         gBattlerControllerFuncs[gActiveBattler] = CompleteOnChosenItem;
-        nullsub_35();
+        ReshowBattleScreenDummy();
         FreeAllWindowBuffers();
         DoWallyTutorialBagMenu();
     }

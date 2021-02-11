@@ -1442,7 +1442,7 @@ static void OpenBagAndChooseItem(void)
     if (!gPaletteFade.active)
     {
         gBattlerControllerFuncs[gActiveBattler] = CompleteWhenChoseItem;
-        nullsub_35();
+        ReshowBattleScreenDummy();
         FreeAllWindowBuffers();
         CB2_BagMenuFromBattle();
     }

@@ -53,7 +53,7 @@
 typedef u16 (*SpecialFunc)(void);
 typedef void (*NativeFunc)(void);
 
-EWRAM_DATA const u8 *gUnknown_020375C0 = NULL;
+EWRAM_DATA const u8 *gRamScriptRetAddr = NULL;
 static EWRAM_DATA u32 gUnknown_020375C4 = 0;
 static EWRAM_DATA u16 sPauseCounter = 0;
 static EWRAM_DATA u16 sMovingNpcId = 0;
@@ -283,7 +283,7 @@ bool8 ScrCmd_callstd_if(struct ScriptContext *ctx)
 
 bool8 ScrCmd_returnram(struct ScriptContext *ctx)
 {
-    ScriptJump(ctx, gUnknown_020375C0);
+    ScriptJump(ctx, gRamScriptRetAddr);
     return FALSE;
 }
 
@@ -2252,7 +2252,7 @@ bool8 ScrCmd_gotoram(struct ScriptContext *ctx)
 
     if (v1)
     {
-        gUnknown_020375C0 = ctx->scriptPtr;
+        gRamScriptRetAddr = ctx->scriptPtr;
         ScriptJump(ctx, v1);
     }
     return FALSE;
