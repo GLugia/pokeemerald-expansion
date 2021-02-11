@@ -7992,3 +7992,15 @@ u8 GetBattleMoveSplit(u32 moveId)
     else
         return SPLIT_SPECIAL;
 }
+
+u16 HasLevelEvolution(u16 species, u8 level)
+{
+	if(gEvolutionTable[species][0].param && gEvolutionTable[species][0].param <= level)
+	{
+		if(HasLevelEvolution(gEvolutionTable[species][0].targetSpecies, level))
+			return HasLevelEvolution(gEvolutionTable[species][0].targetSpecies, level);
+		else
+			return gEvolutionTable[species][0].targetSpecies;
+	}
+	return 0;
+}
