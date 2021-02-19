@@ -1831,25 +1831,24 @@ static bool8 Fishing_CheckForBite(struct Task *task)
     else
     {
         int i;
-        struct Pokemon mon = NULL;
+        u16 ability;
 
-        for (i = 0; i < 6; i++)
+        for (i = 0; i < PARTY_SIZE;)
         {
-            if (gPlayerParty[i] == SPECIES_NONE)
-                break;
-
             if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG))
-                mon = gPlayerParty[i];
-        }
-
-        if (mon != NULL)
-        {
-            u16 ability = GetMonAbility(&mon);
-            if (ability == ABILITY_SUCTION_CUPS || ability  == ABILITY_STICKY_HOLD)
             {
-                if (Random() % 100 > 14)
-                    bite = TRUE;
+                ability = GetMonAbility(&gPlayerParty[i]);
+
+                if (ability == ABILITY_SUCTION_CUPS || ability == ABILITY_STICKY_HOLD)
+                {
+                    if (Random() % 100 > 14)
+                        bite = TRUE;
+                }
+
+                break;
             }
+            else
+                i++;
         }
 
         if (!bite)

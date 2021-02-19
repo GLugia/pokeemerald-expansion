@@ -844,7 +844,4 @@ extern u8 gBattleControllerData[MAX_BATTLERS_COUNT];
 extern bool8 gHasFetchedBall;
 extern u8 gLastUsedBall;
 
-extern u16 gLastSpeciesEncountered;
-extern u8 gChainEncounter;
-
 #endif // GUARD_BATTLE_H

@@ -233,9 +233,6 @@ EWRAM_DATA struct TotemBoost gTotemBoosts[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA bool8 gHasFetchedBall = FALSE;
 EWRAM_DATA u8 gLastUsedBall = 0;
 
-EWRAM_DATA u16 gLastSpeciesEncountered;
-EWRAM_DATA u8 gChainEncounter;
-
 // IWRAM common vars
 void (*gPreBattleCallback1)(void);
 void (*gBattleMainFunc)(void);
@@ -4853,26 +4850,25 @@ static void HandleEndTurn_BattleWon(void)
     }
     else
     {
+        u8 add = 1;
+
         if (gLastSpeciesEncountered != gBattleResults.lastOpponentSpecies)
         {
             gLastSpeciesEncountered = gBattleResults.lastOpponentSpecies;
             gChainEncounter = 0;
         }
-        else
-        {
-            u8 add = 1;
-            if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
-                add++;
 
-            if (255 - gChainEncounter < add)
-                gChainEncounter = 255;
-            else
-#if DEBUGGING
-                gChainEncounter = 255;
-#else
-                gChainEncounter += add;
-#endif
-        }
+        #if DEBUGGING
+        gChainEncounter = 255;
+        #else
+        if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+            add++;
+
+        if (255 - gChainEncounter < add)
+            gChainEncounter = 255;
+        else
+            gChainEncounter += add;
+        #endif
 
         gBattlescriptCurrInstr = BattleScript_PayDayMoneyAndPickUpItems;
     }
@@ -4910,6 +4906,7 @@ static void HandleEndTurn_BattleLost(void)
     }
     else
     {
+        gChainEncounter = 0;
         gBattlescriptCurrInstr = BattleScript_LocalBattleLost;
     }
 

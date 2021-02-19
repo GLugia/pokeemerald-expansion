@@ -44,6 +44,9 @@ EWRAM_DATA bool8 gIsFishingEncounter = 0;
 EWRAM_DATA bool8 gIsSurfingEncounter = 0;
 EWRAM_DATA static u32 sFeebasRngValue = 0;
 
+EWRAM_DATA u16 gLastSpeciesEncountered = 0;
+EWRAM_DATA u8 gChainEncounter = 0;
+
 #include "data/wild_encounters.h"
 
 //Special Feebas-related data.
@@ -497,22 +500,13 @@ static bool8 DoWildEncounterRateTest(u32 encounterRate, bool8 ignoreAbility)
 
         if (ability == ABILITY_STENCH && gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR)
             encounterRate = encounterRate * 3 / 4;
-        else if (ability == ABILITY_STENCH)
+        else if (ability == ABILITY_STENCH || ability == ABILITY_WHITE_SMOKE
+                || ability == ABILITY_QUICK_FEET || ability == ABILITY_INFILTRATOR
+                || (ability == ABILITY_SAND_VEIL && gSaveBlock1Ptr->weather == WEATHER_SANDSTORM)
+                || (ability == ABILITY_SNOW_CLOAK && gSaveBlock1Ptr->weather == WEATHER_SNOW))
             encounterRate /= 2;
-        else if (ability == ABILITY_ILLUMINATE)
+        else if (ability == ABILITY_ILLUMINATE || ability == ABILITY_ARENA_TRAP)
             encounterRate *= 2;
-        else if (ability == ABILITY_WHITE_SMOKE)
-            encounterRate /= 2;
-        else if (ability == ABILITY_ARENA_TRAP)
-            encounterRate *= 2;
-        else if (ability == ABILITY_SAND_VEIL && gSaveBlock1Ptr->weather == WEATHER_SANDSTORM)
-            encounterRate /= 2;
-        else if (ability == ABILITY_SNOW_CLOAK && gSaveBlock1Ptr->weather == WEATHER_SNOW)
-            encounterRate /= 2;
-        else if (ability == ABILITY_QUICK_FEET)
-            encounterRate /= 2;
-        else if (ability == ABILITY_INFILTRATOR)
-            encounterRate /= 2;
         else if (ability == ABILITY_NO_GUARD)
             encounterRate = encounterRate * 3 / 2;
     }

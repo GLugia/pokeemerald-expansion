@@ -1234,16 +1234,6 @@ static bool32 TryAegiFormChange(void)
     {
     default:
         return FALSE;
-    case SPECIES_AEGISLASH: // Shield -> Blade
-        if (gBattleMoves[gCurrentMove].power == 0)
-            return FALSE;
-        gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH_BLADE;
-        break;
-    case SPECIES_AEGISLASH_BLADE: // Blade -> Shield
-        if (gCurrentMove != MOVE_KINGS_SHIELD)
-            return FALSE;
-        gBattleMons[gBattlerAttacker].species = SPECIES_AEGISLASH;
-        break;
     }
 
     BattleScriptPushCursor();
@@ -2025,9 +2015,9 @@ static void Cmd_datahpupdate(void)
         }
         else if (DoesDisguiseBlockMove(gBattlerAttacker, gActiveBattler, gCurrentMove))
         {
-            gBattleMons[gActiveBattler].species = SPECIES_MIMIKYU_BUSTED;
-            BattleScriptPush(gBattlescriptCurrInstr + 2);
-            gBattlescriptCurrInstr = BattleScript_TargetFormChange;
+            //gBattleMons[gActiveBattler].species = SPECIES_MIMIKYU_BUSTED;
+            //BattleScriptPush(gBattlescriptCurrInstr + 2);
+            //gBattlescriptCurrInstr = BattleScript_TargetFormChange;
         }
         else
         {
@@ -7070,7 +7060,8 @@ u32 IsLeafGuardProtected(u32 battler)
 bool32 IsShieldsDownProtected(u32 battler)
 {
     return (gBattleMons[battler].ability == ABILITY_SHIELDS_DOWN
-            && gBattleMons[battler].species == SPECIES_MINIOR);
+            //&& gBattleMons[battler].species == SPECIES_MINIOR
+			&& gBattleMons[battler].species == SPECIES_GOLEM);
 }
 
 u32 IsAbilityStatusProtected(u32 battler)
@@ -7826,7 +7817,7 @@ static void Cmd_various(void)
         }
         return;
     case VARIOUS_TRY_REFLECT_TYPE:
-        if (gBattleMons[gBattlerTarget].species == SPECIES_ARCEUS || gBattleMons[gBattlerTarget].species == SPECIES_SILVALLY)
+        if (gBattleMons[gBattlerTarget].species == SPECIES_ARCEUS/* || gBattleMons[gBattlerTarget].species == SPECIES_SILVALLY*/)
         {
             gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 3);
         }
@@ -11788,7 +11779,7 @@ bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
 bool32 DoesDisguiseBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
 {
     if (GetBattlerAbility(battlerDef) != ABILITY_DISGUISE
-        || gBattleMons[battlerDef].species != SPECIES_MIMIKYU
+        //|| gBattleMons[battlerDef].species != SPECIES_MIMIKYU
         || gBattleMons[battlerDef].status2 & STATUS2_TRANSFORMED
         || gBattleMoves[move].power == 0)
         return FALSE;

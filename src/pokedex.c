@@ -2178,9 +2178,9 @@ static void CreatePokedexList(u8 dexMode, u8 order)
     {
     default:
     case DEX_MODE_HOENN:
-        temp_dexCount = HOENN_DEX_COUNT;
-        temp_isHoennDex = TRUE;
-        break;
+		/*temp_dexCount = HOENN_DEX_COUNT;
+		temp_isHoennDex = TRUE;
+		break;*/
     case DEX_MODE_NATIONAL:
         if (IsNationalPokedexEnabled())
         {
@@ -2215,7 +2215,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
             s16 r5, r10;
             for (i = 0, r5 = 0, r10 = 0; i < temp_dexCount; i++)
             {
-                temp_dexNum = i + 1;
+                temp_dexNum = SpeciesToPokedexNum(i + 1);
                 if (GetSetPokedexFlag(temp_dexNum, FLAG_GET_SEEN))
                     r10 = 1;
                 if (r10)
@@ -4383,11 +4383,17 @@ bool16 HasAllMons(void)
     }
 
     // -2 excludes Jirachi and Deoxys
-    for (i = JOHTO_DEX_COUNT; i < NATIONAL_DEX_COUNT - 2; i++)
+    for (i = JOHTO_DEX_COUNT; i < HOENN_DEX_COUNT - 2; i++)
     {
         if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
             return FALSE;
     }
+
+	for (i = HOENN_DEX_COUNT; i < NATIONAL_DEX_COUNT - 2; i++)
+	{
+		if (!GetSetPokedexFlag(i + 1, FLAG_GET_CAUGHT))
+			return FALSE;
+	}
     return TRUE;
 }
 
@@ -5214,7 +5220,7 @@ void SetSearchRectHighlight(u8 flags, u8 x, u8 y, u8 width)
         temp &= 0x0fff;
         temp |= (flags << 12);
         *(u16 *)(ptr + (y + 0) * 64 + (x + i) * 2) = temp;
-        
+
         temp = *(u16 *)(ptr + (y + 1) * 64 + (x + i) * 2);
         temp &= 0x0fff;
         temp |= (flags << 12);
