@@ -152,7 +152,7 @@ extern struct MusicPlayerInfo gMPlayInfo_BGM;
 
 struct PokedexListItem
 {
-    u16 dexNum;
+    u16 dexNum:14;
     u16 seen:1;
     u16 owned:1;
 };
@@ -160,15 +160,17 @@ struct PokedexListItem
 struct PokedexView
 {
     struct PokedexListItem pokedexList[NATIONAL_DEX_COUNT + 1];
-    u16 pokemonListCount;
-    u16 selectedPokemon;
-    u16 selectedPokemonBackup;
-    u16 dexMode;
-    u16 dexModeBackup;
-    u16 dexOrder;
-    u16 dexOrderBackup;
-    u16 seenCount;
-    u16 ownCount;
+    u16 pokemonListCount;					// 9
+    u32 selectedPokemon:9;					// 9	*
+    u32 selectedPokemonBackup:9;			// 9	*
+    u32 currentPage:8;						// 8	*
+    u32 screenSwitchState:4;				// 4	*
+    u32 dexOrder:2;							// 2	*
+    u16 dexMode;							// 1	**
+    u16 dexModeBackup;						// 1	**
+    u16 dexOrderBackup;						// 2	**
+    u16 seenCount;							// 9	**
+    u16 ownCount;							// 9	**
     u16 monSpriteIds[MAX_MONS_ON_SCREEN];
     u16 selectedMonSpriteId;
     u16 pokeBallRotationStep;
@@ -182,18 +184,12 @@ struct PokedexView
     u16 scrollMonIncrement;
     u16 maxScrollTimer;
     u16 scrollSpeed;
-    u16 unkArr1[4]; // Cleared, never read
-    u8 filler[8];
-    u8 currentPage;
-    u8 currentPageBackup;
-    bool8 isSearchResults:1;
-    u8 selectedScreen;
-    u8 screenSwitchState;
-    u8 menuIsOpen;
+    u8 currentPageBackup;					// 8	**
+    bool8 isSearchResults:1;				// 1	**
+    u8 selectedScreen;						// 8
+    u8 menuIsOpen;							// 1	**
     u16 menuCursorPos;
     s16 menuY;     //Menu Y position (inverted because we use REG_BG0VOFS for this)
-    u8 unkArr2[8]; // Cleared, never read
-    u8 unkArr3[8]; // Cleared, never read
 };
 
 // this file's functions
@@ -1427,6 +1423,7 @@ static const u8 sDexSearchTypeIds[NUMBER_OF_MON_TYPES] =
     TYPE_ICE,
     TYPE_DRAGON,
     TYPE_DARK,
+	TYPE_FAIRY,
 };
 
 // Number pairs are the task data for tracking the cursor pos and scroll offset of each option list
@@ -1567,8 +1564,6 @@ static void ResetPokedexView(struct PokedexView *pokedexView)
     pokedexView->scrollMonIncrement = 0;
     pokedexView->maxScrollTimer = 0;
     pokedexView->scrollSpeed = 0;
-    for (i = 0; i < ARRAY_COUNT(pokedexView->unkArr1); i++)
-        pokedexView->unkArr1[i] = 0;
     pokedexView->currentPage = PAGE_MAIN;
     pokedexView->currentPageBackup = PAGE_MAIN;
     pokedexView->isSearchResults = FALSE;
@@ -1577,10 +1572,6 @@ static void ResetPokedexView(struct PokedexView *pokedexView)
     pokedexView->menuIsOpen = 0;
     pokedexView->menuCursorPos = 0;
     pokedexView->menuY = 0;
-    for (i = 0; i < ARRAY_COUNT(pokedexView->unkArr2); i++)
-        pokedexView->unkArr2[i] = 0;
-    for (i = 0; i < ARRAY_COUNT(pokedexView->unkArr3); i++)
-        pokedexView->unkArr3[i] = 0;
 }
 
 void CB2_OpenPokedex(void)
@@ -3486,7 +3477,7 @@ static void Task_LoadAreaScreen(u8 taskId)
         gMain.state++;
         break;
     case 2:
-        ShowPokedexAreaScreen(NationalPokedexNumToSpecies(sPokedexListItem->dexNum), &sPokedexView->screenSwitchState);
+        ShowPokedexAreaScreen(NationalPokedexNumToSpecies(sPokedexListItem->dexNum), (u8*)((void*)(sPokedexView->screenSwitchState)));
         SetVBlankCallback(gPokedexVBlankCB);
         sPokedexView->screenSwitchState = 0;
         gMain.state = 0;
