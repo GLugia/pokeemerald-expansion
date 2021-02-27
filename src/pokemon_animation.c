@@ -791,31 +791,31 @@ static const u8 sBackAnimationIds[] =
 
 static const u8 sBackAnimNatureModTable[NUM_NATURES] =
 {
-    [NATURE_HARDY] = 0x00,
+    [NATURE_BRAWNY] = 0x00,
     [NATURE_LONELY] = 0x02,
     [NATURE_BRAVE] = 0x00,
     [NATURE_ADAMANT] = 0x00,
     [NATURE_NAUGHTY] = 0x00,
     [NATURE_BOLD] = 0x01,
-    [NATURE_DOCILE] = 0x01,
+    [NATURE_GUARDED] = 0x01,
     [NATURE_RELAXED] = 0x01,
     [NATURE_IMPISH] = 0x00,
     [NATURE_LAX] = 0x01,
     [NATURE_TIMID] = 0x02,
     [NATURE_HASTY] = 0x00,
-    [NATURE_SERIOUS] = 0x01,
+    [NATURE_NEUTRAL] = 0x01,
     [NATURE_JOLLY] = 0x00,
     [NATURE_NAIVE] = 0x00,
     [NATURE_MODEST] = 0x02,
     [NATURE_MILD] = 0x02,
     [NATURE_QUIET] = 0x02,
-    [NATURE_BASHFUL] = 0x02,
+    [NATURE_WILD] = 0x02,
     [NATURE_RASH] = 0x01,
     [NATURE_CALM] = 0x01,
     [NATURE_GENTLE] = 0x02,
     [NATURE_SASSY] = 0x01,
     [NATURE_CAREFUL] = 0x02,
-    [NATURE_QUIRKY] = 0x01,
+    [NATURE_WISE] = 0x01,
 };
 
 static const union AffineAnimCmd sSpriteAffineAnim_860AD48[] =

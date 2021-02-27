@@ -36,7 +36,7 @@ static const u8 sChlorophyllDescription[] = _("Raises Speed in sunshine.");
 static const u8 sIlluminateDescription[] = _("Encounter rate increases.");
 static const u8 sTraceDescription[] = _("Copies special ability.");
 static const u8 sHugePowerDescription[] = _("Raises Attack.");
-static const u8 sPoisonPointDescription[] = _("Poisons foe on contact.");
+static const u8 sPoisonTouchDescription[] = _("Poisons foe on contact.");
 static const u8 sInnerFocusDescription[] = _("Prevents flinching.");
 static const u8 sMagmaArmorDescription[] = _("Prevents freezing.");
 static const u8 sWaterVeilDescription[] = _("Prevents burns.");
@@ -255,6 +255,9 @@ static const u8 sGrimNeighDescription[] = _("KOs boost Sp. Atk stat.");
 static const u8 sAsOneIceRiderDescription[] = _("Unnerve and Chilling Neigh.");
 static const u8 sAsOneShadowRiderDescription[] = _("Unnerve and Grim Neigh.");
 
+static const u8 sTankShellDescription[] = _("Slight HP recovery. Boosted in Rain.");
+static const u8 sArmorTuningDescription[] = _("Tune defenses when hit.");
+
 const u8 gAbilityNames[ABILITIES_COUNT_GEN8][ABILITY_NAME_LENGTH + 1] =
 {
     [ABILITY_NONE] = _("-------"),
@@ -295,7 +298,6 @@ const u8 gAbilityNames[ABILITIES_COUNT_GEN8][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_ILLUMINATE] = _("Illuminate"),
     [ABILITY_TRACE] = _("Trace"),
     [ABILITY_HUGE_POWER] = _("Huge Power"),
-    [ABILITY_POISON_POINT] = _("Poison Point"),
     [ABILITY_INNER_FOCUS] = _("Inner Focus"),
     [ABILITY_MAGMA_ARMOR] = _("Magma Armor"),
     [ABILITY_WATER_VEIL] = _("Water Veil"),
@@ -525,6 +527,9 @@ const u8 gAbilityNames[ABILITIES_COUNT_GEN8][ABILITY_NAME_LENGTH + 1] =
     [ABILITY_GRIM_NEIGH] = _("Grim Neigh"),
     [ABILITY_AS_ONE_ICE_RIDER] = _("As One"),
     [ABILITY_AS_ONE_SHADOW_RIDER] = _("As One"),
+
+	[ABILITY_TANK_SHELL] = _("Tank Shell"),
+	[ABILITY_ARMOR_TUNING] = _("Armor Tuning"),
 };
 
 const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT_GEN8] =
@@ -567,7 +572,6 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT_GEN8] =
     [ABILITY_ILLUMINATE] = sIlluminateDescription,
     [ABILITY_TRACE] = sTraceDescription,
     [ABILITY_HUGE_POWER] = sHugePowerDescription,
-    [ABILITY_POISON_POINT] = sPoisonPointDescription,
     [ABILITY_INNER_FOCUS] = sInnerFocusDescription,
     [ABILITY_MAGMA_ARMOR] = sMagmaArmorDescription,
     [ABILITY_WATER_VEIL] = sWaterVeilDescription,
@@ -672,7 +676,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT_GEN8] =
     [ABILITY_TELEPATHY] = sTelepathyDescription,
     [ABILITY_MOODY] = sMoodyDescription,
     [ABILITY_OVERCOAT] = sOvercoatDescription,
-    [ABILITY_POISON_TOUCH] = sPoisonPointDescription,
+    [ABILITY_POISON_TOUCH] = sPoisonTouchDescription,
     [ABILITY_REGENERATOR] = sNaturalCureDescription,
     [ABILITY_BIG_PECKS] = sBigPecksDescription,
     [ABILITY_SAND_RUSH] = sSandRushDescription,
@@ -797,4 +801,7 @@ const u8 *const gAbilityDescriptionPointers[ABILITIES_COUNT_GEN8] =
     [ABILITY_GRIM_NEIGH] = sGrimNeighDescription,
     [ABILITY_AS_ONE_ICE_RIDER] = sAsOneIceRiderDescription,
     [ABILITY_AS_ONE_SHADOW_RIDER] = sAsOneShadowRiderDescription,
+
+	[ABILITY_TANK_SHELL] = sTankShellDescription,
+	[ABILITY_ARMOR_TUNING] = sArmorTuningDescription,
 };

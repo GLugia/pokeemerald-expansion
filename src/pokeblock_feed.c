@@ -85,36 +85,40 @@ EWRAM_DATA static struct CompressedSpritePalette sPokeblockSpritePal = {0};
 // const rom data
 static const u8 sNatureToMonPokeblockAnim[NUM_NATURES][2] =
 {
-    [NATURE_HARDY] = {  0, 0 },
     [NATURE_LONELY] = {  3, 0 },
     [NATURE_BRAVE] = {  4, 1 },
     [NATURE_ADAMANT] = {  5, 0 },
     [NATURE_NAUGHTY] = { 10, 0 },
+    [NATURE_BRAWNY] = {  0, 0 },
+	
     [NATURE_BOLD] = { 13, 0 },
-    [NATURE_DOCILE] = { 15, 0 },
     [NATURE_RELAXED] = { 16, 2 },
     [NATURE_IMPISH] = { 18, 0 },
     [NATURE_LAX] = { 19, 0 },
+    [NATURE_GUARDED] = { 15, 0 },
+	
     [NATURE_TIMID] = { 20, 0 },
     [NATURE_HASTY] = { 25, 0 },
-    [NATURE_SERIOUS] = { 27, 3 },
     [NATURE_JOLLY] = { 28, 0 },
     [NATURE_NAIVE] = { 29, 0 },
+    [NATURE_NEUTRAL] = { 27, 3 },
+	
     [NATURE_MODEST] = { 33, 4 },
     [NATURE_MILD] = { 36, 0 },
     [NATURE_QUIET] = { 37, 0 },
-    [NATURE_BASHFUL] = { 39, 0 },
     [NATURE_RASH] = { 42, 0 },
+    [NATURE_WILD] = { 39, 0 },
+	
     [NATURE_CALM] = { 45, 0 },
     [NATURE_GENTLE] = { 46, 5 },
     [NATURE_SASSY] = { 47, 6 },
     [NATURE_CAREFUL] = { 48, 0 },
-    [NATURE_QUIRKY] = { 53, 0 },
+    [NATURE_WISE] = { 53, 0 },
 };
 
 static const s16 sMonPokeblockAnims[][10] =
 {
-    // HARDY
+    // NEUTRAL
     {   0,   4,   0,   8,  24,   0,   0,   0,  12,   0},
     {   0,   4,   0,  16,  24,   0,   0,   0,  12,   0},
     {   0,   4,   0,  32,  32,   0,   0,   0,  16,   1},

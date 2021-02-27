@@ -358,4 +358,7 @@ extern const u8 BattleScript_BallFetch[];
 extern const u8 BattleScript_SandSpitActivates[];
 extern const u8 BattleScript_PerishBodyActivates[];
 
+extern const u8 BattleScript_ArmorTuningPhys[];
+extern const u8 BattleScript_ArmorTuningSpec[];
+
 #endif // GUARD_BATTLE_SCRIPTS_H

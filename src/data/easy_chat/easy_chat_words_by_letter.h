@@ -374,7 +374,7 @@ const u16 gEasyChatWordsByLetter_D[] = {
     EC_MOVE2(DIVE),
     EC_MOVE2(DIZZY_PUNCH),
     EC_WORD_DO,
-    EC_WORD_DOCILE,
+    //EC_WORD_DOCILE,
     -1, 2, // Doubled pokemon species name
     EC_POKEMON(DODRIO),
     EC_POKEMON2(DODRIO),

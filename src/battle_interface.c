@@ -3081,7 +3081,7 @@ void CreateAbilityPopUp(u8 battlerId, u32 ability, bool32 isDoubleBattle)
     RestoreOverwrittenPixels((void*)(OBJ_VRAM0) + (gSprites[spriteId1].oam.tileNum * 32));
 }
 
-#define FRAMES_TO_WAIT 48
+#define FRAMES_TO_WAIT 96 // 48
 
 static void SpriteCb_AbilityPopUp(struct Sprite *sprite)
 {
