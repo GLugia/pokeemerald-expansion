@@ -1142,7 +1142,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_PHYSICAL,
     },
 
-    [MOVE_SOLAR_BEAM] =
+    [MOVE_SOLARBEAM] =
     {
         .effect = EFFECT_SOLARBEAM,
         .power = 120,

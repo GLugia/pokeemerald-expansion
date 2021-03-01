@@ -350,7 +350,7 @@ static const struct FrontierBrainMon sFrontierBrainsMons[][2][FRONTIER_PARTY_SIZ
                 .fixedIV = MAX_PER_STAT_IVS,
                 .nature = NATURE_ADAMANT,
                 .evs = {0, 252, 0, 0, 252, 6},
-                .moves = {MOVE_THUNDERBOLT, MOVE_PROTECT, MOVE_SOLAR_BEAM, MOVE_DRAGON_CLAW},
+                .moves = {MOVE_THUNDERBOLT, MOVE_PROTECT, MOVE_SOLARBEAM, MOVE_DRAGON_CLAW},
             },
         },
         {
@@ -376,7 +376,7 @@ static const struct FrontierBrainMon sFrontierBrainsMons[][2][FRONTIER_PARTY_SIZ
                 .fixedIV = MAX_PER_STAT_IVS,
                 .nature = NATURE_ADAMANT,
                 .evs = {0, 252, 0, 0, 252, 6},
-                .moves = {MOVE_THUNDERBOLT, MOVE_PROTECT, MOVE_SOLAR_BEAM, MOVE_DRAGON_CLAW},
+                .moves = {MOVE_THUNDERBOLT, MOVE_PROTECT, MOVE_SOLARBEAM, MOVE_DRAGON_CLAW},
             },
         },
     },

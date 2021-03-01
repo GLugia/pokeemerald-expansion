@@ -1576,7 +1576,7 @@ static const struct TrHillFloor sDataTagNormal_Floors[] =
                     {
                         .species = SPECIES_GLOOM,
                         .heldItem = ITEM_MIRACLE_SEED,
-                        .moves = {MOVE_PETAL_DANCE, MOVE_SYNTHESIS, MOVE_SUNNY_DAY, MOVE_SOLAR_BEAM},
+                        .moves = {MOVE_PETAL_DANCE, MOVE_SYNTHESIS, MOVE_SUNNY_DAY, MOVE_SOLARBEAM},
                         .level = 0,
                         .ppBonuses = 0,
                         .speedEV = 255,
@@ -1618,7 +1618,7 @@ static const struct TrHillFloor sDataTagNormal_Floors[] =
                     {
                         .species = SPECIES_TROPIUS,
                         .heldItem = ITEM_WHITE_HERB,
-                        .moves = {MOVE_SUNNY_DAY, MOVE_SOLAR_BEAM, MOVE_SWEET_SCENT, MOVE_AERIAL_ACE},
+                        .moves = {MOVE_SUNNY_DAY, MOVE_SOLARBEAM, MOVE_SWEET_SCENT, MOVE_AERIAL_ACE},
                         .level = 0,
                         .ppBonuses = 0,
                         .attackEV = 120,
@@ -2816,7 +2816,7 @@ static const struct TrHillFloor sDataTagVariety_Floors[] = {
                                         {
                                             .species = SPECIES_VOLBEAT,
                                             .heldItem = ITEM_SITRUS_BERRY,
-                                            .moves = {MOVE_HELPING_HAND, MOVE_SIGNAL_BEAM, MOVE_SOLAR_BEAM, MOVE_MOONLIGHT},
+                                            .moves = {MOVE_HELPING_HAND, MOVE_SIGNAL_BEAM, MOVE_SOLARBEAM, MOVE_MOONLIGHT},
                                             .level = 0,
                                             .ppBonuses = 0,
                                             .speedEV = 255,
@@ -3076,7 +3076,7 @@ static const struct TrHillFloor sDataTagUnique_Floors[] = {
                                         {
                                             .species = SPECIES_VENUSAUR,
                                             .heldItem = ITEM_LEFTOVERS,
-                                            .moves = {MOVE_SOLAR_BEAM, MOVE_EARTHQUAKE, MOVE_SYNTHESIS, MOVE_SUNNY_DAY},
+                                            .moves = {MOVE_SOLARBEAM, MOVE_EARTHQUAKE, MOVE_SYNTHESIS, MOVE_SUNNY_DAY},
                                             .level = 0,
                                             .ppBonuses = 0,
                                             .hpEV = 100,
@@ -3712,7 +3712,7 @@ static const struct TrHillFloor sDataTagUnique_Floors[] = {
                                         {
                                             .species = SPECIES_IVYSAUR,
                                             .heldItem = ITEM_MIRACLE_SEED,
-                                            .moves = {MOVE_SOLAR_BEAM, MOVE_SYNTHESIS, MOVE_GROWTH, MOVE_SWEET_SCENT},
+                                            .moves = {MOVE_SOLARBEAM, MOVE_SYNTHESIS, MOVE_GROWTH, MOVE_SWEET_SCENT},
                                             .level = 0,
                                             .ppBonuses = 0,
                                             .hpEV = 252,
@@ -3734,7 +3734,7 @@ static const struct TrHillFloor sDataTagUnique_Floors[] = {
                                         {
                                             .species = SPECIES_BAYLEEF,
                                             .heldItem = ITEM_MIRACLE_SEED,
-                                            .moves = {MOVE_SOLAR_BEAM, MOVE_SAFEGUARD, MOVE_LIGHT_SCREEN, MOVE_BODY_SLAM},
+                                            .moves = {MOVE_SOLARBEAM, MOVE_SAFEGUARD, MOVE_LIGHT_SCREEN, MOVE_BODY_SLAM},
                                             .level = 0,
                                             .ppBonuses = 0,
                                             .hpEV = 250,
@@ -5321,7 +5321,7 @@ static const struct TrHillFloor sDataTagExpert_Floors[] = {
                                         {
                                             .species = SPECIES_EXEGGUTOR,
                                             .heldItem = ITEM_SHELL_BELL,
-                                            .moves = {MOVE_EXPLOSION, MOVE_HYPNOSIS, MOVE_PSYCHIC, MOVE_SOLAR_BEAM},
+                                            .moves = {MOVE_EXPLOSION, MOVE_HYPNOSIS, MOVE_PSYCHIC, MOVE_SOLARBEAM},
                                             .level = 0,
                                             .ppBonuses = 0,
                                             .attackEV = 255,

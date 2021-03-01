@@ -339,7 +339,7 @@ static const u16 sPoints_RainMoves[] =
     MOVE_WATER_PULSE, 3, 
     MOVE_WEATHER_BALL, 3, 
     MOVE_THUNDER, 3, 
-    MOVE_SOLAR_BEAM, -4, 
+    MOVE_SOLARBEAM, -4, 
     MOVE_OVERHEAT, -4, 
     MOVE_FLAME_WHEEL, -4, 
     MOVE_FLAMETHROWER, -4, 
@@ -352,7 +352,7 @@ static const u16 sPoints_RainMoves[] =
     MOVE_ERUPTION, -4, 
     MOVE_FIRE_SPIN, -4, 
     MOVE_FIRE_PUNCH, -4,
-    MOVE_SOLAR_BEAM, -4, // Repeated
+    MOVE_SOLARBEAM, -4, // Repeated
     TABLE_END, 0
 };
 static const u16 sPoints_SunMoves[] =
@@ -369,7 +369,7 @@ static const u16 sPoints_SunMoves[] =
     MOVE_ERUPTION, 3, 
     MOVE_FIRE_SPIN, 3, 
     MOVE_FIRE_PUNCH, 3, 
-    MOVE_SOLAR_BEAM, 5, 
+    MOVE_SOLARBEAM, 5, 
     MOVE_SYNTHESIS, 3, 
     MOVE_MORNING_SUN, 3, 
     MOVE_MOONLIGHT, 3,
@@ -379,13 +379,13 @@ static const u16 sPoints_SunMoves[] =
 static const u16 sPoints_SandstormMoves[] =
 {
     MOVE_WEATHER_BALL, 3, 
-    MOVE_SOLAR_BEAM, -3, 
+    MOVE_SOLARBEAM, -3, 
     TABLE_END, 0
 };
 static const u16 sPoints_HailMoves[] =
 {
     MOVE_WEATHER_BALL, 3, 
-    MOVE_SOLAR_BEAM, -3, 
+    MOVE_SOLARBEAM, -3, 
     TABLE_END, 0
 };
 static const u16 sPoints_ElectricMoves[] =

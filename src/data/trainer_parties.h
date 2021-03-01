@@ -3518,7 +3518,7 @@ static const struct TrainerMonItemCustomMoves sParty_Winona1[] = {
     .lvl = 29,
     .species = SPECIES_TROPIUS,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_SUNNY_DAY, MOVE_AERIAL_ACE, MOVE_SOLAR_BEAM, MOVE_SYNTHESIS}
+    .moves = {MOVE_SUNNY_DAY, MOVE_AERIAL_ACE, MOVE_SOLARBEAM, MOVE_SYNTHESIS}
     },
     {
     .iv = 210,
@@ -3570,7 +3570,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza1[] = {
     .lvl = 42,
     .species = SPECIES_SOLROCK,
     .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_SUNNY_DAY, MOVE_SOLAR_BEAM, MOVE_PSYCHIC, MOVE_FLAMETHROWER}
+    .moves = {MOVE_SUNNY_DAY, MOVE_SOLARBEAM, MOVE_PSYCHIC, MOVE_FLAMETHROWER}
     }
 };
 
@@ -5755,7 +5755,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_Madeline5[] = {
     .iv = 40,
     .lvl = 37,
     .species = SPECIES_ROSELIA,
-    .moves = {MOVE_LEECH_SEED, MOVE_GIGA_DRAIN, MOVE_SOLAR_BEAM, MOVE_SUNNY_DAY}
+    .moves = {MOVE_LEECH_SEED, MOVE_GIGA_DRAIN, MOVE_SOLARBEAM, MOVE_SUNNY_DAY}
     },
     {
     .iv = 40,
@@ -6578,7 +6578,7 @@ static const struct TrainerMonNoItemCustomMoves sParty_Kayley[] = {
     .iv = 0,
     .lvl = 31,
     .species = SPECIES_CASTFORM,
-    .moves = {MOVE_SUNNY_DAY, MOVE_WEATHER_BALL, MOVE_FLAMETHROWER, MOVE_SOLAR_BEAM}
+    .moves = {MOVE_SUNNY_DAY, MOVE_WEATHER_BALL, MOVE_FLAMETHROWER, MOVE_SOLARBEAM}
     }
 };
 
@@ -10760,7 +10760,7 @@ static const struct TrainerMonItemCustomMoves sParty_Flannery2[] = {
     .lvl = 36,
     .species = SPECIES_PONYTA,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_FLAMETHROWER, MOVE_ATTRACT, MOVE_SOLAR_BEAM, MOVE_BOUNCE}
+    .moves = {MOVE_FLAMETHROWER, MOVE_ATTRACT, MOVE_SOLARBEAM, MOVE_BOUNCE}
     },
     {
     .iv = 255,
@@ -10798,7 +10798,7 @@ static const struct TrainerMonItemCustomMoves sParty_Flannery3[] = {
     .lvl = 41,
     .species = SPECIES_PONYTA,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_FLAMETHROWER, MOVE_ATTRACT, MOVE_SOLAR_BEAM, MOVE_BOUNCE}
+    .moves = {MOVE_FLAMETHROWER, MOVE_ATTRACT, MOVE_SOLARBEAM, MOVE_BOUNCE}
     },
     {
     .iv = 255,
@@ -10822,7 +10822,7 @@ static const struct TrainerMonItemCustomMoves sParty_Flannery4[] = {
     .lvl = 46,
     .species = SPECIES_HOUNDOUR,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_ROAR, MOVE_SOLAR_BEAM, MOVE_TAUNT, MOVE_SUNNY_DAY}
+    .moves = {MOVE_ROAR, MOVE_SOLARBEAM, MOVE_TAUNT, MOVE_SUNNY_DAY}
     },
     {
     .iv = 255,
@@ -10843,7 +10843,7 @@ static const struct TrainerMonItemCustomMoves sParty_Flannery4[] = {
     .lvl = 46,
     .species = SPECIES_RAPIDASH,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_FLAMETHROWER, MOVE_ATTRACT, MOVE_SOLAR_BEAM, MOVE_BOUNCE}
+    .moves = {MOVE_FLAMETHROWER, MOVE_ATTRACT, MOVE_SOLARBEAM, MOVE_BOUNCE}
     },
     {
     .iv = 255,
@@ -10881,14 +10881,14 @@ static const struct TrainerMonItemCustomMoves sParty_Flannery5[] = {
     .lvl = 51,
     .species = SPECIES_HOUNDOOM,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_ROAR, MOVE_SOLAR_BEAM, MOVE_TAUNT, MOVE_SUNNY_DAY}
+    .moves = {MOVE_ROAR, MOVE_SOLARBEAM, MOVE_TAUNT, MOVE_SUNNY_DAY}
     },
     {
     .iv = 255,
     .lvl = 51,
     .species = SPECIES_RAPIDASH,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_FLAMETHROWER, MOVE_ATTRACT, MOVE_SOLAR_BEAM, MOVE_BOUNCE}
+    .moves = {MOVE_FLAMETHROWER, MOVE_ATTRACT, MOVE_SOLARBEAM, MOVE_BOUNCE}
     },
     {
     .iv = 255,
@@ -11071,7 +11071,7 @@ static const struct TrainerMonItemCustomMoves sParty_Winona2[] = {
     .lvl = 38,
     .species = SPECIES_TROPIUS,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_SUNNY_DAY, MOVE_AERIAL_ACE, MOVE_SOLAR_BEAM, MOVE_EARTHQUAKE}
+    .moves = {MOVE_SUNNY_DAY, MOVE_AERIAL_ACE, MOVE_SOLARBEAM, MOVE_EARTHQUAKE}
     },
     {
     .iv = 255,
@@ -11109,7 +11109,7 @@ static const struct TrainerMonItemCustomMoves sParty_Winona3[] = {
     .lvl = 43,
     .species = SPECIES_TROPIUS,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_SUNNY_DAY, MOVE_AERIAL_ACE, MOVE_SOLAR_BEAM, MOVE_EARTHQUAKE}
+    .moves = {MOVE_SUNNY_DAY, MOVE_AERIAL_ACE, MOVE_SOLARBEAM, MOVE_EARTHQUAKE}
     },
     {
     .iv = 255,
@@ -11154,7 +11154,7 @@ static const struct TrainerMonItemCustomMoves sParty_Winona4[] = {
     .lvl = 49,
     .species = SPECIES_TROPIUS,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_SUNNY_DAY, MOVE_AERIAL_ACE, MOVE_SOLAR_BEAM, MOVE_EARTHQUAKE}
+    .moves = {MOVE_SUNNY_DAY, MOVE_AERIAL_ACE, MOVE_SOLARBEAM, MOVE_EARTHQUAKE}
     },
     {
     .iv = 255,
@@ -11199,7 +11199,7 @@ static const struct TrainerMonItemCustomMoves sParty_Winona5[] = {
     .lvl = 54,
     .species = SPECIES_TROPIUS,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_SUNNY_DAY, MOVE_AERIAL_ACE, MOVE_SOLAR_BEAM, MOVE_EARTHQUAKE}
+    .moves = {MOVE_SUNNY_DAY, MOVE_AERIAL_ACE, MOVE_SOLARBEAM, MOVE_EARTHQUAKE}
     },
     {
     .iv = 255,
@@ -11265,7 +11265,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza2[] = {
     .lvl = 50,
     .species = SPECIES_SOLROCK,
     .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_SUNNY_DAY, MOVE_SOLAR_BEAM, MOVE_PSYCHIC, MOVE_FLAMETHROWER}
+    .moves = {MOVE_SUNNY_DAY, MOVE_SOLARBEAM, MOVE_PSYCHIC, MOVE_FLAMETHROWER}
     }
 };
 
@@ -11310,7 +11310,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza3[] = {
     .lvl = 55,
     .species = SPECIES_SOLROCK,
     .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_SUNNY_DAY, MOVE_SOLAR_BEAM, MOVE_PSYCHIC, MOVE_FLAMETHROWER}
+    .moves = {MOVE_SUNNY_DAY, MOVE_SOLARBEAM, MOVE_PSYCHIC, MOVE_FLAMETHROWER}
     }
 };
 
@@ -11355,7 +11355,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza4[] = {
     .lvl = 60,
     .species = SPECIES_SOLROCK,
     .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_SUNNY_DAY, MOVE_SOLAR_BEAM, MOVE_PSYCHIC, MOVE_FLAMETHROWER}
+    .moves = {MOVE_SUNNY_DAY, MOVE_SOLARBEAM, MOVE_PSYCHIC, MOVE_FLAMETHROWER}
     }
 };
 
@@ -11400,7 +11400,7 @@ static const struct TrainerMonItemCustomMoves sParty_TateAndLiza5[] = {
     .lvl = 65,
     .species = SPECIES_SOLROCK,
     .heldItem = ITEM_SITRUS_BERRY,
-    .moves = {MOVE_SUNNY_DAY, MOVE_SOLAR_BEAM, MOVE_PSYCHIC, MOVE_FLAMETHROWER}
+    .moves = {MOVE_SUNNY_DAY, MOVE_SOLARBEAM, MOVE_PSYCHIC, MOVE_FLAMETHROWER}
     }
 };
 
@@ -11615,7 +11615,7 @@ static const struct TrainerMonItemCustomMoves sParty_Steven[] = {
     .lvl = 76,
     .species = SPECIES_AGGRON,
     .heldItem = ITEM_NONE,
-    .moves = {MOVE_THUNDER, MOVE_EARTHQUAKE, MOVE_SOLAR_BEAM, MOVE_DRAGON_CLAW}
+    .moves = {MOVE_THUNDER, MOVE_EARTHQUAKE, MOVE_SOLARBEAM, MOVE_DRAGON_CLAW}
     },
     {
     .iv = 255,

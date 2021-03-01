@@ -45,6 +45,7 @@
 #include "constants/map_groups.h"
 #include "constants/songs.h"
 #include "constants/species.h"
+#include "include/party_menu.h"
 
 
 // *******************************
@@ -1546,9 +1547,9 @@ static void DebugAction_Give_AllTMs(u8 taskId)
 {
     u16 i;
     PlayFanfare(MUS_OBTAIN_TMHM);
-    for (i = ITEM_TM01; i <= ITEM_TM50; i++)
-        if(!CheckBagHasItem(i, 1))
-            AddBagItem(i, 1);
+    for (i = 0; i < TMHM_COUNT; i++)
+		if(!CheckBagHasItem(i + ITEM_TM01, 1))
+			AddBagItem(i, 1);
     Debug_DestroyMenu(taskId);
     EnableBothScriptContexts();
 }

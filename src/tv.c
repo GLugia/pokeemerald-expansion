@@ -212,7 +212,7 @@ static const struct {
     },
     {
         .species = SPECIES_SEEDOT,
-        .moves = {MOVE_GIGA_DRAIN, MOVE_FRUSTRATION, MOVE_SOLAR_BEAM, MOVE_LEECH_SEED},
+        .moves = {MOVE_GIGA_DRAIN, MOVE_FRUSTRATION, MOVE_SOLARBEAM, MOVE_LEECH_SEED},
         .level = 25, 
         .location = MAP_NUM(ROUTE120),
     },
