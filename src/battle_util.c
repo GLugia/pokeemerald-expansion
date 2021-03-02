@@ -7102,7 +7102,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
 			&& gLastTurnFainted == gBattleResults.battleTurnCounter - 1)
 			MulModifier(&modifier, UQ_4_12(2.0));
         break;
-    case EFFECT_SOLARBEAM:
+    case EFFECT_SOLAR_BEAM:
         if (WEATHER_HAS_EFFECT && gBattleWeather & (WEATHER_HAIL_ANY | WEATHER_SANDSTORM_ANY | WEATHER_RAIN_ANY))
             MulModifier(&modifier, UQ_4_12(0.5));
         break;

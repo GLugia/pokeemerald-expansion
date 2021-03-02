@@ -125,7 +125,7 @@ const u16 gEasyChatGroup_Move1[] = {
     MOVE_SMOG,
     MOVE_SMOKESCREEN,
     MOVE_SNORE,
-    MOVE_SOLARBEAM,
+    MOVE_SOLAR_BEAM,
     MOVE_SONIC_BOOM,
     MOVE_SPARK,
     MOVE_SPIDER_WEB,
