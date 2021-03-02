@@ -4082,10 +4082,10 @@ const struct Item gItems[] =
 		.importance = 1,
 	},
 
-	[ITEM_TM22_SOLARBEAM] =
+	[ITEM_TM22_SOLAR_BEAM] =
 	{
 		.name = _("TM22"),
-		.itemId = ITEM_TM22_SOLARBEAM,
+		.itemId = ITEM_TM22_SOLAR_BEAM,
 		.price = 0,
 		.description = sTM22Desc,
 		.pocket = POCKET_TM_HM,

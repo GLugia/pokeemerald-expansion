@@ -81,7 +81,7 @@ void DeserializeTmHmItemSlots(void)
 		SetBagItemQuantity(&(gTmHmItemSlots[i].quantity), 0);
 	}
 
-	for (i = 0; i < TMHM_COUNT; i++)
+	for (i = 0; i < 100; i++)
 	{
 		u8 bit = i % 8;
 		if (gSaveBlock1Ptr->bagPocket_TMHMOwnedFlags[i / 8] & (1 << bit))

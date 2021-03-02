@@ -227,7 +227,7 @@ void LoadPlayerBag(void)
         gLoadedSaveData.pokeBalls[i] = gSaveBlock1Ptr->bagPocket_PokeBalls[i];
 
     // load player TMs and HMs.
-    for (i = 0; i < TMHM_COUNT; i++)
+    for (i = 0; i < BAG_TMHM_COUNT; i++)
         gLoadedSaveData.TMsHMs[i] = gTmHmItemSlots[i];
 
     // load player berries.
