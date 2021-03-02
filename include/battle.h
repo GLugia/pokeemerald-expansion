@@ -554,6 +554,9 @@ struct BattleStruct
 #define IS_MOVE_PHYSICAL(move)(GetBattleMoveSplit(move) == SPLIT_PHYSICAL)
 #define IS_MOVE_SPECIAL(move)(GetBattleMoveSplit(move) == SPLIT_SPECIAL)
 #define IS_MOVE_STATUS(move)(gBattleMoves[move].split == SPLIT_STATUS)
+#define IS_MOVE_BIASED(move)(gBattleMoves[move].split == SPLIT_BIASED)
+#define IS_MOVE_PHYSICAL_BIASED(move, attacker)(GetBiasedSplit(move, attacker) == SPLIT_PHYSICAL)
+#define IS_MOVE_SPECIAL_BIASED(move, attacker)(GetBiasedSplit(move, attacker) == SPLIT_SPECIAL)
 
 #define BATTLER_MAX_HP(battlerId)(gBattleMons[battlerId].hp == gBattleMons[battlerId].maxHP)
 #define TARGET_TURN_DAMAGED ((gSpecialStatuses[gBattlerTarget].physicalDmg != 0 || gSpecialStatuses[gBattlerTarget].specialDmg != 0))

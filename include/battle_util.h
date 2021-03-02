@@ -130,5 +130,6 @@ struct Pokemon *GetIllusionMonPtr(u32 battlerId);
 void ClearIllusionMon(u32 battlerId);
 bool32 SetIllusionMon(struct Pokemon *mon, u32 battlerId);
 u8 GetBattleMoveSplit(u32 moveId);
+u8 GetBiasedSplit(u32 moveId, u16 attacker);
 
 #endif // GUARD_BATTLE_UTIL_H
