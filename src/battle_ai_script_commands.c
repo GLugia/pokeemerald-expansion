@@ -319,7 +319,7 @@ static const u16 sDiscouragedPowerfulMoveEffects[] =
     EFFECT_DREAM_EATER,
     EFFECT_RECHARGE,
     EFFECT_SKULL_BASH,
-    EFFECT_SOLARBEAM,
+    EFFECT_SOLAR_BEAM,
     EFFECT_SPIT_UP,
     EFFECT_FOCUS_PUNCH,
     EFFECT_SUPERPOWER,
@@ -1411,9 +1411,9 @@ static u32 WhichMoveBetter(u32 move1, u32 move2)
         && (BATTLE_HISTORY->itemEffects[gBattlerTarget] == HOLD_EFFECT_ROCKY_HELMET
         || defAbility == ABILITY_IRON_BARBS || defAbility == ABILITY_ROUGH_SKIN))
     {
-        if (IS_MOVE_PHYSICAL(move1) && !IS_MOVE_PHYSICAL(move2))
+        if (IS_MOVE_PHYSICAL_BIASED(move1, sBattler_AI) && !IS_MOVE_PHYSICAL_BIASED(move2, sBattler_AI))
             return 1;
-        if (IS_MOVE_PHYSICAL(move2) && !IS_MOVE_PHYSICAL(move1))
+        if (IS_MOVE_PHYSICAL_BIASED(move2, sBattler_AI) && !IS_MOVE_PHYSICAL_BIASED(move1, sBattler_AI))
             return 0;
     }
     // Check recoil
