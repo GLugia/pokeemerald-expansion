@@ -869,7 +869,7 @@ static void RestoreBattlerData(u8 battlerId)
     }
 }
 
-static bool32 AI_GetIfCrit(u32 move, u8 battlerAtk, u8 battlerDef)
+static bool32 AI_GetIfCrit(u32 move, u16 battlerAtk, u16 battlerDef)
 {
     bool32 isCrit;
 
@@ -904,7 +904,7 @@ static bool32 AI_GetIfCrit(u32 move, u8 battlerAtk, u8 battlerDef)
     return isCrit;
 }
 
-s32 AI_CalcDamage(u16 move, u8 battlerAtk, u8 battlerDef)
+s32 AI_CalcDamage(u16 move, u16 battlerAtk, u16 battlerDef)
 {
     s32 dmg, moveType;
 
@@ -925,7 +925,7 @@ s32 AI_CalcDamage(u16 move, u8 battlerAtk, u8 battlerDef)
     return dmg;
 }
 
-s32 AI_CalcPartyMonDamage(u16 move, u8 battlerAtk, u8 battlerDef, struct Pokemon *mon)
+s32 AI_CalcPartyMonDamage(u16 move, u16 battlerAtk, u16 battlerDef, struct Pokemon *mon)
 {
     s32 dmg;
     u32 i;
@@ -945,7 +945,7 @@ s32 AI_CalcPartyMonDamage(u16 move, u8 battlerAtk, u8 battlerDef, struct Pokemon
     return dmg;
 }
 
-u16 AI_GetTypeEffectiveness(u16 move, u8 battlerAtk, u8 battlerDef)
+u16 AI_GetTypeEffectiveness(u16 move, u16 battlerAtk, u16 battlerDef)
 {
     u16 typeEffectiveness, moveType;
 

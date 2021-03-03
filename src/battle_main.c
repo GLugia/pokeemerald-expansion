@@ -5126,7 +5126,7 @@ void RunBattleScriptCommands(void)
         gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
 }
 
-void SetTypeBeforeUsingMove(u16 move, u8 battlerAtk)
+void SetTypeBeforeUsingMove(u16 move, u16 battlerAtk)
 {
     u32 moveType, ateType, attackerAbility;
 

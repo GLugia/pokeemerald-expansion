@@ -2163,7 +2163,7 @@ u8 DoBattlerEndTurnEffects(void)
              && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK)
              && gBattleMons[gActiveBattler].hp != 0)
             {
-                gBattleMoveDamage = GetDrainedBigRootHp(gActiveBattler, gBattleMons[gActiveBattler].maxHP / 16);
+                gBattleMoveDamage = GetDrainedBigRootHp(gActiveBattler, gBattleMons[gActiveBattler].maxHP / 8);	// 16
                 BattleScriptExecute(BattleScript_IngrainTurnHeal);
                 effect++;
             }
@@ -2175,7 +2175,7 @@ u8 DoBattlerEndTurnEffects(void)
              && !(gStatuses3[gActiveBattler] & STATUS3_HEAL_BLOCK)
              && gBattleMons[gActiveBattler].hp != 0)
             {
-                gBattleMoveDamage = GetDrainedBigRootHp(gActiveBattler, gBattleMons[gActiveBattler].maxHP / 16);
+                gBattleMoveDamage = GetDrainedBigRootHp(gActiveBattler, gBattleMons[gActiveBattler].maxHP / 8);	// 16
                 BattleScriptExecute(BattleScript_AquaRingHeal);
                 effect++;
             }
@@ -6728,7 +6728,7 @@ static u16 CalcMoveBasePower(u16 move, u8 battlerAtk, u8 battlerDef)
         basePower += gBattleScripting.tripleKickPower;
         break;
     case EFFECT_SPIT_UP:
-        basePower = 100 * gDisableStructs[battlerAtk].stockpileCounter;
+        basePower = 150 * gDisableStructs[battlerAtk].stockpileCounter;	// 100
         break;
     case EFFECT_REVENGE:
         if ((gProtectStructs[battlerAtk].physicalDmg
@@ -6990,7 +6990,7 @@ static u32 CalcMoveBasePowerAfterModifiers(u16 move, u8 battlerAtk, u8 battlerDe
         }
         break;
 	case ABILITY_MAGMA_ARMOR:
-		if (moveType == TYPE_ROCK)
+		if (moveType == TYPE_GROUND)
 			MulModifier(&modifier, UQ_4_12(0.25));
 		break;
     case ABILITY_DRY_SKIN:
@@ -8136,7 +8136,7 @@ u8 GetBiasedSplit(u32 moveId, u16 attacker)
 {
 	if (!IS_MOVE_BIASED(moveId))
 		return GetBattleMoveSplit(moveId);
-		
+
 	if (GetMonData(gBattleMons[attacker], MON_DATA_ATK2)
 		>= GetMonData(gBattleMons[attacker], MON_DATA_SPATK2))
 		return SPLIT_PHYSICAL;

@@ -1494,7 +1494,7 @@ static bool32 AccuracyCalcHelper(u16 move)
     return FALSE;
 }
 
-u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
+u32 GetTotalAccuracy(u16 battlerAtk, u16 battlerDef, u32 move)
 {
     u32 calc, moveAcc, atkHoldEffect, atkParam, defHoldEffect, defParam, atkAbility, defAbility;
     s8 buff, accStage, evasionStage;
@@ -1684,15 +1684,20 @@ static void Cmd_ppreduce(void)
 }
 
 // The chance is 1/N for each stage.
-#if B_CRIT_CHANCE >= GEN_7
-    static const u8 sCriticalHitChance[] = {24, 8, 2, 1, 1};
+    // static const u8 sCriticalHitChance[] = {24, 8, 2, 1, 1};
+	static const u8 sCriticalHitChance[] =
+	{
+		16, 8, 2, 1, 1
+/*#if B_CRIT_CHANCE >= GEN_7
+		24, 8, 2, 1, 1
 #elif B_CRIT_CHANCE == GEN_6
-    static const u8 sCriticalHitChance[] = {16, 8, 2, 1, 1};
-#else
-    static const u8 sCriticalHitChance[] = {16, 8, 4, 3, 2}; // Gens 2,3,4,5
-#endif // B_CRIT_CHANCE
+		16, 8, 2, 1, 1
+#else // Gens 2,3,4,5
+		16, 8, 4, 3, 2
+#endif // B_CRIT_CHANCE*/
+	};
 
-s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbility)
+s32 CalcCritChanceStage(u16 battlerAtk, u16 battlerDef, u32 move, bool32 recordAbility)
 {
     s32 critChance = 0;
     u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
@@ -1719,18 +1724,36 @@ s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbi
     {
         u32 holdEffectAtk = GetBattlerHoldEffect(battlerAtk, TRUE);
 
-        critChance  = 2 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
-                    + ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) != 0)
-                    + (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
-                    + 2 * (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
-                    + 2 * (holdEffectAtk == HOLD_EFFECT_STICK && gBattleMons[gBattlerAttacker].species == SPECIES_FARFETCHD)
-                    + (abilityAtk == ABILITY_SUPER_LUCK);
+		if (!HasStatChanges(battlerAtk, battlerDef))
+			critChance = -1;
+		else
+			critChance  = 2 * ((gBattleMons[gBattlerAttacker].status2 & STATUS2_FOCUS_ENERGY) != 0)
+						+ ((gBattleMoves[gCurrentMove].flags & FLAG_HIGH_CRIT) != 0)
+						+ (holdEffectAtk == HOLD_EFFECT_SCOPE_LENS)
+						+ 2 * (holdEffectAtk == HOLD_EFFECT_LUCKY_PUNCH && gBattleMons[gBattlerAttacker].species == SPECIES_CHANSEY)
+						+ 2 * (holdEffectAtk == HOLD_EFFECT_STICK && gBattleMons[gBattlerAttacker].species == SPECIES_FARFETCHD)
+						+ (abilityAtk == ABILITY_SUPER_LUCK);
 
         if (critChance >= ARRAY_COUNT(sCriticalHitChance))
             critChance = ARRAY_COUNT(sCriticalHitChance) - 1;
     }
 
     return critChance;
+}
+
+u8 HasStatChanges(u16 battlerAtk, u16 battlerDef)
+{
+	u8 i;
+
+	while (i < NUM_BATTLE_STATS)
+	{
+		if (gBattleMons[battlerAtk].statStages[i] != 6
+		 || gBattleMons[battlerDef].statStages[i] != 6)
+			return TRUE;
+		i++;
+	}
+
+	return FALSE;
 }
 
 static void Cmd_critcalc(void)
@@ -7023,7 +7046,7 @@ bool32 CanUseLastResort(u8 battlerId)
     }                                                       \
 }
 
-static bool32 ClearDefogHazards(u8 battlerAtk, bool32 clear)
+static bool32 ClearDefogHazards(u16 battlerAtk, bool32 clear)
 {
     s32 i;
     for (i = 0; i < 2; i++)
@@ -8813,8 +8836,13 @@ static void Cmd_stockpiletobasedamage(void)
 
         gDisableStructs[gBattlerAttacker].stockpileCounter = 0;
         // Restore stat changes from stockpile.
-        gBattleMons[gBattlerAttacker].statStages[STAT_DEF] -= gDisableStructs[gBattlerAttacker].stockpileDef;
-        gBattleMons[gBattlerAttacker].statStages[STAT_SPDEF] -= gDisableStructs[gBattlerAttacker].stockpileSpDef;
+        //gBattleMons[gBattlerAttacker].statStages[STAT_DEF] -= gDisableStructs[gBattlerAttacker].stockpileDef;
+        //gBattleMons[gBattlerAttacker].statStages[STAT_SPDEF] -= gDisableStructs[gBattlerAttacker].stockpileSpDef;
+		
+		// Reduce stockpile counter by 1 instead of only clearing stat stages
+        gBattleMons[gBattlerAttacker].statStages[STAT_DEF]--;
+        gBattleMons[gBattlerAttacker].statStages[STAT_SPDEF]--;
+		gDisableStructs[gBattlerAttacker].stockpileCounter--;
         gBattlescriptCurrInstr += 5;
     }
 }
@@ -8832,7 +8860,8 @@ static void Cmd_stockpiletohpheal(void)
     {
         if (gBattleMons[gBattlerAttacker].maxHP == gBattleMons[gBattlerAttacker].hp)
         {
-            gDisableStructs[gBattlerAttacker].stockpileCounter = 0;
+			// Do not punish the user
+            //gDisableStructs[gBattlerAttacker].stockpileCounter = 0;
             gBattlescriptCurrInstr = jumpPtr;
             gBattlerTarget = gBattlerAttacker;
             gBattleCommunication[MULTISTRING_CHOOSER] = 1;
@@ -8849,11 +8878,16 @@ static void Cmd_stockpiletohpheal(void)
             gDisableStructs[gBattlerAttacker].stockpileCounter = 0;
             gBattlescriptCurrInstr += 5;
             gBattlerTarget = gBattlerAttacker;
+			
+			// Reduce stockpile counter by 1 instead of only clearing stat stages
+			gBattleMons[gBattlerAttacker].statStages[STAT_DEF]--;
+			gBattleMons[gBattlerAttacker].statStages[STAT_SPDEF]--;
+			gDisableStructs[gBattlerAttacker].stockpileCounter--;
         }
 
         // Restore stat changes from stockpile.
-        gBattleMons[gBattlerAttacker].statStages[STAT_DEF] -= gDisableStructs[gBattlerAttacker].stockpileDef;
-        gBattleMons[gBattlerAttacker].statStages[STAT_SPDEF] -= gDisableStructs[gBattlerAttacker].stockpileSpDef;
+        //gBattleMons[gBattlerAttacker].statStages[STAT_DEF] -= gDisableStructs[gBattlerAttacker].stockpileDef;
+        //gBattleMons[gBattlerAttacker].statStages[STAT_SPDEF] -= gDisableStructs[gBattlerAttacker].stockpileSpDef;
     }
 }
 
@@ -9116,6 +9150,7 @@ static void Cmd_normalisebuffs(void) // haze
 
     for (i = 0; i < gBattlersCount; i++)
     {
+		gDisableStructs[i].stockpileCounter = 0;
         gDisableStructs[i].stockpileDef = 0;
         gDisableStructs[i].stockpileSpDef = 0;
         for (j = 0; j < NUM_BATTLE_STATS; j++)
@@ -11772,7 +11807,7 @@ static void Cmd_settypebasedhalvers(void) // water and mud sport
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 }
 
-bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
+bool32 DoesSubstituteBlockMove(u16 battlerAtk, u16 battlerDef, u32 move)
 {
     if (!(gBattleMons[battlerDef].status2 & STATUS2_SUBSTITUTE))
         return FALSE;
@@ -11784,7 +11819,7 @@ bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
         return TRUE;
 }
 
-bool32 DoesDisguiseBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
+bool32 DoesDisguiseBlockMove(u16 battlerAtk, u16 battlerDef, u32 move)
 {
     if (GetBattlerAbility(battlerDef) != ABILITY_DISGUISE
         //|| gBattleMons[battlerDef].species != SPECIES_MIMIKYU
