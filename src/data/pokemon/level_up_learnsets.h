@@ -10826,3 +10826,13 @@ static const struct LevelUpMove sShayminSkyLevelUpLearnset[] = {
     LEVEL_UP_MOVE(100, MOVE_SEED_FLARE),
     LEVEL_UP_END
 };
+
+/*static const struct LevelUpMove sChickenLevelUpLearnset[] = {
+	LEVEL_UP_MOVE(1, MOVE_PECK),
+	LEVEL_UP_MOVE(1, MOVE_ROOST),
+	LEVEL_UP_MOVE(1, MOVE_EGG_BOMB),
+	LEVEL_UP_MOVE(1, MOVE_HARDBOILED),
+	LEVEL_UP_MOVE(1, MOVE_DRILL_PECK),
+	LEVEL_UP_MOVE(1, MOVE_DUAL_WINGBEAT),
+	LEVEL_UP_END
+};*/

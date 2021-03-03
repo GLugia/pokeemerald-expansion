@@ -23828,13 +23828,13 @@ SetSolarbeamBgContinue:
 	waitbgfadein
 	return
 SetSolarbeamBgContest:
-	fadetobg BG_SOLARBEAM_CONTESTS
+	fadetobg BG_SOLAR_BEAM_CONTESTS
 	goto SetSolarbeamBgContinue
 SetSolarbeamBgPlayer:
-	fadetobg BG_SOLARBEAM_PLAYER
+	fadetobg BG_SOLAR_BEAM_PLAYER
 	goto SetSolarbeamBgContinue
 SetSolarbeamBgOpponent:
-	fadetobg BG_SOLARBEAM_OPPONENT
+	fadetobg BG_SOLAR_BEAM_OPPONENT
 	goto SetSolarbeamBgContinue
 
 UnsetSolarbeamBg:
