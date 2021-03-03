@@ -2173,6 +2173,9 @@ static void CreatePokedexList(u8 dexMode, u8 order)
 		temp_isHoennDex = TRUE;
 		break;*/
     case DEX_MODE_NATIONAL:
+		temp_dexCount = NATIONAL_DEX_COUNT;
+		temp_isHoennDex = FALSE;
+		/*
         if (IsNationalPokedexEnabled())
         {
             temp_dexCount = NATIONAL_DEX_COUNT;
@@ -2182,7 +2185,7 @@ static void CreatePokedexList(u8 dexMode, u8 order)
         {
             temp_dexCount = HOENN_DEX_COUNT;
             temp_isHoennDex = TRUE;
-        }
+        }*/
         break;
     }
 
