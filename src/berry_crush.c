@@ -231,20 +231,20 @@ static EWRAM_DATA struct BerryCrushGame *gBerryCrushGame = NULL;
 static const u8 gUnknown_082F325C[] = { 1, 2, 4, 8, 16, 32, 64, 128 };
 static const u8 gUnknown_082F3264[] = { 0, 1, 2, 3, 5, 0, 0, 0 };
 
-static const s8 gUnknown_082F326C[][7] = 
+static const s8 gUnknown_082F326C[][7] =
 {
-    { 4, 1, 0, -1,  0,  0, 0}, 
-    { 4, 2, 0, -1,  0,  0, 0}, 
-    { 4, 2, 0, -2,  0,  0, 0}, 
-    { 6, 3, 1, -1, -3, -1, 0}, 
+    { 4, 1, 0, -1,  0,  0, 0},
+    { 4, 2, 0, -1,  0,  0, 0},
+    { 4, 2, 0, -2,  0,  0, 0},
+    { 6, 3, 1, -1, -3, -1, 0},
     { 6, 4, 1, -2, -4, -2, 0},
 };
 
 static const u8 sUnusedZero = 0;
 
-static const u8 gUnknown_082F3290[][4] = 
+static const u8 gUnknown_082F3290[][4] =
 {
-    {3, 2, 1, 0}, 
+    {3, 2, 1, 0},
     {3, 3, 1, 0},
     {3, 3, 2, 0},
     {3, 4, 2, 0},
@@ -282,7 +282,7 @@ static const struct BgTemplate gUnknown_082F32C8[4] =
         .screenSize = 2,
         .paletteMode = 0,
         .priority = 1,
-        .baseTile = 0, 
+        .baseTile = 0,
     },
     {
         .bg = 2,
@@ -291,7 +291,7 @@ static const struct BgTemplate gUnknown_082F32C8[4] =
         .screenSize = 0,
         .paletteMode = 0,
         .priority = 2,
-        .baseTile = 0, 
+        .baseTile = 0,
     },
     {
         .bg = 3,
@@ -300,7 +300,7 @@ static const struct BgTemplate gUnknown_082F32C8[4] =
         .screenSize = 0,
         .paletteMode = 0,
         .priority = 3,
-        .baseTile = 0, 
+        .baseTile = 0,
     },
 };
 
@@ -318,11 +318,11 @@ static const u8 sBerryCrushTextColorTable[][3] =
 
 static const struct WindowTemplate sWindowTemplate_BerryCrushRankings =
 {
-    .bg = 0, 
-    .tilemapLeft = 3, 
-    .tilemapTop = 4, 
-    .width = 24, 
-    .height = 13, 
+    .bg = 0,
+    .tilemapLeft = 3,
+    .tilemapTop = 4,
+    .width = 24,
+    .height = 13,
     .paletteNum = 15,
     .baseBlock = 1
 };
@@ -330,48 +330,48 @@ static const struct WindowTemplate sWindowTemplate_BerryCrushRankings =
 static const struct WindowTemplate gUnknown_082F32F4[] =
 {
     {
-        .bg = 0, 
-        .tilemapLeft = 0, 
-        .tilemapTop = 0, 
-        .width = 9, 
-        .height = 2, 
-        .paletteNum = 8, 
+        .bg = 0,
+        .tilemapLeft = 0,
+        .tilemapTop = 0,
+        .width = 9,
+        .height = 2,
+        .paletteNum = 8,
         .baseBlock = 1005
     },
     {
-        .bg = 0, 
-        .tilemapLeft = 0, 
-        .tilemapTop = 3, 
-        .width = 9, 
-        .height = 2, 
-        .paletteNum = 8, 
+        .bg = 0,
+        .tilemapLeft = 0,
+        .tilemapTop = 3,
+        .width = 9,
+        .height = 2,
+        .paletteNum = 8,
         .baseBlock = 987
     },
     {
-        .bg = 0, 
-        .tilemapLeft = 0, 
-        .tilemapTop = 6, 
-        .width = 9, 
-        .height = 2, 
-        .paletteNum = 8, 
+        .bg = 0,
+        .tilemapLeft = 0,
+        .tilemapTop = 6,
+        .width = 9,
+        .height = 2,
+        .paletteNum = 8,
         .baseBlock = 969
     },
     {
-        .bg = 0, 
-        .tilemapLeft = 21, 
-        .tilemapTop = 3, 
-        .width = 9, 
-        .height = 2, 
-        .paletteNum = 8, 
+        .bg = 0,
+        .tilemapLeft = 21,
+        .tilemapTop = 3,
+        .width = 9,
+        .height = 2,
+        .paletteNum = 8,
         .baseBlock = 951
     },
     {
-        .bg = 0, 
-        .tilemapLeft = 21, 
-        .tilemapTop = 6, 
-        .width = 9, 
-        .height = 2, 
-        .paletteNum = 8, 
+        .bg = 0,
+        .tilemapLeft = 21,
+        .tilemapTop = 6,
+        .width = 9,
+        .height = 2,
+        .paletteNum = 8,
         .baseBlock = 933
     },
     DUMMY_WIN_TEMPLATE,
@@ -380,30 +380,30 @@ static const struct WindowTemplate gUnknown_082F32F4[] =
 static const struct WindowTemplate gUnknown_082F3324[] =
 {
     {
-        .bg = 0, 
-        .tilemapLeft = 5, 
-        .tilemapTop = 2, 
-        .width = 20, 
-        .height = 16, 
-        .paletteNum = 15, 
+        .bg = 0,
+        .tilemapLeft = 5,
+        .tilemapTop = 2,
+        .width = 20,
+        .height = 16,
+        .paletteNum = 15,
         .baseBlock = 1
     },
     {
-        .bg = 0, 
-        .tilemapLeft = 5, 
-        .tilemapTop = 2, 
-        .width = 20, 
-        .height = 16, 
-        .paletteNum = 15, 
+        .bg = 0,
+        .tilemapLeft = 5,
+        .tilemapTop = 2,
+        .width = 20,
+        .height = 16,
+        .paletteNum = 15,
         .baseBlock = 1
     },
     {
-        .bg = 0, 
-        .tilemapLeft = 4, 
-        .tilemapTop = 2, 
-        .width = 22, 
-        .height = 16, 
-        .paletteNum = 15, 
+        .bg = 0,
+        .tilemapLeft = 4,
+        .tilemapTop = 2,
+        .width = 22,
+        .height = 16,
+        .paletteNum = 15,
         .baseBlock = 1
     },
     DUMMY_WIN_TEMPLATE,
@@ -411,19 +411,19 @@ static const struct WindowTemplate gUnknown_082F3324[] =
 
 static const u8 gUnknown_082F3344[][4] =
 {
-    {6, 8, 9, 11}, 
+    {6, 8, 9, 11},
     {12, 14, 15, 16},
 };
 
-static const u32 sPressingSpeedConversionTable[] = 
+static const u32 sPressingSpeedConversionTable[] =
 {
-    50000000 / (1 << 0), 
-    50000000 / (1 << 1), 
-    50000000 / (1 << 2), 
-    50000000 / (1 << 3), 
-    50000000 / (1 << 4), 
-    50000000 / (1 << 5), 
-    50000000 / (1 << 6), 
+    50000000 / (1 << 0),
+    50000000 / (1 << 1),
+    50000000 / (1 << 2),
+    50000000 / (1 << 3),
+    50000000 / (1 << 4),
+    50000000 / (1 << 5),
+    50000000 / (1 << 6),
     50000000 / (1 << 7),
 };
 
@@ -438,10 +438,10 @@ static const u8 gBerryCrushGrinderTopTilemap[] = INCBIN_U8("graphics/link_games/
 static const u8 gBerryCrushContainerCapTilemap[] = INCBIN_U8("graphics/link_games/berrycrush_container_cap.bin.lz");
 static const u8 gBerryCrushBackgroundTilemap[] = INCBIN_U8("graphics/link_games/berrycrush_background.bin.lz");
 
-static const u8 gUnknown_082F417C[][5] = 
+static const u8 gUnknown_082F417C[][5] =
 {
-    {1, 3, 0, 0, 0}, 
-    {0, 1, 3, 0, 0}, 
+    {1, 3, 0, 0, 0},
+    {0, 1, 3, 0, 0},
     {1, 3, 2, 4, 0},
     {0, 1, 3, 2, 4},
 };
@@ -520,7 +520,7 @@ static const s8 gUnknown_082F41D2[][2] =
 
 static const u16 gUnknown_082F41E8[] = {5, 6, 7, 8, 9, 0};
 
-static const struct CompressedSpriteSheet gUnknown_082F41F4[] = 
+static const struct CompressedSpriteSheet gUnknown_082F41F4[] =
 {
     { .data = gBerryCrushGrinderBaseGfx, .size = 0x800, .tag = 1 },
     { .data = gBerryCrushBtnPressGfx,    .size = 0xE00, .tag = 2 },
@@ -572,23 +572,23 @@ static const union AnimCmd gUnknown_082F4254[] =
 static const union AnimCmd gUnknown_082F4268[] =
 {
     ANIMCMD_FRAME(0, 2),
-    ANIMCMD_FRAME(4, 2), 
+    ANIMCMD_FRAME(4, 2),
     ANIMCMD_FRAME(8, 2),
     ANIMCMD_FRAME(12, 2),
-    ANIMCMD_FRAME(16, 2), 
-    ANIMCMD_FRAME(20, 2), 
+    ANIMCMD_FRAME(16, 2),
+    ANIMCMD_FRAME(20, 2),
     ANIMCMD_JUMP(0)
 };
 
 static const union AnimCmd gUnknown_082F4284[] =
 {
-    ANIMCMD_FRAME(24, 4), 
-    ANIMCMD_FRAME(28, 4), 
-    ANIMCMD_FRAME(32, 4), 
+    ANIMCMD_FRAME(24, 4),
+    ANIMCMD_FRAME(28, 4),
+    ANIMCMD_FRAME(32, 4),
     ANIMCMD_FRAME(36, 4),
-    ANIMCMD_FRAME(40, 4), 
-    ANIMCMD_FRAME(44, 4), 
-    ANIMCMD_FRAME(48, 4), 
+    ANIMCMD_FRAME(40, 4),
+    ANIMCMD_FRAME(44, 4),
+    ANIMCMD_FRAME(48, 4),
     ANIMCMD_FRAME(52, 4),
     ANIMCMD_JUMP(0)
 };
@@ -601,7 +601,7 @@ static const union AnimCmd gUnknown_082F42A8[] =
 
 static const union AnimCmd gUnknown_082F42B0[] =
 {
-    ANIMCMD_FRAME(0, 0), 
+    ANIMCMD_FRAME(0, 0),
     ANIMCMD_END
 };
 
@@ -655,68 +655,68 @@ static const union AffineAnimCmd *const gUnknown_082F4304[] =
 
 static const struct SpriteTemplate gUnknown_082F430C =
 {
-    .tileTag = 1, 
-    .paletteTag = 1, 
-    .oam = &gOamData_AffineOff_ObjNormal_64x64, 
-    .anims = gUnknown_082F42E8, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 1,
+    .paletteTag = 1,
+    .oam = &gOamData_AffineOff_ObjNormal_64x64,
+    .anims = gUnknown_082F42E8,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_082F4324 =
 {
-    .tileTag = 2, 
-    .paletteTag = 2, 
-    .oam = &gOamData_AffineOff_ObjNormal_32x32, 
-    .anims = gUnknown_082F42EC, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 2,
+    .paletteTag = 2,
+    .oam = &gOamData_AffineOff_ObjNormal_32x32,
+    .anims = gUnknown_082F42EC,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = sub_8022A20
 };
 
 static const struct SpriteTemplate gUnknown_082F433C =
 {
-    .tileTag = 3, 
-    .paletteTag = 2, 
-    .oam = &gOamData_AffineOff_ObjNormal_16x16, 
-    .anims = gUnknown_082F42F4, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 3,
+    .paletteTag = 2,
+    .oam = &gOamData_AffineOff_ObjNormal_16x16,
+    .anims = gUnknown_082F42F4,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_082F4354 =
 {
-    .tileTag = 4, 
-    .paletteTag = 4, 
-    .oam = &gOamData_AffineOff_ObjNormal_8x16, 
-    .anims = gUnknown_082F42FC, 
-    .images = NULL, 
-    .affineAnims = gDummySpriteAffineAnimTable, 
+    .tileTag = 4,
+    .paletteTag = 4,
+    .oam = &gOamData_AffineOff_ObjNormal_8x16,
+    .anims = gUnknown_082F42FC,
+    .images = NULL,
+    .affineAnims = gDummySpriteAffineAnimTable,
     .callback = SpriteCallbackDummy
 };
 
 static const struct SpriteTemplate gUnknown_082F436C =
 {
-    .tileTag = 5, 
-    .paletteTag = 5, 
-    .oam = &gOamData_AffineDouble_ObjNormal_32x32, 
-    .anims = gUnknown_082F4300, 
-    .images = NULL, 
-    .affineAnims = gUnknown_082F4304, 
+    .tileTag = 5,
+    .paletteTag = 5,
+    .oam = &gOamData_AffineDouble_ObjNormal_32x32,
+    .anims = gUnknown_082F4300,
+    .images = NULL,
+    .affineAnims = gUnknown_082F4304,
     .callback = SpriteCallbackDummy
 };
 
-static const struct DigitObjUtilTemplate gUnknown_082F4384[] = 
+static const struct DigitObjUtilTemplate gUnknown_082F4384[] =
 {
     {
         .strConvMode = 1,
         .shape = 2,
         .size = 0,
         .priority = 0,
-        .oamCount = 2, 
-        .xDelta = 8, 
+        .oamCount = 2,
+        .xDelta = 8,
         .x = 156,
         .y = 0,
         .spriteSheet = gUnknown_082F420C,
@@ -727,8 +727,8 @@ static const struct DigitObjUtilTemplate gUnknown_082F4384[] =
         .shape = 2,
         .size = 0,
         .priority = 0,
-        .oamCount = 2, 
-        .xDelta = 8, 
+        .oamCount = 2,
+        .xDelta = 8,
         .x = 180,
         .y = 0,
         .spriteSheet = gUnknown_082F420C,
@@ -739,8 +739,8 @@ static const struct DigitObjUtilTemplate gUnknown_082F4384[] =
         .shape = 2,
         .size = 0,
         .priority = 0,
-        .oamCount = 2, 
-        .xDelta = 8, 
+        .oamCount = 2,
+        .xDelta = 8,
         .x = 204,
         .y = 0,
         .spriteSheet = gUnknown_082F420C,
@@ -790,7 +790,7 @@ static u32 (*const gUnknown_082F43CC[])(struct BerryCrushGame *, u8 *) =
 
 static const u8 gUnknown_082F4434[][4] =
 {
-    {2,  4,  6,  7}, 
+    {2,  4,  6,  7},
     {3,  5,  8, 11},
     {3,  7, 11, 15},
     {4,  8, 12, 17},
@@ -1573,7 +1573,7 @@ static void Task_ShowBerryCrushRankings(u8 taskId)
     u8 i = 0, j, xPos, yPos;
     u32 score = 0;
     s16 *data = gTasks[taskId].data;
-    
+
     switch (data[0])
     {
     case 0:
@@ -2339,7 +2339,7 @@ void sub_802339C(struct BerryCrushGame *r4)
             continue;
         if (r2->unk2 != 2)
             continue;
-        
+
         if (r2->unk4_2)
         {
             r4->unk5C.unk02_3 |= gUnknown_082F325C[r7];
@@ -2397,7 +2397,7 @@ void sub_802339C(struct BerryCrushGame *r4)
     }
 
     r4->unk24 = 32;
-    r4->unk5C.unk02_0 = 1;    
+    r4->unk5C.unk02_0 = 1;
 }
 
 void sub_8023558(struct BerryCrushGame *r3)
@@ -2406,7 +2406,7 @@ void sub_8023558(struct BerryCrushGame *r3)
     u16 r1 = 0;
     u16 r2 = 0;
     u8 r4 = 0;
-    
+
     for (r4 = 0; r4 < r3->unk9; ++r4)
     {
         if (r3->unk98[r4].unk1C != 0)
@@ -2502,9 +2502,9 @@ void sub_80236B8(struct BerryCrushGame *r5)
         else if (r5->unk34 < gUnknown_082F4434[r5->unk9 - 2][1])
             r5->unk25_5 = 1;
         else if (r5->unk34 < gUnknown_082F4434[r5->unk9 - 2][2])
-            r5->unk34 = 2; // typo since r5->unk34 will be reset? 
+            r5->unk34 = 2; // typo since r5->unk34 will be reset?
         else if (r5->unk34 < gUnknown_082F4434[r5->unk9 - 2][3])
-            r5->unk34 = 3; // typo since r5->unk34 will be reset? 
+            r5->unk34 = 3; // typo since r5->unk34 will be reset?
         else
             r5->unk25_5 = 4;
         r5->unk34 = 0;
@@ -2525,7 +2525,7 @@ void sub_80236B8(struct BerryCrushGame *r5)
                 r5->unk10 = 0;
             }
         }
-        
+
     }
     if (r5->unk28 >= 36000)
         r5->unk5C.unk02_0 = 1;

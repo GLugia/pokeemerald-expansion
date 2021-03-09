@@ -6,9 +6,9 @@
 #define WINDOW_CLEAR            0x1
 #define WINDOW_x80              0x80
 
-s32 CalcCritChanceStage(u16 battlerAtk, u16 battlerDef, u32 move, bool32 recordAbility);
-u8 HasStatChanges(u16 battlerAtk, u16 battlerDef);
-u32 GetTotalAccuracy(u16 battlerAtk, u16 battlerDef, u32 move);
+s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbility);
+u8 HasStatChanges(u8 battlerAtk, u8 battlerDef);
+u32 GetTotalAccuracy(u8 battlerAtk, u8 battlerDef, u32 move);
 u8 GetBattlerTurnOrderNum(u8 battlerId);
 bool32 NoAliveMonsForEitherParty(void);
 void SetMoveEffect(bool32 primary, u32 certain);
@@ -18,8 +18,8 @@ void BattleCreateYesNoCursorAt(u8 cursorPosition);
 void BufferMoveToLearnIntoBattleTextBuff2(void);
 void HandleBattleWindow(u8 xStart, u8 yStart, u8 xEnd, u8 yEnd, u8 flags);
 bool8 UproarWakeUpCheck(u8 battlerId);
-bool32 DoesSubstituteBlockMove(u16 battlerAtk, u16 battlerDef, u32 move);
-bool32 DoesDisguiseBlockMove(u16 battlerAtk, u16 battlerDef, u32 move);
+bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move);
+bool32 DoesDisguiseBlockMove(u8 battlerAtk, u8 battlerDef, u32 move);
 bool32 CanPoisonType(u8 battlerAttacker, u8 battlerTarget);
 bool32 CanParalyzeType(u8 battlerAttacker, u8 battlerTarget);
 bool32 CanUseLastResort(u8 battlerId);

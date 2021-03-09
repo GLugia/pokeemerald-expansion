@@ -446,7 +446,8 @@ static void Cmd_tryconversiontypechange(void);
 static void Cmd_givepaydaymoney(void);
 static void Cmd_setlightscreen(void);
 static void Cmd_tryKO(void);
-static void Cmd_damagetohalftargethp(void);
+static void Cmd_damagetargetmaxhp(void);
+static void Cmd_damagetargetcurhp(void);
 static void Cmd_setsandstorm(void);
 static void Cmd_weatherdamage(void);
 static void Cmd_tryinfatuating(void);
@@ -705,7 +706,8 @@ void (* const gBattleScriptingCommandsTable[])(void) =
     Cmd_givepaydaymoney,                         //0x91
     Cmd_setlightscreen,                          //0x92
     Cmd_tryKO,                                   //0x93
-    Cmd_damagetohalftargethp,                    //0x94
+	Cmd_damagetargetmaxhp,						 //----
+    Cmd_damagetargetcurhp,                       //0x94
     Cmd_setsandstorm,                            //0x95
     Cmd_weatherdamage,                           //0x96
     Cmd_tryinfatuating,                          //0x97
@@ -1021,18 +1023,32 @@ static const u16 sMoveEffectsForbiddenToInstruct[] =
     FORBIDDEN_INSTRUCT_END
 };
 
-static const u16 sNaturePowerMoves[] =
+static const u16 sNaturePowerMovesSpec[] =
 {
-    [BATTLE_TERRAIN_GRASS]      = MOVE_STUN_SPORE,
-    [BATTLE_TERRAIN_LONG_GRASS] = MOVE_RAZOR_LEAF,
-    [BATTLE_TERRAIN_SAND]       = MOVE_EARTHQUAKE,
+    [BATTLE_TERRAIN_GRASS]      = MOVE_RAZOR_LEAF,	// MOVE_STUN_SPORE
+    [BATTLE_TERRAIN_LONG_GRASS] = MOVE_ENERGY_BALL,	// MOVE_RAZOR_LEAF
+    [BATTLE_TERRAIN_SAND]       = MOVE_SCORCHING_SANDS,
     [BATTLE_TERRAIN_UNDERWATER] = MOVE_HYDRO_PUMP,
     [BATTLE_TERRAIN_WATER]      = MOVE_SURF,
     [BATTLE_TERRAIN_POND]       = MOVE_BUBBLE_BEAM,
-    [BATTLE_TERRAIN_MOUNTAIN]   = MOVE_ROCK_SLIDE,
+    [BATTLE_TERRAIN_MOUNTAIN]   = MOVE_POWER_GEM,	// MOVE_ROCK_SLIDE
     [BATTLE_TERRAIN_CAVE]       = MOVE_SHADOW_BALL,
-    [BATTLE_TERRAIN_BUILDING]   = MOVE_SWIFT,
+    [BATTLE_TERRAIN_BUILDING]   = MOVE_HYPER_VOICE,	// MOVE_SWIFT
     [BATTLE_TERRAIN_PLAIN]      = MOVE_SWIFT
+};
+
+static const u16 sNaturePowerMovesPhys[] =
+{
+    [BATTLE_TERRAIN_GRASS]      = MOVE_NEEDLE_ARM,	// MOVE_STUN_SPORE
+    [BATTLE_TERRAIN_LONG_GRASS] = MOVE_PETAL_BLIZZARD,	// MOVE_RAZOR_LEAF
+    [BATTLE_TERRAIN_SAND]       = MOVE_EARTHQUAKE,
+    [BATTLE_TERRAIN_UNDERWATER] = MOVE_CRABHAMMER,
+    [BATTLE_TERRAIN_WATER]      = MOVE_RAZOR_SHELL,
+    [BATTLE_TERRAIN_POND]       = MOVE_AQUA_JET,
+    [BATTLE_TERRAIN_MOUNTAIN]   = MOVE_ROCK_SLIDE,
+    [BATTLE_TERRAIN_CAVE]       = MOVE_SHADOW_PUNCH,
+    [BATTLE_TERRAIN_BUILDING]   = MOVE_MEGA_PUNCH,	// MOVE_SWIFT
+    [BATTLE_TERRAIN_PLAIN]      = MOVE_PAY_DAY
 };
 
 static const u16 sPickupItems[] =
@@ -1494,7 +1510,7 @@ static bool32 AccuracyCalcHelper(u16 move)
     return FALSE;
 }
 
-u32 GetTotalAccuracy(u16 battlerAtk, u16 battlerDef, u32 move)
+u32 GetTotalAccuracy(u8 battlerAtk, u8 battlerDef, u32 move)
 {
     u32 calc, moveAcc, atkHoldEffect, atkParam, defHoldEffect, defParam, atkAbility, defAbility;
     s8 buff, accStage, evasionStage;
@@ -1697,7 +1713,7 @@ static void Cmd_ppreduce(void)
 #endif // B_CRIT_CHANCE*/
 	};
 
-s32 CalcCritChanceStage(u16 battlerAtk, u16 battlerDef, u32 move, bool32 recordAbility)
+s32 CalcCritChanceStage(u8 battlerAtk, u8 battlerDef, u32 move, bool32 recordAbility)
 {
     s32 critChance = 0;
     u32 abilityAtk = GetBattlerAbility(gBattlerAttacker);
@@ -1741,7 +1757,7 @@ s32 CalcCritChanceStage(u16 battlerAtk, u16 battlerDef, u32 move, bool32 recordA
     return critChance;
 }
 
-u8 HasStatChanges(u16 battlerAtk, u16 battlerDef)
+u8 HasStatChanges(u8 battlerAtk, u8 battlerDef)
 {
 	u8 i;
 
@@ -7046,7 +7062,7 @@ bool32 CanUseLastResort(u8 battlerId)
     }                                                       \
 }
 
-static bool32 ClearDefogHazards(u16 battlerAtk, bool32 clear)
+static bool32 ClearDefogHazards(u8 battlerAtk, bool32 clear)
 {
     s32 i;
     for (i = 0; i < 2; i++)
@@ -8838,7 +8854,7 @@ static void Cmd_stockpiletobasedamage(void)
         // Restore stat changes from stockpile.
         //gBattleMons[gBattlerAttacker].statStages[STAT_DEF] -= gDisableStructs[gBattlerAttacker].stockpileDef;
         //gBattleMons[gBattlerAttacker].statStages[STAT_SPDEF] -= gDisableStructs[gBattlerAttacker].stockpileSpDef;
-		
+
 		// Reduce stockpile counter by 1 instead of only clearing stat stages
         gBattleMons[gBattlerAttacker].statStages[STAT_DEF]--;
         gBattleMons[gBattlerAttacker].statStages[STAT_SPDEF]--;
@@ -8878,7 +8894,7 @@ static void Cmd_stockpiletohpheal(void)
             gDisableStructs[gBattlerAttacker].stockpileCounter = 0;
             gBattlescriptCurrInstr += 5;
             gBattlerTarget = gBattlerAttacker;
-			
+
 			// Reduce stockpile counter by 1 instead of only clearing stat stages
 			gBattleMons[gBattlerAttacker].statStages[STAT_DEF]--;
 			gBattleMons[gBattlerAttacker].statStages[STAT_SPDEF]--;
@@ -9590,7 +9606,16 @@ static void Cmd_tryKO(void)
     }
 }
 
-static void Cmd_damagetohalftargethp(void) // super fang
+static void Cmd_damagetargetmaxhp(void)
+{
+	gBattleMoveDamage = (gBattleMons[gBattlerTarget].maxHP / 2) + 1;
+	if (gBattleMoveDamage == 0)
+		gBattleMoveDamage = 1;
+
+	gBattlescriptCurrInstr++;
+}
+
+static void Cmd_damagetargetcurhp(void) // super fang
 {
     gBattleMoveDamage = gBattleMons[gBattlerTarget].hp / 2;
     if (gBattleMoveDamage == 0)
@@ -10440,7 +10465,7 @@ static void Cmd_cursetarget(void)
     else
     {
         gBattleMons[gBattlerTarget].status2 |= STATUS2_CURSED;
-        gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 2;
+        gBattleMoveDamage = gBattleMons[gBattlerAttacker].maxHP / 3;	// 2
         if (gBattleMoveDamage == 0)
             gBattleMoveDamage = 1;
 
@@ -11044,7 +11069,11 @@ static void Cmd_setcharge(void)
 static void Cmd_callterrainattack(void) // nature power
 {
     gHitMarker &= ~(HITMARKER_ATTACKSTRING_PRINTED);
-    gCurrentMove = sNaturePowerMoves[gBattleTerrain];
+	// check stats to find which is higher
+	if (GetMonData(gBattleMons[gBattlerAttacker], MON_DATA_ATK2) >= GetMonData(gBattleMons[gBattlerAttacker], MON_DATA_SPATK2))
+		gCurrentMove = sNaturePowerMovesPhys[gBattleTerrain];
+	else
+		gCurrentMove = sNaturePowerMovesSpec[gBattleTerrain];
     gBattlerTarget = GetMoveTarget(gCurrentMove, 0);
     BattleScriptPush(gBattleScriptsForMoveEffects[gBattleMoves[gCurrentMove].effect]);
     gBattlescriptCurrInstr++;
@@ -11807,7 +11836,7 @@ static void Cmd_settypebasedhalvers(void) // water and mud sport
         gBattlescriptCurrInstr = T1_READ_PTR(gBattlescriptCurrInstr + 1);
 }
 
-bool32 DoesSubstituteBlockMove(u16 battlerAtk, u16 battlerDef, u32 move)
+bool32 DoesSubstituteBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
 {
     if (!(gBattleMons[battlerDef].status2 & STATUS2_SUBSTITUTE))
         return FALSE;
@@ -11819,7 +11848,7 @@ bool32 DoesSubstituteBlockMove(u16 battlerAtk, u16 battlerDef, u32 move)
         return TRUE;
 }
 
-bool32 DoesDisguiseBlockMove(u16 battlerAtk, u16 battlerDef, u32 move)
+bool32 DoesDisguiseBlockMove(u8 battlerAtk, u8 battlerDef, u32 move)
 {
     if (GetBattlerAbility(battlerDef) != ABILITY_DISGUISE
         //|| gBattleMons[battlerDef].species != SPECIES_MIMIKYU
