@@ -4405,7 +4405,7 @@ static void Cmd_playanimation(void)
 
     gActiveBattler = GetBattlerForBattleScript(gBattlescriptCurrInstr[1]);
     argumentPtr = T2_READ_PTR(gBattlescriptCurrInstr + 3);
-    
+
     #if B_TERRAIN_BG_CHANGE == FALSE
     if (gBattlescriptCurrInstr[2] == B_ANIM_RESTORE_BG)
     {
@@ -6228,18 +6228,18 @@ static u32 GetTrainerMoneyToGive(u16 trainerId)
             break;
         }
 
-        for (; gTrainerMoneyTable[i].classId != 0xFF; i++)
+        for (; gTrainerDataTable[i].classId != 0xFF; i++)
         {
-            if (gTrainerMoneyTable[i].classId == gTrainers[trainerId].trainerClass)
+            if (gTrainerDataTable[i].classId == gTrainers[trainerId].trainerClass)
                 break;
         }
 
         if (gBattleTypeFlags & BATTLE_TYPE_TWO_OPPONENTS)
-            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * gTrainerMoneyTable[i].value;
+            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * gTrainerDataTable[i].value;
         else if (gBattleTypeFlags & BATTLE_TYPE_DOUBLE)
-            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * 2 * gTrainerMoneyTable[i].value;
+            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * 2 * gTrainerDataTable[i].value;
         else
-            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * gTrainerMoneyTable[i].value;
+            moneyReward = 4 * lastMonLevel * gBattleStruct->moneyMultiplier * gTrainerDataTable[i].value;
     }
 
     return moneyReward;
@@ -9127,17 +9127,17 @@ bool32 TryResetBattlerStatChanges(u8 battler)
 {
     u32 j;
     bool32 ret = FALSE;
-    
+
     gDisableStructs[battler].stockpileDef = 0;
     gDisableStructs[battler].stockpileSpDef = 0;
     for (j = 0; j < NUM_BATTLE_STATS; j++)
     {
         if (gBattleMons[battler].statStages[j] != DEFAULT_STAT_STAGE)
             ret = TRUE; // returns TRUE if any stat was reset
-        
+
         gBattleMons[battler].statStages[j] = DEFAULT_STAT_STAGE;
     }
-    
+
     return ret;
 }
 
@@ -11972,7 +11972,7 @@ static void Cmd_handleballthrow(void)
         else
             catchRate = gBaseStats[gBattleMons[gBattlerTarget].species].catchRate;
 
-        
+
         #ifdef POKEMON_EXPANSION
         if (gBaseStats[gBattleMons[gBattlerTarget].species].flags & F_ULTRA_BEAST)
         {
@@ -12695,4 +12695,3 @@ static bool32 CriticalCapture(u32 odds)
         return FALSE;
     #endif
 }
-
