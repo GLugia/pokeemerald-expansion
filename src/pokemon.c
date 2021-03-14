@@ -3006,7 +3006,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
-        
+
         if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
         {
             u32 shinyValue;
@@ -5498,6 +5498,11 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                             break;
                         case ITEM6_HEAL_HALF:
                             dataUnsigned = GetMonData(mon, MON_DATA_MAX_HP, NULL) / 2;
+                            if (dataUnsigned == 0)
+                                dataUnsigned = 1;
+                            break;
+						case ITEM6_HEAL_QUARTER:
+                            dataUnsigned = GetMonData(mon, MON_DATA_MAX_HP, NULL) / 4;
                             if (dataUnsigned == 0)
                                 dataUnsigned = 1;
                             break;
