@@ -233,6 +233,9 @@ EWRAM_DATA struct TotemBoost gTotemBoosts[MAX_BATTLERS_COUNT] = {0};
 EWRAM_DATA bool8 gHasFetchedBall = FALSE;
 EWRAM_DATA u8 gLastUsedBall = 0;
 
+EWRAM_DATA u16 gChainSpecies;
+EWRAM_DATA u8 gChainCount;
+
 // IWRAM common vars
 void (*gPreBattleCallback1)(void);
 void (*gBattleMainFunc)(void);
@@ -2039,7 +2042,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
 	                break;
 	            }
             }
-			
+
 			dynamicLevel -= rand_diff + PartyLevelAdjust;
 
             for (j = 0; gTrainerDataTable[j].classId != 0xFF; j++)
@@ -4860,6 +4863,23 @@ static void HandleEndTurn_BattleWon(void)
     }
     else
     {
+		if (gChainSpecies != gBattleResults.lastOpponentSpecies)
+		{
+			gChainSpecies = gBattleResults.lastOpponentSpecies;
+			gChainCount = 0;
+		}
+		else
+		{
+			u8 add = 1;
+			if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+				add++;
+
+			if (255 - gChainCount < add)
+				gChainCount = 255;
+			else
+				gChainCount++;
+		}
+
         gBattlescriptCurrInstr = BattleScript_PayDayMoneyAndPickUpItems;
     }
 

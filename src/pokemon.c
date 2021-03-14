@@ -3002,22 +3002,30 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
     else //Player is the OT
     {
+		u32 shinyValue;
+		u32 rolls = 0;
+
         value = gSaveBlock2Ptr->playerTrainerId[0]
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
               | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
 
-        if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
-        {
-            u32 shinyValue;
-            u32 rolls = 0;
-            do
-            {
-                personality = Random32();
-                shinyValue = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
-                rolls++;
-            } while (shinyValue >= SHINY_ODDS && rolls < I_SHINY_CHARM_REROLLS);
-        }
+		if (gChainSpecies == species && gChainCount == 0)
+		{
+			if (CheckBagHasItem(ITEM_SHINY_CHARM, 1))
+				gChainCount += I_SHINY_CHARM_REROLLS;
+			else
+				gChainCount++;
+		}
+
+		rolls += ((gChainCount * gChainCount) + gChainCount) / SHINY_ODDS;
+
+		do
+		{
+			personality = Random32();
+			shinyValue = HIHALF(value) ^ LOHALF(value) ^ HIHALF(personality) ^ LOHALF(personality);
+			rolls--;
+		} while(shinyValue >= SHINY_ODDS && rolls > 0);
     }
 
     SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);

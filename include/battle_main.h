@@ -93,4 +93,7 @@ extern const u8 gStatusConditionString_LoveJpn[8];
 
 extern const u8 *const gStatusConditionStringsTable[7][2];
 
+extern u16 gChainSpecies;
+extern u8 gChainCount;
+
 #endif // GUARD_BATTLE_MAIN_H
