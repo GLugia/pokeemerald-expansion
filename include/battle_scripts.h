@@ -361,7 +361,4 @@ extern const u8 BattleScript_PerishBodyActivates[];
 extern const u8 BattleScript_ActivateAsOne[];
 extern const u8 BattleScript_RaiseStatOnFaintingTarget[];
 
-extern const u8 BattleScript_ArmorTuningPhys[];
-extern const u8 BattleScript_ArmorTuningSpec[];
-
 #endif // GUARD_BATTLE_SCRIPTS_H

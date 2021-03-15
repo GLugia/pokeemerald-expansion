@@ -1133,7 +1133,7 @@ AI_CheckViability:
 	if_effect EFFECT_PSYCH_UP, AI_CV_PsychUp
 	if_effect EFFECT_MIRROR_COAT, AI_CV_MirrorCoat
 	if_effect EFFECT_SKULL_BASH, AI_CV_ChargeUpMove
-	if_effect EFFECT_SOLAR_BEAM, AI_CV_ChargeUpMove
+	if_effect EFFECT_SOLARBEAM, AI_CV_ChargeUpMove
 	if_effect EFFECT_GEOMANCY, AI_CV_Geomancy
 	if_effect EFFECT_SEMI_INVULNERABLE, AI_CV_SemiInvulnerable
 	if_effect EFFECT_SOFTBOILED, AI_CV_Heal
@@ -2766,9 +2766,9 @@ AI_CV_SunnyDay_Rock:
 	if_not_equal HOLD_EFFECT_HEAT_ROCK, AI_CV_SunnyDay_Moves
 	score +2
 AI_CV_SunnyDay_Moves:
-	if_has_move_with_effect AI_USER, EFFECT_SOLAR_BEAM, AI_CV_SunnyDay_MovesPlus
+	if_has_move_with_effect AI_USER, EFFECT_SOLARBEAM, AI_CV_SunnyDay_MovesPlus
 	if_has_move_with_effect AI_USER, EFFECT_SYNTHESIS, AI_CV_SunnyDay_MovesPlus
-	if_has_move_with_effect AI_USER_PARTNER, EFFECT_SOLAR_BEAM, AI_CV_SunnyDay_MovesPlus
+	if_has_move_with_effect AI_USER_PARTNER, EFFECT_SOLARBEAM, AI_CV_SunnyDay_MovesPlus
 	if_has_move_with_effect AI_USER_PARTNER, EFFECT_SYNTHESIS, AI_CV_SunnyDay_MovesPlus
 	if_has_move_with_type AI_USER, TYPE_FIRE, AI_CV_SunnyDay_MovesPlus
 	goto AI_CV_SunnyDay_Abilities
@@ -4025,7 +4025,7 @@ AI_HPAware_DiscouragedEffectsWhenLowHP: @ 82DE258
     .byte EFFECT_BELLY_DRUM
     .byte EFFECT_PSYCH_UP
     .byte EFFECT_MIRROR_COAT
-    .byte EFFECT_SOLAR_BEAM
+    .byte EFFECT_SOLARBEAM
     .byte EFFECT_ERUPTION
     .byte EFFECT_TICKLE
     .byte EFFECT_COSMIC_POWER
