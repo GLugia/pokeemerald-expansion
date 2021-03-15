@@ -7917,6 +7917,14 @@ extern const u32 gItemIcon_TapuniumZ[];
 extern const u32 gItemIconPalette_TapuniumZ[];
 extern const u32 gItemIcon_UltranecroziumZ[];
 extern const u32 gItemIconPalette_UltranecroziumZ[];
+// Mints
+extern const u32 gItemIcon_Mint[];
+extern const u32 gItemIconPalette_RedMint[];
+extern const u32 gItemIconPalette_BlueMint[];
+extern const u32 gItemIconPalette_PinkMint[];
+extern const u32 gItemIconPalette_GreenMint[];
+extern const u32 gItemIconPalette_LightBlueMint[];
+extern const u32 gItemIconPalette_YellowMint[];
 
 extern const u32 gItemIcon_ReturnToFieldArrow[];
 extern const u32 gItemIconPalette_ReturnToFieldArrow[];
