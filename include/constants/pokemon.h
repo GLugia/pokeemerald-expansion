@@ -275,6 +275,7 @@
 #define SPLIT_PHYSICAL  0x0
 #define SPLIT_SPECIAL   0x1
 #define SPLIT_STATUS    0x2
+#define SPLIT_DYNAMIC   0x3
 
 // Growth rates
 #define GROWTH_MEDIUM_FAST  0
