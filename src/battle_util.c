@@ -1174,14 +1174,14 @@ void MarkBattlerForControllerExec(u8 battlerId)
 		gBattleControllerExecFlags |= gBitTable[battlerId];
 }
 
-void sub_803F850(u8 arg0)
+void MarkBattlerReceivedLinkData(u8 battlerId)
 {
 	s32 i;
 
-	for (i = 0; i < GetLinkPlayerCount(); i++)
-		gBattleControllerExecFlags |= gBitTable[arg0] << (i << 2);
+    for (i = 0; i < GetLinkPlayerCount(); i++)
+        gBattleControllerExecFlags |= gBitTable[battlerId] << (i << 2);
 
-	gBattleControllerExecFlags &= ~(0x10000000 << arg0);
+    gBattleControllerExecFlags &= ~(0x10000000 << battlerId);
 }
 
 void CancelMultiTurnMoves(u8 battler)
@@ -1327,7 +1327,7 @@ static bool32 IsGravityPreventingMove(u32 move)
 	case MOVE_BOUNCE:
 	case MOVE_FLY:
 	case MOVE_FLYING_PRESS:
-	case MOVE_HIGH_JUMP_KICK:
+	case MOVE_HI_JUMP_KICK:
 	case MOVE_JUMP_KICK:
 	case MOVE_MAGNET_RISE:
 	case MOVE_SKY_DROP:
