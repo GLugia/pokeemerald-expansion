@@ -4550,7 +4550,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			break;
 		case ABILITY_GOOEY:
-		case ABILITY_TANGLING_HAIR:
+		case ABILITY_TANGLE:
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 			 && gBattleMons[gBattlerAttacker].hp != 0
 			 && gBattleMons[gBattlerAttacker].statStages[STAT_SPEED] != 0
