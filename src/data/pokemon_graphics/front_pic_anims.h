@@ -6074,90 +6074,6 @@ static const union AnimCmd sAnim_GALLADE_MEGA_1[] =
     ANIMCMD_END,
 };
 
-static const union AnimCmd sAnim_MEOWTH_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_PONYTA_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_RAPIDASH_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_SLOWPOKE_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_SLOWBRO_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_FARFETCHD_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_WEEZING_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_ARTICUNO_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_ZAPDOS_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_MOLTRES_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_SLOWKING_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_CORSOLA_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_ZIGZAGOON_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
-static const union AnimCmd sAnim_LINOONE_GALARIAN_1[] =
-{
-    ANIMCMD_FRAME(0, 1),
-    ANIMCMD_END,
-};
-
 static const union AnimCmd sAnim_SHAYMIN_SKY_1[] =
 {
     ANIMCMD_FRAME(0, 1),
@@ -9182,76 +9098,6 @@ static const union AnimCmd *const sAnims_GALLADE_MEGA[] ={
     sAnim_GALLADE_MEGA_1,
 };
 
-static const union AnimCmd *const sAnims_MEOWTH_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_MEOWTH_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_PONYTA_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_PONYTA_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_RAPIDASH_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_RAPIDASH_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_SLOWPOKE_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_SLOWPOKE_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_SLOWBRO_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_SLOWBRO_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_FARFETCHD_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_FARFETCHD_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_WEEZING_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_WEEZING_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_ARTICUNO_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_ARTICUNO_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_ZAPDOS_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_ZAPDOS_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_MOLTRES_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_MOLTRES_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_SLOWKING_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_SLOWKING_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_CORSOLA_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_CORSOLA_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_ZIGZAGOON_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_ZIGZAGOON_GALARIAN_1,
-};
-
-static const union AnimCmd *const sAnims_LINOONE_GALARIAN[] ={
-    sAnim_GeneralFrame0,
-    sAnim_LINOONE_GALARIAN_1,
-};
-
 static const union AnimCmd *const sAnims_SHAYMIN_SKY[] ={
     sAnim_GeneralFrame0,
     sAnim_SHAYMIN_SKY_1,
@@ -9830,20 +9676,6 @@ const union AnimCmd *const *const gMonFrontAnimsPtrTable[] =
     ANIM_CMD(RAYQUAZA_MEGA),
     ANIM_CMD(KYOGRE_PRIMAL),
     ANIM_CMD(GROUDON_PRIMAL),
-    ANIM_CMD(MEOWTH_GALARIAN),
-    ANIM_CMD(PONYTA_GALARIAN),
-    ANIM_CMD(RAPIDASH_GALARIAN),
-    ANIM_CMD(SLOWPOKE_GALARIAN),
-    ANIM_CMD(SLOWBRO_GALARIAN),
-    ANIM_CMD(FARFETCHD_GALARIAN),
-    ANIM_CMD(WEEZING_GALARIAN),
-    ANIM_CMD(ARTICUNO_GALARIAN),
-    ANIM_CMD(ZAPDOS_GALARIAN),
-    ANIM_CMD(MOLTRES_GALARIAN),
-    ANIM_CMD(SLOWKING_GALARIAN),
-    ANIM_CMD(CORSOLA_GALARIAN),
-    ANIM_CMD(ZIGZAGOON_GALARIAN),
-    ANIM_CMD(LINOONE_GALARIAN),
     ANIM_CMD_FULL(PIKACHU_COSPLAY, sAnims_PIKACHU),
     ANIM_CMD_FULL(PIKACHU_ROCK_STAR, sAnims_PIKACHU),
     ANIM_CMD_FULL(PIKACHU_BELLE, sAnims_PIKACHU),

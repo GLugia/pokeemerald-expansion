@@ -93,7 +93,6 @@ const u8 gEnemyMonElevation[NUM_SPECIES] =
     [SPECIES_PINSIR_MEGA] = 4,
     [SPECIES_ALAKAZAM_MEGA] = 7,
     // Galarian Forms
-    [SPECIES_WEEZING_GALARIAN] = 3,
     // Misc Forms
     [SPECIES_GIRATINA_ORIGIN] = 7,
 };
