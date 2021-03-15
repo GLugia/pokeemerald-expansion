@@ -132,7 +132,6 @@ static u8 Fishing_CheckMoreDots(struct Task *task);
 static u8 Fishing_MonOnHook(struct Task *task);
 static u8 Fishing_StartEncounter(struct Task *task);
 static u8 Fishing_NotEvenNibble(struct Task *task);
-static u8 Fishing_GotAway(struct Task *task);
 static u8 Fishing_NoMon(struct Task *task);
 static u8 Fishing_PutRodAway(struct Task *task);
 static u8 Fishing_EndNoMon(struct Task *task);
@@ -1682,8 +1681,7 @@ static void Task_WaitStopSurfing(u8 taskId)
 #define FISHING_GOT_BITE 6
 #define FISHING_ON_HOOK 9
 #define FISHING_NO_BITE 11
-#define FISHING_GOT_AWAY 12
-#define FISHING_SHOW_RESULT 13
+#define FISHING_SHOW_RESULT 12
 
 static bool8 (*const sFishingStateFuncs[])(struct Task *) =
 {
@@ -1699,7 +1697,6 @@ static bool8 (*const sFishingStateFuncs[])(struct Task *) =
 	Fishing_MonOnHook,	  // FISHING_ON_HOOK
 	Fishing_StartEncounter,
 	Fishing_NotEvenNibble,  // FISHING_NO_BITE
-	Fishing_GotAway,		// FISHING_GOT_AWAY
 	Fishing_NoMon,		  // FISHING_SHOW_RESULT
 	Fishing_PutRodAway,
 	Fishing_EndNoMon,
@@ -1787,11 +1784,10 @@ static bool8 Fishing_ShowDots(struct Task *task)
 
 	AlignFishingAnimationFrames();
 	task->tFrameCounter++;
-	if (JOY_NEW(A_BUTTON))
+
+	if (JOY_NEW(B_BUTTON))	// A_BUTTON
 	{
 		task->tStep = FISHING_NO_BITE;
-		if (task->tRoundsPlayed != 0)
-			task->tStep = FISHING_GOT_AWAY;
 		return TRUE;
 	}
 	else
@@ -1830,15 +1826,23 @@ static bool8 Fishing_CheckForBite(struct Task *task)
 	}
 	else
 	{
-		if (!GetMonData(&gPlayerParty[0], MON_DATA_SANITY_IS_EGG))
-		{
-			u16 ability = GetMonAbility(&gPlayerParty[0]);
-			if (ability == ABILITY_SUCTION_CUPS || ability  == ABILITY_STICKY_HOLD)
+		u8 i;
+
+        for (i = 0; i < PARTY_SIZE; i++)	// scan the party
+        {
+            if (gPlayerParty[i] == SPECIES_NONE)	// less than 6 mons
+                break;
+
+			if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG)				// is not egg
+				&& (GetMonAbility(&gPlayerParty[i]) == ABILITY_SUCTION_CUPS			//
+					|| GetMonAbility(&gPlayerParty[i])  == ABILITY_STICKY_HOLD))	//
 			{
-				if (Random() % 100 > 14)
+				if (Random() % 100 > 14)	// if it fails the roll on the first mon, stop checking to avoid abusing full parties
 					bite = TRUE;
+				else
+					break;
 			}
-		}
+        }
 
 		if (!bite)
 		{
@@ -1866,17 +1870,8 @@ static bool8 Fishing_GotBite(struct Task *task)
 // We have a bite. Now, wait for the player to press A, or the timer to expire.
 static bool8 Fishing_WaitForA(struct Task *task)
 {
-	const s16 reelTimeouts[3] = {
-		[OLD_ROD]   = 36,
-		[GOOD_ROD]  = 33,
-		[SUPER_ROD] = 30
-	};
-
 	AlignFishingAnimationFrames();
-	task->tFrameCounter++;
-	if (task->tFrameCounter >= reelTimeouts[task->tFishingRod])
-		task->tStep = FISHING_GOT_AWAY;
-	else if (JOY_NEW(A_BUTTON))
+	if (JOY_NEW(A_BUTTON))
 		task->tStep++;
 	return FALSE;
 }
@@ -1961,16 +1956,6 @@ static bool8 Fishing_NotEvenNibble(struct Task *task)
 	FillWindowPixelBuffer(0, PIXEL_FILL(1));
 	AddTextPrinterParameterized2(0, 1, gText_NotEvenANibble, 1, 0, 2, 1, 3);
 	task->tStep = FISHING_SHOW_RESULT;
-	return TRUE;
-}
-
-static bool8 Fishing_GotAway(struct Task *task)
-{
-	AlignFishingAnimationFrames();
-	StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFishingNoCatchDirectionAnimNum(GetPlayerFacingDirection()));
-	FillWindowPixelBuffer(0, PIXEL_FILL(1));
-	AddTextPrinterParameterized2(0, 1, gText_ItGotAway, 1, 0, 2, 1, 3);
-	task->tStep++;
 	return TRUE;
 }
 
