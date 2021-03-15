@@ -1830,7 +1830,7 @@ static bool8 Fishing_CheckForBite(struct Task *task)
 
         for (i = 0; i < PARTY_SIZE; i++)	// scan the party
         {
-            if (gPlayerParty[i] == SPECIES_NONE)	// less than 6 mons
+            if (GetMonData(&gPlayerParty[i], MON_DATA_SPECIES2) == SPECIES_NONE)	// less than 6 mons
                 break;
 
 			if (!GetMonData(&gPlayerParty[i], MON_DATA_SANITY_IS_EGG)				// is not egg
