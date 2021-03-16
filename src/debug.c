@@ -1191,7 +1191,7 @@ static void DebugAction_Flags_CatchingOnOff(u8 taskId)
         PlaySE(SE_PC_LOGIN);
     }
 }
-  
+
 // *******************************
 // Actions Variables
 static void DebugAction_Vars_Vars(u8 taskId)
@@ -1537,9 +1537,9 @@ static void DebugAction_Give_AllTMs(u8 taskId)
 {
     u16 i;
     PlayFanfare(MUS_OBTAIN_TMHM);
-    for (i = ITEM_TM01; i <= ITEM_TM50; i++)
+    for (i = 0; i <= TMHM_COUNT; i++)
         if(!CheckBagHasItem(i, 1))
-            AddBagItem(i, 1);
+            AddBagItem(i + ITEM_TM01, 1);
     Debug_DestroyMenu(taskId);
     EnableBothScriptContexts();
 }
@@ -2331,7 +2331,7 @@ static void DebugAction_Give_Pokemon_ComplexCreateMon(u8 taskId) //https://githu
     }
 
     //Pokedex entry
-    nationalDexNum = SpeciesToNationalPokedexNum(species); 
+    nationalDexNum = SpeciesToNationalPokedexNum(species);
     switch(sentToPc)
     {
     case MON_GIVEN_TO_PARTY:

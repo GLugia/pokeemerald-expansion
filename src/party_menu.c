@@ -6466,7 +6466,7 @@ static const u8 sText_MintDone[] = _("{STR_VAR_1}'s nature became\n{STR_VAR_2}!{
 static void Task_Mints(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    
+
     switch (tState)
     {
     case 0:
@@ -6480,7 +6480,7 @@ static void Task_Mints(u8 taskId)
             gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
             return;
         }
-        
+
         gPartyMenuUseExitCallback = TRUE;
         GetMonNickname(&gPlayerParty[tMonId], gStringVar1);
         StringCopy(gStringVar2, gNatureNamePointers[tNewNature]);
@@ -6508,7 +6508,7 @@ static void Task_Mints(u8 taskId)
             gPartyMenuUseExitCallback = FALSE;
             PlaySE(SE_SELECT);
             ScheduleBgCopyTilemapToVram(2);
-            
+
             // Don't exit party selections screen, return to choosing a mon.
             ClearStdWindowAndFrameToTransparent(6, 0);
             ClearWindowTilemap(6);
@@ -6531,7 +6531,7 @@ static void Task_Mints(u8 taskId)
     case 5:
         SetMonData(&gPlayerParty[tMonId], MON_DATA_HIDDEN_NATURE, &tNewNature);
         CalculateMonStats(&gPlayerParty[tMonId]);
-        
+
         RemoveBagItem(gSpecialVar_ItemId, 1);
         gTasks[taskId].func = Task_ClosePartyMenu;
         break;
@@ -6550,4 +6550,3 @@ void ItemUseCB_Mints(u8 taskId, TaskFunc task)
     SetWordTaskArg(taskId, tOldFunc, (uintptr_t)(gTasks[taskId].func));
     gTasks[taskId].func = Task_Mints;
 }
-
