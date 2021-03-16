@@ -1174,14 +1174,14 @@ void MarkBattlerForControllerExec(u8 battlerId)
 		gBattleControllerExecFlags |= gBitTable[battlerId];
 }
 
-void MarkBattlerReceivedLinkData(u8 battlerId)
+void sub_803F850(u8 arg0)
 {
 	s32 i;
 
-    for (i = 0; i < GetLinkPlayerCount(); i++)
-        gBattleControllerExecFlags |= gBitTable[battlerId] << (i << 2);
+	for (i = 0; i < GetLinkPlayerCount(); i++)
+		gBattleControllerExecFlags |= gBitTable[arg0] << (i << 2);
 
-    gBattleControllerExecFlags &= ~(0x10000000 << battlerId);
+	gBattleControllerExecFlags &= ~(0x10000000 << arg0);
 }
 
 void CancelMultiTurnMoves(u8 battler)
@@ -1327,7 +1327,7 @@ static bool32 IsGravityPreventingMove(u32 move)
 	case MOVE_BOUNCE:
 	case MOVE_FLY:
 	case MOVE_FLYING_PRESS:
-	case MOVE_HI_JUMP_KICK:
+	case MOVE_HIGH_JUMP_KICK:
 	case MOVE_JUMP_KICK:
 	case MOVE_MAGNET_RISE:
 	case MOVE_SKY_DROP:
@@ -4550,7 +4550,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			break;
 		case ABILITY_GOOEY:
-		case ABILITY_TANGLE:
+		case ABILITY_TANGLING_HAIR:
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 			 && gBattleMons[gBattlerAttacker].hp != 0
 			 && gBattleMons[gBattlerAttacker].statStages[STAT_SPEED] != 0

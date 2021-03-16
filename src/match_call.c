@@ -1114,7 +1114,7 @@ static void StartMatchCall(void)
     {
         ScriptContext2_Enable();
         FreezeObjectEvents();
-        PlayerFreeze();
+        sub_808B864();
         sub_808BCF4();
     }
 
@@ -1371,9 +1371,7 @@ static void sub_8196694(u8 taskId)
 
 static bool32 TrainerIsEligibleForRematch(int matchCallId)
 {
-    #ifndef FREE_MATCH_CALL
     return gSaveBlock1Ptr->trainerRematches[matchCallId] > 0;
-    #endif
 }
 
 static u16 GetRematchTrainerLocation(int matchCallId)

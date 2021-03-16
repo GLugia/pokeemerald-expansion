@@ -154,7 +154,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_PHYSICAL,
     },
 
-    [MOVE_VICE_GRIP] =
+    [MOVE_VISE_GRIP] =
     {
         .effect = EFFECT_HIT,
         .power = 55,
@@ -2114,7 +2114,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_STATUS,
     },
 
-    [MOVE_HI_JUMP_KICK] =
+    [MOVE_HIGH_JUMP_KICK] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_5
             .power = 130,
@@ -2906,7 +2906,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_STATUS,
     },
 
-    [MOVE_FAINT_ATTACK] =
+    [MOVE_FEINT_ATTACK] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_4
             .flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_KINGS_ROCK_AFFECTED,
@@ -4175,7 +4175,7 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
         .split = SPLIT_PHYSICAL,
     },
 
-    [MOVE_SMELLING_SALT] =
+    [MOVE_SMELLING_SALTS] =
     {
         #if B_UPDATED_MOVE_DATA >= GEN_6
             .power = 70,

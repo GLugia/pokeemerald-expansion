@@ -102,7 +102,7 @@ static const struct SpriteTemplate sVsLetter_V_SpriteTemplate =
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = sVsLetterAffineAnimTable,
-    .callback = SpriteCB_VsLetterDummy
+    .callback = nullsub_17
 };
 
 static const struct SpriteTemplate sVsLetter_S_SpriteTemplate =
@@ -113,7 +113,7 @@ static const struct SpriteTemplate sVsLetter_S_SpriteTemplate =
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = sVsLetterAffineAnimTable,
-    .callback = SpriteCB_VsLetterDummy
+    .callback = nullsub_17
 };
 
 static const struct CompressedSpriteSheet sVsLettersSpriteSheet =

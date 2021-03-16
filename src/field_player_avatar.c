@@ -96,7 +96,7 @@ static void PlayerNotOnBikeCollideWithFarawayIslandMew(u8);
 
 static void PlayCollisionSoundIfNotFacingWarp(u8 a);
 
-static void HideShowWarpArrow(struct ObjectEvent *);
+static void sub_808C280(struct ObjectEvent *);
 
 static void StartStrengthAnim(u8, u8);
 static void Task_PushBoulder(u8 taskId);
@@ -320,23 +320,23 @@ static u8 ObjectEventCB2_NoMovement2(void)
 
 void PlayerStep(u8 direction, u16 newKeys, u16 heldKeys)
 {
-    struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
+	struct ObjectEvent *playerObjEvent = &gObjectEvents[gPlayerAvatar.objectEventId];
 
-    HideShowWarpArrow(playerObjEvent);
-    if (gPlayerAvatar.preventStep == FALSE)
-    {
-        Bike_TryAcroBikeHistoryUpdate(newKeys, heldKeys);
-        if (TryInterruptObjectEventSpecialAnim(playerObjEvent, direction) == 0)
-        {
-            npc_clear_strange_bits(playerObjEvent);
-            DoPlayerAvatarTransition();
-            if (TryDoMetatileBehaviorForcedMovement() == 0)
-            {
-                MovePlayerAvatarUsingKeypadInput(direction, newKeys, heldKeys);
-                PlayerAllowForcedMovementIfMovingSameDirection();
-            }
-        }
-    }
+	sub_808C280(playerObjEvent);
+	if (gPlayerAvatar.preventStep == FALSE)
+	{
+		Bike_TryAcroBikeHistoryUpdate(newKeys, heldKeys);
+		if (TryInterruptObjectEventSpecialAnim(playerObjEvent, direction) == 0)
+		{
+			npc_clear_strange_bits(playerObjEvent);
+			DoPlayerAvatarTransition();
+			if (TryDoMetatileBehaviorForcedMovement() == 0)
+			{
+				MovePlayerAvatarUsingKeypadInput(direction, newKeys, heldKeys);
+				PlayerAllowForcedMovementIfMovingSameDirection();
+			}
+		}
+	}
 }
 
 static bool8 TryInterruptObjectEventSpecialAnim(struct ObjectEvent *playerObjEvent, u8 direction)
@@ -941,9 +941,9 @@ u8 PlayerGetCopyableMovement(void)
 	return gObjectEvents[gPlayerAvatar.objectEventId].playerCopyableMovement;
 }
 
-static void PlayerForceSetHeldMovement(u8 movementActionId)
+static void sub_808B6BC(u8 a)
 {
-    ObjectEventForceSetHeldMovement(&gObjectEvents[gPlayerAvatar.objectEventId], movementActionId);
+	ObjectEventForceSetHeldMovement(&gObjectEvents[gPlayerAvatar.objectEventId], a);
 }
 
 void PlayerSetAnimId(u8 movementActionId, u8 copyableMovement)
@@ -1021,14 +1021,13 @@ void PlayerJumpLedge(u8 direction)
 	PlayerSetAnimId(GetJump2MovementAction(direction), 8);
 }
 
-// Stop player on current facing direction once they're done moving and if they're not currently Acro Biking on bumpy slope
-void PlayerFreeze(void)
+void sub_808B864(void)
 {
-    if (gPlayerAvatar.tileTransitionState == T_TILE_CENTER || gPlayerAvatar.tileTransitionState == T_NOT_MOVING)
-    {
-        if (IsPlayerNotUsingAcroBikeOnBumpySlope())
-            PlayerForceSetHeldMovement(GetFaceDirectionMovementAction(gObjectEvents[gPlayerAvatar.objectEventId].facingDirection));
-    }
+	if (gPlayerAvatar.tileTransitionState == T_TILE_CENTER || gPlayerAvatar.tileTransitionState == T_NOT_MOVING)
+	{
+		if (player_should_look_direction_be_enforced_upon_movement())
+			sub_808B6BC(GetFaceDirectionMovementAction(gObjectEvents[gPlayerAvatar.objectEventId].facingDirection));
+	}
 }
 
 // wheelie idle
@@ -1426,26 +1425,25 @@ void SetPlayerAvatarWatering(u8 direction)
 	StartSpriteAnim(&gSprites[gPlayerAvatar.spriteId], GetFaceDirectionAnimNum(direction));
 }
 
-static void HideShowWarpArrow(struct ObjectEvent *objectEvent)
+static void sub_808C280(struct ObjectEvent *objectEvent)
 {
-    s16 x;
-    s16 y;
-    u8 direction;
-    u8 metatileBehavior = objectEvent->currentMetatileBehavior;
+	s16 x;
+	s16 y;
+	u8 direction;
+	u8 metatileBehavior = objectEvent->currentMetatileBehavior;
 
-    for (x = 0, direction = DIR_SOUTH; x < 4; x++, direction++)
-    {
-        if (sArrowWarpMetatileBehaviorChecks2[x](metatileBehavior) && direction == objectEvent->movementDirection)
-        {
-            // Show warp arrow if applicable
-            x = objectEvent->currentCoords.x;
-            y = objectEvent->currentCoords.y;
-            MoveCoords(direction, &x, &y);
-            ShowWarpArrowSprite(objectEvent->warpArrowSpriteId, direction, x, y);
-            return;
-        }
-    }
-    SetSpriteInvisible(objectEvent->warpArrowSpriteId);
+	for (x = 0, direction = DIR_SOUTH; x < 4; x++, direction++)
+	{
+		if (sArrowWarpMetatileBehaviorChecks2[x](metatileBehavior) && direction == objectEvent->movementDirection)
+		{
+			x = objectEvent->currentCoords.x;
+			y = objectEvent->currentCoords.y;
+			MoveCoords(direction, &x, &y);
+			ShowWarpArrowSprite(objectEvent->warpArrowSpriteId, direction, x, y);
+			return;
+		}
+	}
+	SetSpriteInvisible(objectEvent->warpArrowSpriteId);
 }
 
 /* Strength */

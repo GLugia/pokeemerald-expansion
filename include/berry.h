@@ -1,8 +1,6 @@
 #ifndef GUARD_BERRY_H
 #define GUARD_BERRY_H
 
-#include "constants/berry.h"
-
 void ClearEnigmaBerries(void);
 void SetEnigmaBerry(u8 *src);
 bool32 IsEnigmaBerryValid(void);
@@ -26,7 +24,7 @@ void ObjectEventInteractionPlantBerryTree(void);
 void ObjectEventInteractionPickBerryTree(void);
 void ObjectEventInteractionRemoveBerryTree(void);
 bool8 PlayerHasBerries(void);
-void SetBerryTreesSeen(void);
+void ResetBerryTreeSparkleFlags(void);
 
 extern const struct Berry gBerries[];
 

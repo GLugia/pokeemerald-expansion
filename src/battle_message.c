@@ -1791,7 +1791,7 @@ static const u16 sGrammarMoveUsedTable[] =
     MOVE_FEATHER_DANCE, MOVE_TEETER_DANCE, MOVE_MUD_SPORT,
     MOVE_FAKE_TEARS, MOVE_WATER_SPORT, MOVE_CALM_MIND, 0,
 
-    MOVE_POUND, MOVE_SCRATCH, MOVE_VICE_GRIP,
+    MOVE_POUND, MOVE_SCRATCH, MOVE_VISE_GRIP,
     MOVE_WING_ATTACK, MOVE_FLY, MOVE_BIND, MOVE_SLAM,
     MOVE_HORN_ATTACK, MOVE_WRAP, MOVE_THRASH, MOVE_TAIL_WHIP,
     MOVE_LEER, MOVE_BITE, MOVE_GROWL, MOVE_ROAR,
@@ -3515,7 +3515,7 @@ void BattlePutTextOnWindow(const u8 *text, u8 windowId)
 
     if (printerTemplate.x == 0xFF)
     {
-        u32 width = GetBattleWindowTemplatePixelWidth(gBattleScripting.windowsType, windowId);
+        u32 width = sub_80397C4(gBattleScripting.windowsType, windowId);
         s32 alignX = GetStringCenterAlignXOffsetWithLetterSpacing(printerTemplate.fontId, printerTemplate.currentChar, width, printerTemplate.letterSpacing);
         printerTemplate.x = printerTemplate.currentX = alignX;
     }

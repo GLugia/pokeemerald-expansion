@@ -324,7 +324,6 @@ static bool32 PlayerHasTrainerRematches(void)
 {
     s32 i;
 
-    #ifndef FREE_MATCH_CALL
     for (i = 0; i < REMATCH_TABLE_ENTRIES; i++)
     {
         if (GetMatchTableMapSectionId(i) == gMapHeader.regionMapSectionId
@@ -332,7 +331,6 @@ static bool32 PlayerHasTrainerRematches(void)
             && gSaveBlock1Ptr->trainerRematches[i])
             return TRUE;
     }
-    #endif
 
     return FALSE;
 }

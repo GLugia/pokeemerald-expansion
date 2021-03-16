@@ -27225,7 +27225,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
         #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_SAND_VEIL, ABILITY_TANGLE},
+            .abilities = {ABILITY_SAND_VEIL, ABILITY_TANGLING_HAIR},
             .abilityHidden = ABILITY_SAND_FORCE,
         #else
             .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE},
@@ -27256,7 +27256,7 @@ const struct BaseStats gBaseStats[] =
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
         #ifdef BATTLE_ENGINE
-            .abilities = {ABILITY_SAND_VEIL, ABILITY_TANGLE},
+            .abilities = {ABILITY_SAND_VEIL, ABILITY_TANGLING_HAIR},
             .abilityHidden = ABILITY_SAND_FORCE,
         #else
             .abilities = {ABILITY_SAND_VEIL, ABILITY_NONE},
