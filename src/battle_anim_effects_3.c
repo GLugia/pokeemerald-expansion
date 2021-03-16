@@ -76,8 +76,8 @@ static void AnimRoarNoiseLine(struct Sprite *);
 static void AnimRoarNoiseLine_Step(struct Sprite *);
 static void AnimGlareEyeDot(struct Sprite *);
 static void AnimAssistPawprint(struct Sprite *);
-static void AnimSmellingSaltsHand(struct Sprite *);
-static void AnimSmellingSaltsHand_Step(struct Sprite *);
+static void AnimSmellingSaltHand(struct Sprite *);
+static void AnimSmellingSaltHand_Step(struct Sprite *);
 static void AnimSmellingSaltExclamation(struct Sprite *);
 static void AnimSmellingSaltExclamation_Step(struct Sprite *);
 static void AnimHelpingHandClap(struct Sprite *);
@@ -109,7 +109,7 @@ static void AnimTask_FacadeColorBlend_Step(u8);
 static void AnimTask_GlareEyeDots_Step(u8);
 static void GetGlareEyeDotCoords(s16, s16, s16, s16, u8, u8, s16 *, s16 *);
 static void AnimTask_BarrageBall_Step(u8);
-static void AnimTask_SmellingSaltsSquish_Step(u8);
+static void AnimTask_SmellingSaltSquish_Step(u8);
 static void AnimTask_HelpingHandAttackerMovement_Step(u8);
 static void AnimTask_MonToSubstituteDoll(u8);
 static void AnimTask_OdorSleuthMovementWaitFinish(u8);
@@ -1016,7 +1016,7 @@ const struct SpriteTemplate gBarrageBallSpriteTemplate =
     .callback = SpriteCallbackDummy,
 };
 
-const struct SpriteTemplate gSmellingSaltsHandSpriteTemplate =
+const struct SpriteTemplate gSmellingSaltHandSpriteTemplate =
 {
     .tileTag = ANIM_TAG_TAG_HAND,
     .paletteTag = ANIM_TAG_TAG_HAND,
@@ -1024,10 +1024,10 @@ const struct SpriteTemplate gSmellingSaltsHandSpriteTemplate =
     .anims = gDummySpriteAnimTable,
     .images = NULL,
     .affineAnims = gDummySpriteAffineAnimTable,
-    .callback = AnimSmellingSaltsHand,
+    .callback = AnimSmellingSaltHand,
 };
 
-const union AffineAnimCmd gSmellingSaltsSquishAffineAnimCmds[] =
+const union AffineAnimCmd gSmellingSaltSquishAffineAnimCmds[] =
 {
     AFFINEANIMCMD_FRAME(0, -16, 0, 6),
     AFFINEANIMCMD_FRAME(0, 16, 0, 6),
@@ -4193,7 +4193,7 @@ static void AnimTask_BarrageBall_Step(u8 taskId)
 // arg 0: which battler
 // arg 1: horizontal flip
 // arg 2: num squishes
-static void AnimSmellingSaltsHand(struct Sprite *sprite)
+static void AnimSmellingSaltHand(struct Sprite *sprite)
 {
     u8 battler;
 
@@ -4216,10 +4216,10 @@ static void AnimSmellingSaltsHand(struct Sprite *sprite)
         sprite->pos1.x = GetBattlerSpriteCoordAttr(battler, BATTLER_COORD_ATTR_RIGHT) + 8;
     }
 
-    sprite->callback = AnimSmellingSaltsHand_Step;
+    sprite->callback = AnimSmellingSaltHand_Step;
 }
 
-static void AnimSmellingSaltsHand_Step(struct Sprite *sprite)
+static void AnimSmellingSaltHand_Step(struct Sprite *sprite)
 {
     switch (sprite->data[0])
     {
@@ -4268,7 +4268,7 @@ static void AnimSmellingSaltsHand_Step(struct Sprite *sprite)
 // Squishes the mon horizontally a few times.
 // arg 0: which mon
 // arg 1: number of squishes
-void AnimTask_SmellingSaltsSquish(u8 taskId)
+void AnimTask_SmellingSaltSquish(u8 taskId)
 {
     if (gBattleAnimArgs[0] == ANIM_ATTACKER)
     {
@@ -4278,12 +4278,12 @@ void AnimTask_SmellingSaltsSquish(u8 taskId)
     {
         gTasks[taskId].data[0] = gBattleAnimArgs[1];
         gTasks[taskId].data[15] = GetAnimBattlerSpriteId(gBattleAnimArgs[0]);
-        PrepareAffineAnimInTaskData(&gTasks[taskId], gTasks[taskId].data[15], gSmellingSaltsSquishAffineAnimCmds);
-        gTasks[taskId].func = AnimTask_SmellingSaltsSquish_Step;
+        PrepareAffineAnimInTaskData(&gTasks[taskId], gTasks[taskId].data[15], gSmellingSaltSquishAffineAnimCmds);
+        gTasks[taskId].func = AnimTask_SmellingSaltSquish_Step;
     }
 }
 
-static void AnimTask_SmellingSaltsSquish_Step(u8 taskId)
+static void AnimTask_SmellingSaltSquish_Step(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
 
@@ -4301,7 +4301,7 @@ static void AnimTask_SmellingSaltsSquish_Step(u8 taskId)
         gSprites[task->data[15]].pos2.x = 0;
         if (--task->data[0])
         {
-            PrepareAffineAnimInTaskData(&gTasks[taskId], gTasks[taskId].data[15], gSmellingSaltsSquishAffineAnimCmds);
+            PrepareAffineAnimInTaskData(&gTasks[taskId], gTasks[taskId].data[15], gSmellingSaltSquishAffineAnimCmds);
             task->data[1] = 0;
             task->data[2] = 0;
         }
