@@ -737,7 +737,7 @@ static const struct OamData sOamData_SplitIcons =
 static const struct CompressedSpriteSheet sSpriteSheet_SplitIcons =
 {
     .data = sSplitIcons_Gfx,
-    .size = 16*16*3/2,
+    .size = 16*16*4/2,
     .tag = TAG_SPLIT_ICONS,
 };
 
@@ -765,11 +765,18 @@ static const union AnimCmd sSpriteAnim_SplitIcon2[] =
     ANIMCMD_END
 };
 
+static const union AnimCmd sSpriteAnim_SplitIcon3[] =
+{
+    ANIMCMD_FRAME(12, 0),
+    ANIMCMD_END
+};
+
 static const union AnimCmd *const sSpriteAnimTable_SplitIcons[] =
 {
     sSpriteAnim_SplitIcon0,
     sSpriteAnim_SplitIcon1,
     sSpriteAnim_SplitIcon2,
+	sSpriteAnim_SplitIcon3,
 };
 
 static const struct SpriteTemplate sSpriteTemplate_SplitIcons =
@@ -3727,7 +3734,7 @@ static void PrintMoveDetails(u16 move)
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
         {
             if (B_SHOW_SPLIT_ICON == TRUE)
-                ShowSplitIcon(GetBattleMoveSplit(move));
+                ShowSplitIcon(gBattleMoves[move].split);
             PrintMovePowerAndAccuracy(move);
             PrintTextOnWindow(windowId, gMoveDescriptionPointers[move - 1], 6, 1, 0, 0);
         }

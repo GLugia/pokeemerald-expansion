@@ -1015,7 +1015,7 @@ static const u16 sMoveEffectsForbiddenToInstruct[] =
     //EFFECT_SKY_DROP,
     EFFECT_SKULL_BASH,
     EFFECT_SLEEP_TALK,
-    EFFECT_SOLARBEAM,
+    EFFECT_SOLAR_BEAM,
     EFFECT_TRANSFORM,
     EFFECT_TWO_TURNS_ATTACK,
     FORBIDDEN_INSTRUCT_END
@@ -1555,7 +1555,7 @@ u32 GetTotalAccuracy(u32 battlerAtk, u32 battlerDef, u32 move)
     else if (defAbility == ABILITY_TANGLED_FEET && gBattleMons[battlerDef].status2 & STATUS2_CONFUSION)
         calc = (calc * 50) / 100; // 1.5 tangled feet loss
 
-    if (atkAbility == ABILITY_HUSTLE && IS_MOVE_PHYSICAL(move))
+    if (atkAbility == ABILITY_HUSTLE && IS_MOVE_PHYSICAL(move, battlerAtk))
         calc = (calc * 80) / 100; // 1.2 hustle loss
 
     if (defHoldEffect == HOLD_EFFECT_EVASION_UP)
@@ -2064,7 +2064,7 @@ static void Cmd_datahpupdate(void)
                 if (!gSpecialStatuses[gActiveBattler].dmg && !(gHitMarker & HITMARKER_x100000))
                     gSpecialStatuses[gActiveBattler].dmg = gHpDealt;
 
-                if (IS_MOVE_PHYSICAL(gCurrentMove) && !(gHitMarker & HITMARKER_x100000) && gCurrentMove != MOVE_PAIN_SPLIT)
+                if (IS_MOVE_PHYSICAL(gCurrentMove, gBattlerAttacker) && !(gHitMarker & HITMARKER_x100000) && gCurrentMove != MOVE_PAIN_SPLIT)
                 {
                     gProtectStructs[gActiveBattler].physicalDmg = gHpDealt;
                     gSpecialStatuses[gActiveBattler].physicalDmg = gHpDealt;
@@ -2079,7 +2079,7 @@ static void Cmd_datahpupdate(void)
                         gSpecialStatuses[gActiveBattler].physicalBattlerId = gBattlerTarget;
                     }
                 }
-                else if (!IS_MOVE_PHYSICAL(gCurrentMove) && !(gHitMarker & HITMARKER_x100000))
+                else if (!IS_MOVE_PHYSICAL(gCurrentMove, gBattlerAttacker) && !(gHitMarker & HITMARKER_x100000))
                 {
                     gProtectStructs[gActiveBattler].specialDmg = gHpDealt;
                     gSpecialStatuses[gActiveBattler].specialDmg = gHpDealt;
@@ -10165,7 +10165,7 @@ static bool8 IsTwoTurnsMove(u16 move)
 {
     if (gBattleMoves[move].effect == EFFECT_SKULL_BASH
         || gBattleMoves[move].effect == EFFECT_TWO_TURNS_ATTACK
-        || gBattleMoves[move].effect == EFFECT_SOLARBEAM
+        || gBattleMoves[move].effect == EFFECT_SOLAR_BEAM
         || gBattleMoves[move].effect == EFFECT_SEMI_INVULNERABLE
         || gBattleMoves[move].effect == EFFECT_BIDE)
         return TRUE;
@@ -10176,13 +10176,13 @@ static bool8 IsTwoTurnsMove(u16 move)
 static u8 AttacksThisTurn(u8 battlerId, u16 move) // Note: returns 1 if it's a charging turn, otherwise 2
 {
     // first argument is unused
-    if (gBattleMoves[move].effect == EFFECT_SOLARBEAM
+    if (gBattleMoves[move].effect == EFFECT_SOLAR_BEAM
         && (gBattleWeather & WEATHER_SUN_ANY))
         return 2;
 
     if (gBattleMoves[move].effect == EFFECT_SKULL_BASH
         || gBattleMoves[move].effect == EFFECT_TWO_TURNS_ATTACK
-        || gBattleMoves[move].effect == EFFECT_SOLARBEAM
+        || gBattleMoves[move].effect == EFFECT_SOLAR_BEAM
         || gBattleMoves[move].effect == EFFECT_SEMI_INVULNERABLE
         || gBattleMoves[move].effect == EFFECT_BIDE)
     {
