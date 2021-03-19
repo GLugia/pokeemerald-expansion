@@ -367,6 +367,8 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectSleepHit
 	.4byte BattleScript_EffectHyperFang
 	.4byte BattleScript_EffectHyperFangEnd
+	.4byte BattleScript_EffectArmorTuningPhys
+	.4byte BattleScript_EffectArmorTuningSpec
 
 BattleScript_EffectSleepHit:
 	setmoveeffect MOVE_EFFECT_SLEEP
@@ -7840,3 +7842,59 @@ BattleScript_AnnounceAirLockCloudNine::
 	waitmessage 0x40
 	call BattleScript_WeatherFormChanges
 	end3
+
+BattleScript_EffectArmorTuningPhys::
+	call BattleScript_AbilityPopUp
+	setstatchanger STAT_DEF, 1, FALSE
+	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_ArmorTuningPhysLower
+	jumpifbyte CMP_LESS_THAN, cMULTISTRING_CHOOSER, 0x2, BattleScript_ArmorTuningPhysAnimRaise
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x3, BattleScript_ArmorTuningPhysLower
+	pause 0x10
+	goto BattleScript_ArmorTuningPhysLower
+BattleScript_ArmorTuningPhysAnimRaise:
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gStatUpStringIds
+	waitmessage 0x40
+BattleScript_ArmorTuningPhysLower:
+	setstatchanger STAT_SPDEF, 2, TRUE
+	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_ArmorTuningPhysEnd
+	jumpifbyte CMP_LESS_THAN, cMULTISTRING_CHOOSER, 0x2, BattleScript_ArmorTuningPhysAnimLower
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x3, BattleScript_ArmorTuningPhysEnd
+	pause 0x10
+	goto BattleScript_ArmorTuningPhysEnd
+BattleScript_ArmorTuningPhysAnimLower:
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gStatDownStringIds
+	waitmessage 0x40
+BattleScript_ArmorTuningPhysEnd:
+	end
+
+BattleScript_EffectArmorTuningSpec::
+	call BattleScript_AbilityPopUp
+	setstatchanger STAT_SPDEF, 1, FALSE
+	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_ArmorTuningSpecLower
+	jumpifbyte CMP_LESS_THAN, cMULTISTRING_CHOOSER, 0x2, BattleScript_ArmorTuningSpecAnimRaise
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x3, BattleScript_ArmorTuningSpecLower
+	pause 0x10
+	goto BattleScript_ArmorTuningSpecLower
+BattleScript_ArmorTuningSpecAnimRaise:
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gStatUpStringIds
+	waitmessage 0x40
+BattleScript_ArmorTuningSpecLower:
+	setstatchanger STAT_DEF, 2, TRUE
+	statbuffchange STAT_BUFF_ALLOW_PTR, BattleScript_ArmorTuningSpecEnd
+	jumpifbyte CMP_LESS_THAN, cMULTISTRING_CHOOSER, 0x2, BattleScript_ArmorTuningSpecAnimLower
+	jumpifbyte CMP_EQUAL, cMULTISTRING_CHOOSER, 0x3, BattleScript_ArmorTuningSpecEnd
+	pause 0x10
+	goto BattleScript_ArmorTuningSpecEnd
+BattleScript_ArmorTuningSpecAnimLower:
+	setgraphicalstatchangevalues
+	playanimation BS_TARGET, B_ANIM_STATS_CHANGE, sB_ANIM_ARG1
+	printfromtable gStatDownStringIds
+	waitmessage 0x40
+BattleScript_ArmorTuningSpecEnd:
+	end

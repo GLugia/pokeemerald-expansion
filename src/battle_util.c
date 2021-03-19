@@ -3515,7 +3515,7 @@ static bool32 ShouldChangeFormHpBased(u32 battler)
 	// Ability,	 form >, form <=, hp divided
 	static const u16 forms[][4] =
 	{
-		{ABILITY_ZEN_MODE, SPECIES_DARMANITAN, SPECIES_DARMANITAN_ZEN_MODE, 2},
+		/*{ABILITY_ZEN_MODE, SPECIES_DARMANITAN, SPECIES_DARMANITAN_ZEN_MODE, 2},
 		{ABILITY_SHIELDS_DOWN, SPECIES_MINIOR, SPECIES_MINIOR_CORE_RED, 2},
 		{ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_BLUE, SPECIES_MINIOR_CORE_BLUE, 2},
 		{ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_GREEN, SPECIES_MINIOR_CORE_GREEN, 2},
@@ -3523,7 +3523,8 @@ static bool32 ShouldChangeFormHpBased(u32 battler)
 		{ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_ORANGE, SPECIES_MINIOR_CORE_ORANGE, 2},
 		{ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_VIOLET, SPECIES_MINIOR_CORE_VIOLET, 2},
 		{ABILITY_SHIELDS_DOWN, SPECIES_MINIOR_METEOR_YELLOW, SPECIES_MINIOR_CORE_YELLOW, 2},
-		{ABILITY_SCHOOLING, SPECIES_WISHIWASHI_SCHOOL, SPECIES_WISHIWASHI, 4},
+		{ABILITY_SCHOOLING, SPECIES_WISHIWASHI_SCHOOL, SPECIES_WISHIWASHI, 4},*/
+		{ABILITY_SHIELDS_DOWN, SPECIES_GOLEM, SPECIES_GOLEM_MAGMA, 2},
 	};
 	u32 i;
 
@@ -4224,14 +4225,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 					BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
 				break;
 			case ABILITY_POWER_CONSTRUCT:
-				if ((gBattleMons[battler].species == SPECIES_ZYGARDE || gBattleMons[battler].species == SPECIES_ZYGARDE_10)
+				/*if ((gBattleMons[battler].species == SPECIES_ZYGARDE || gBattleMons[battler].species == SPECIES_ZYGARDE_10)
 					&& gBattleMons[battler].hp <= gBattleMons[battler].maxHP / 2)
 				{
 					gBattleStruct->changedSpecies[gBattlerPartyIndexes[battler]] = gBattleMons[battler].species;
 					gBattleMons[battler].species = SPECIES_ZYGARDE_COMPLETE;
 					BattleScriptPushCursorAndCallback(BattleScript_AttackerFormChangeEnd3);
 					effect++;
-				}
+				}*/
 				break;
 			case ABILITY_BALL_FETCH:
 				if (gBattleMons[battler].item == ITEM_NONE
@@ -4550,7 +4551,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			break;
 		case ABILITY_GOOEY:
-		case ABILITY_TANGLING_HAIR:
+		case ABILITY_TANGLE:
 			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
 			 && gBattleMons[gBattlerAttacker].hp != 0
 			 && gBattleMons[gBattlerAttacker].statStages[STAT_SPEED] != 0
@@ -4790,6 +4791,19 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 			break;
+		case ABILITY_ARMOR_TUNING:
+			if (!(gMoveResultFlags & MOVE_RESULT_NO_EFFECT)
+			 && !gProtectStructs[gBattlerAttacker].confusionSelfDmg
+		 	 && TARGET_TURN_DAMAGED
+		 	 && IsBattlerAlive(battler))
+			{
+				BattleScriptPushCursor();
+				if (IS_MOVE_PHYSICAL(move, gBattlerAttacker))
+					gBattlescriptCurrInstr = BattleScript_EffectArmorTuningPhys;
+				else
+					gBattlescriptCurrInstr = BattleScript_EffectArmorTuningSpec;
+				effect++;
+			}
 		}
 		break;
 	case ABILITYEFFECT_MOVE_END_ATTACKER: // Same as above, but for attacker
@@ -7907,12 +7921,12 @@ void UndoMegaEvolution(u32 monId)
 		CalculateMonStats(&gPlayerParty[monId]);
 	}
 	// While not exactly a mega evolution, Zygarde follows the same rules.
-	else if (GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, NULL) == SPECIES_ZYGARDE_COMPLETE)
+	/*else if (GetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, NULL) == SPECIES_ZYGARDE_COMPLETE)
 	{
 		SetMonData(&gPlayerParty[monId], MON_DATA_SPECIES, &gBattleStruct->changedSpecies[monId]);
 		gBattleStruct->changedSpecies[monId] = 0;
 		CalculateMonStats(&gPlayerParty[monId]);
-	}
+	}*/
 }
 
 void UndoFormChange(u32 monId, u32 side)
@@ -7921,7 +7935,7 @@ void UndoFormChange(u32 monId, u32 side)
 	struct Pokemon *party = (side == B_SIDE_PLAYER) ? gPlayerParty : gEnemyParty;
 	static const u16 species[][2] = // changed form id, default form id
 	{
-		{SPECIES_AEGISLASH_BLADE, SPECIES_AEGISLASH},
+		/*{SPECIES_AEGISLASH_BLADE, SPECIES_AEGISLASH},
 		{SPECIES_MIMIKYU_BUSTED, SPECIES_MIMIKYU},
 		{SPECIES_DARMANITAN_ZEN_MODE, SPECIES_DARMANITAN},
 		{SPECIES_MINIOR, SPECIES_MINIOR_CORE_RED},
@@ -7931,7 +7945,7 @@ void UndoFormChange(u32 monId, u32 side)
 		{SPECIES_MINIOR_METEOR_ORANGE, SPECIES_MINIOR_CORE_ORANGE},
 		{SPECIES_MINIOR_METEOR_VIOLET, SPECIES_MINIOR_CORE_VIOLET},
 		{SPECIES_MINIOR_METEOR_YELLOW, SPECIES_MINIOR_CORE_YELLOW},
-		{SPECIES_WISHIWASHI_SCHOOL, SPECIES_WISHIWASHI},
+		{SPECIES_WISHIWASHI_SCHOOL, SPECIES_WISHIWASHI},*/
 	};
 
 	currSpecies = GetMonData(&party[monId], MON_DATA_SPECIES, NULL);
@@ -7984,10 +7998,10 @@ bool32 CanBattlerGetOrLoseItem(u8 battlerId, u16 itemId)
 		return FALSE;
 	else if (species == SPECIES_GIRATINA && itemId == ITEM_GRISEOUS_ORB)
 		return FALSE;
-	else if (species == SPECIES_GENESECT && GetBattlerHoldEffect(battlerId, FALSE) == HOLD_EFFECT_DRIVE)
+	/*else if (species == SPECIES_GENESECT && GetBattlerHoldEffect(battlerId, FALSE) == HOLD_EFFECT_DRIVE)
 		return FALSE;
 	else if (species == SPECIES_SILVALLY && GetBattlerHoldEffect(battlerId, FALSE) == HOLD_EFFECT_MEMORY)
-		return FALSE;
+		return FALSE;*/
 	else
 		return TRUE;
 }
