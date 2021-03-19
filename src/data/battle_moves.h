@@ -2222,16 +2222,16 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 
 	[MOVE_HYPER_FANG] =	// TODO (lilua): cause hyper fang to deal 50% of max hp
 	{
-		.effect = EFFECT_FLINCH_HIT,//EFFECT_HYPER_FANG,	// EFFECT_FLINCH_HIT
-		.power = 1,	// 80
+		.effect = EFFECT_HYPER_FANG,	// EFFECT_FLINCH_HIT	// EFFECT_DEFENSE_DOWN_HIT
+		.power = 0,	// 80	// 90
 		.type = TYPE_NORMAL,
-		.accuracy = 95,	// 90
+		.accuracy = 90,
 		.pp = 15,
-		.secondaryEffectChance = 30,	// 10
+		.secondaryEffectChance = 0,	// 10	// 50
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
-		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_STRONG_JAW_BOOST | FLAG_SHEER_FORCE_BOOST,
-		.split = SPLIT_PHYSICAL,
+		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
+		.split = SPLIT_STATUS,
 	},
 
 	[MOVE_SHARPEN] =
