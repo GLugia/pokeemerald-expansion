@@ -3946,6 +3946,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 			break;
+		RAIN:
 		case ABILITY_DRIZZLE:
 			if (TryChangeBattleWeather(battler, ENUM_WEATHER_RAIN, TRUE))
 			{
@@ -3953,6 +3954,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 			break;
+		SAND:
 		case ABILITY_SAND_STREAM:
 			if (TryChangeBattleWeather(battler, ENUM_WEATHER_SANDSTORM, TRUE))
 			{
@@ -3960,6 +3962,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 			break;
+		SUN:
 		case ABILITY_DROUGHT:
 			if (TryChangeBattleWeather(battler, ENUM_WEATHER_SUN, TRUE))
 			{
@@ -3967,6 +3970,7 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 				effect++;
 			}
 			break;
+		HAIL:
 		case ABILITY_SNOW_WARNING:
 			if (TryChangeBattleWeather(battler, ENUM_WEATHER_HAIL, TRUE))
 			{
@@ -4010,6 +4014,14 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			}
 			break;
 		case ABILITY_FORECAST:
+			switch (Random() % 4)
+			{
+				case 0: goto RAIN;
+				case 1: goto SAND;
+				case 2: goto SUN;
+				case 3: goto HAIL;
+			}
+			// fallthrough
 		case ABILITY_FLOWER_GIFT:
 			effect = TryWeatherFormChange(battler);
 			if (effect != 0)
@@ -7244,6 +7256,22 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 		if (IS_MOVE_SPECIAL(move, battlerAtk))
 			MulModifier(&modifier, UQ_4_12(0.5));
 		break;
+	case ABILITY_MAGMA_ARMOR:
+		if (moveType == TYPE_GROUND)
+		{
+			MulModifier(&modifier, UQ_4_12(0.25));
+			if (updateFlags)
+				RecordAbilityBattle(battlerDef, ABILITY_MAGMA_ARMOR);
+		}
+		break;
+	case ABILITY_WATER_VEIL:
+		if (moveType == TYPE_FIRE)
+		{
+			MulModifier(&modifier, UQ_4_12(0.5));
+			if (updateFlags)
+				RecordAbilityBattle(battlerDef, ABILITY_WATER_VEIL);
+		}
+		break;
 	}
 
 	// ally's abilities
@@ -7284,13 +7312,6 @@ static u32 CalcAttackStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, b
 			MulModifier(&modifier, UQ_4_12(1.5));
 		break;
 	}
-
-	// The offensive stats of a Player's Pokémon are boosted by x1.1 (+10%) if they have the 1st badge and 7th badges.
-	// Having the 1st badge boosts physical attack while having the 7th badge boosts special attack.
-	if (ShouldGetStatBadgeBoost(FLAG_BADGE01_GET, battlerAtk) && IS_MOVE_PHYSICAL(move, battlerAtk))
-		MulModifier(&modifier, UQ_4_12(1.1));
-	if (ShouldGetStatBadgeBoost(FLAG_BADGE07_GET, battlerAtk) && IS_MOVE_SPECIAL(move, battlerAtk))
-		MulModifier(&modifier, UQ_4_12(1.1));
 
 	return ApplyModifier(modifier, atkStat);
 }
@@ -7357,38 +7378,38 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
 	// target's abilities
 	switch (GetBattlerAbility(battlerDef))
 	{
-	case ABILITY_MARVEL_SCALE:
-		if (gBattleMons[battlerDef].status1 & STATUS1_ANY && usesDefStat)
-		{
-			MulModifier(&modifier, UQ_4_12(1.5));
-			if (updateFlags)
-				RecordAbilityBattle(battlerDef, ABILITY_MARVEL_SCALE);
-		}
-		break;
-	case ABILITY_FUR_COAT:
-		if (usesDefStat)
-		{
-			MulModifier(&modifier, UQ_4_12(2.0));
-			if (updateFlags)
-				RecordAbilityBattle(battlerDef, ABILITY_FUR_COAT);
-		}
-		break;
-	case ABILITY_GRASS_PELT:
-		if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && usesDefStat)
-		{
-			MulModifier(&modifier, UQ_4_12(1.5));
-			if (updateFlags)
-				RecordAbilityBattle(battlerDef, ABILITY_GRASS_PELT);
-		}
-		break;
-	case ABILITY_FLOWER_GIFT:
-		if (gBattleMons[battlerDef].species == SPECIES_CHERRIM && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && !usesDefStat)
-			MulModifier(&modifier, UQ_4_12(1.5));
-		break;
-	case ABILITY_PUNK_ROCK:
-		if (gBattleMoves[move].flags & FLAG_SOUND)
-			MulModifier(&modifier, UQ_4_12(1.3));
-		break;
+		case ABILITY_MARVEL_SCALE:
+			if (gBattleMons[battlerDef].status1 & STATUS1_ANY && usesDefStat)
+			{
+				MulModifier(&modifier, UQ_4_12(1.5));
+				if (updateFlags)
+					RecordAbilityBattle(battlerDef, ABILITY_MARVEL_SCALE);
+			}
+			break;
+		case ABILITY_FUR_COAT:
+			if (usesDefStat)
+			{
+				MulModifier(&modifier, UQ_4_12(2.0));
+				if (updateFlags)
+					RecordAbilityBattle(battlerDef, ABILITY_FUR_COAT);
+			}
+			break;
+		case ABILITY_GRASS_PELT:
+			if (gFieldStatuses & STATUS_FIELD_GRASSY_TERRAIN && usesDefStat)
+			{
+				MulModifier(&modifier, UQ_4_12(1.5));
+				if (updateFlags)
+					RecordAbilityBattle(battlerDef, ABILITY_GRASS_PELT);
+			}
+			break;
+		case ABILITY_FLOWER_GIFT:
+			if (gBattleMons[battlerDef].species == SPECIES_CHERRIM && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SUN_ANY && !usesDefStat)
+				MulModifier(&modifier, UQ_4_12(1.5));
+			break;
+		case ABILITY_PUNK_ROCK:
+			if (gBattleMoves[move].flags & FLAG_SOUND)
+				MulModifier(&modifier, UQ_4_12(1.3));
+			break;
 	}
 
 	// ally's abilities
@@ -7427,13 +7448,9 @@ static u32 CalcDefenseStat(u16 move, u8 battlerAtk, u8 battlerDef, u8 moveType, 
 	// sandstorm sp.def boost for rock types
 	if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_ROCK) && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_SANDSTORM_ANY && !usesDefStat)
 		MulModifier(&modifier, UQ_4_12(1.5));
-
-	// The defensive stats of a Player's Pokémon are boosted by x1.1 (+10%) if they have the 5th badge and 7th badges.
-	// Having the 5th badge boosts physical defense while having the 7th badge boosts special defense.
-	if (ShouldGetStatBadgeBoost(FLAG_BADGE05_GET, battlerDef) && IS_MOVE_PHYSICAL(move, battlerAtk))
-		MulModifier(&modifier, UQ_4_12(1.1));
-	if (ShouldGetStatBadgeBoost(FLAG_BADGE07_GET, battlerDef) && IS_MOVE_SPECIAL(move, battlerAtk))
-		MulModifier(&modifier, UQ_4_12(1.1));
+	// hail def boost for ice types
+	if (IS_BATTLER_OF_TYPE(battlerDef, TYPE_ICE) && WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_HAIL_ANY && usesDefStat)
+		MulModifier(&modifier, UQ_4_12(1.5));
 
 	return ApplyModifier(modifier, defStat);
 }
@@ -7461,6 +7478,13 @@ static u32 CalcFinalDmg(u32 dmg, u16 move, u8 battlerAtk, u8 battlerDef, u8 move
 	if (gBattleMons[battlerAtk].status1 & STATUS1_BURN && IS_MOVE_PHYSICAL(move, battlerAtk)
 		&& gBattleMoves[move].effect != EFFECT_FACADE && abilityAtk != ABILITY_GUTS)
 		dmg = ApplyModifier(UQ_4_12(0.5), dmg);
+
+	// check poison vs poison type
+	if (gBattleMons[battlerAtk].status1 & STATUS1_PSN_ANY && IS_BATTLER_OF_TYPE(battlerDef, TYPE_POISON))
+		dmg = ApplyModifier(UQ_4_12(0.8), dmg);
+	// check poison type vs poison
+	if (gBattleMons[battlerDef].status1 & STATUS1_PSN_ANY && IS_BATTLER_OF_TYPE(battlerAtk, TYPE_POISON))
+		dmg = ApplyModifier(UQ_4_12(1.25), dmg);
 
 	// check sunny/rain weather
 	if (WEATHER_HAS_EFFECT && gBattleWeather & WEATHER_RAIN_ANY)
@@ -8065,22 +8089,6 @@ bool32 SetIllusionMon(struct Pokemon *mon, u32 battlerId)
 	}
 
 	return FALSE;
-}
-
-bool8 ShouldGetStatBadgeBoost(u16 badgeFlag, u8 battlerId)
-{
-	if (B_BADGE_BOOST != GEN_3)
-		return FALSE;
-	else if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_FRONTIER))
-		return FALSE;
-	else if (GetBattlerSide(battlerId) != B_SIDE_PLAYER)
-		return FALSE;
-	else if (gBattleTypeFlags & BATTLE_TYPE_TRAINER && gTrainerBattleOpponent_A == TRAINER_SECRET_BASE)
-		return FALSE;
-	else if (FlagGet(badgeFlag))
-		return TRUE;
-	else
-		return FALSE;
 }
 
 u8 GetBattleMoveSplit(u32 moveId, u32 battler)
