@@ -365,8 +365,6 @@ gBattleScriptsForMoveEffects:: @ 82D86A8
 	.4byte BattleScript_EffectFairyLock
 	.4byte BattleScript_EffectAllySwitch
 	.4byte BattleScript_EffectSleepHit
-	.4byte BattleScript_EffectHyperFang
-	.4byte BattleScript_EffectHyperFangEnd
 	.4byte BattleScript_EffectArmorTuningPhys
 	.4byte BattleScript_EffectArmorTuningSpec
 
@@ -2780,17 +2778,6 @@ BattleScript_EffectSuperFang::
 	typecalc
 	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
 	damagetohalftargethp
-	goto BattleScript_HitFromAtkAnimation
-
-BattleScript_EffectHyperFang::
-	attackcanceler
-	accuracycheck BattleScript_PrintMoveMissed, ACC_CURR_MOVE
-	attackstring
-	ppreduce
-	typecalc
-	bichalfword gMoveResultFlags, MOVE_RESULT_SUPER_EFFECTIVE | MOVE_RESULT_NOT_VERY_EFFECTIVE
-	various BS_TARGET, VARIOUS_HYPER_FANG
-BattleScript_EffectHyperFangEnd::
 	goto BattleScript_HitFromAtkAnimation
 
 BattleScript_EffectDragonRage::

@@ -2220,18 +2220,18 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 		.split = SPLIT_PHYSICAL,
 	},
 
-	[MOVE_HYPER_FANG] =	// TODO (lilua): cause hyper fang to deal 50% of max hp
+	[MOVE_HYPER_FANG] =
 	{
-		.effect = EFFECT_HYPER_FANG,	// EFFECT_FLINCH_HIT	// EFFECT_DEFENSE_DOWN_HIT
-		.power = 0,	// 80	// 90
+		.effect = EFFECT_DEFENSE_DOWN_HIT,	// EFFECT_FLINCH_HIT
+		.power = 80,	// 80
 		.type = TYPE_NORMAL,
-		.accuracy = 90,
-		.pp = 15,
-		.secondaryEffectChance = 0,	// 10	// 50
+		.accuracy = 95,	// 90
+		.pp = 20,	// 15
+		.secondaryEffectChance = 50,	// 10
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
-		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED,
-		.split = SPLIT_STATUS,
+		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_STRONG_JAW_BOOST | FLAG_SHEER_FORCE_BOOST | FLAG_HIGH_CRIT,
+		.split = SPLIT_PHYSICAL,
 	},
 
 	[MOVE_SHARPEN] =
@@ -4423,11 +4423,11 @@ const struct BattleMove gBattleMoves[MOVES_COUNT] =
 	[MOVE_POISON_FANG] =
 	{
 		.effect = EFFECT_POISON_FANG,
-		.power = 50,
+		.power = 60,	// 50
 		.type = TYPE_POISON,
 		.accuracy = 100,
 		.pp = 15,
-		.secondaryEffectChance = 50,
+		.secondaryEffectChance = 50,	// 50
 		.target = MOVE_TARGET_SELECTED,
 		.priority = 0,
 		.flags = FLAG_MAKES_CONTACT | FLAG_PROTECT_AFFECTED | FLAG_MIRROR_MOVE_AFFECTED | FLAG_SHEER_FORCE_BOOST | FLAG_STRONG_JAW_BOOST,

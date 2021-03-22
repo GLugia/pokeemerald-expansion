@@ -448,12 +448,12 @@ const struct BaseStats gBaseStats[] =
 
     [SPECIES_RATTATA] =
     {
-        .baseHP        = 30,
-        .baseAttack    = 60,	// 56
-        .baseDefense   = 35,
+        .baseHP        = 50,	// 30
+        .baseAttack    = 55,	// 56
+        .baseDefense   = 40,	// 35
         .baseSpeed     = 75,	// 72
         .baseSpAttack  = 25,
-        .baseSpDefense = 35,
+        .baseSpDefense = 50,	// 35
         .type1 = TYPE_NORMAL,
         .type2 = TYPE_NORMAL,
         .catchRate = 255,
@@ -465,19 +465,19 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_RUN_AWAY, ABILITY_GUTS},
+        .abilities = {ABILITY_RUN_AWAY, ABILITY_STRONG_JAW},
         .bodyColor = BODY_COLOR_PURPLE,
         .noFlip = FALSE,
     },
 
     [SPECIES_RATICATE] =
     {
-        .baseHP        = 65,	// 55
-        .baseAttack    = 85,	// 81
-        .baseDefense   = 60,
+        .baseHP        = 85,	// 55
+        .baseAttack    = 90,	// 81
+        .baseDefense   = 75,	// 60
         .baseSpeed     = 100,	// 97
         .baseSpAttack  = 50,
-        .baseSpDefense = 70,
+        .baseSpDefense = 85,	// 70
         .type1 = TYPE_NORMAL,
         .type2 = TYPE_NORMAL,
         .catchRate = 127,
@@ -489,7 +489,7 @@ const struct BaseStats gBaseStats[] =
         .growthRate = GROWTH_MEDIUM_FAST,
         .eggGroup1 = EGG_GROUP_FIELD,
         .eggGroup2 = EGG_GROUP_FIELD,
-        .abilities = {ABILITY_RUN_AWAY, ABILITY_GUTS},
+        .abilities = {ABILITY_GUTS, ABILITY_STRONG_JAW},
         .bodyColor = BODY_COLOR_BROWN,
         .noFlip = FALSE,
     },

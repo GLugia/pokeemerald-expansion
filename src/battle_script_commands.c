@@ -8370,10 +8370,6 @@ static void Cmd_various(void)
             gBattlescriptCurrInstr += 7;    // exit if loop failed (failsafe)
         }
         return;
-	case VARIOUS_HYPER_FANG:
-		gBattleMoveDamage = (gBattleMons[gActiveBattler].maxHP / 2) - 1;
-		gBattlescriptCurrInstr = BattleScript_EffectHyperFangEnd;
-		return;
     }
 
     gBattlescriptCurrInstr += 3;
