@@ -2465,7 +2465,7 @@ void SetMoveEffect(bool32 primary, u32 certain)
             statusChanged = TRUE;
             break;
         case STATUS1_POISON:
-            if (GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY)
+            if (GetBattlerAbility(gEffectBattler) == ABILITY_IMMUNITY
                 && (primary == TRUE || certain == MOVE_EFFECT_CERTAIN))
             {
                 gLastUsedAbility = ABILITY_IMMUNITY;
