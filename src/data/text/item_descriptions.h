@@ -3198,107 +3198,107 @@ static const u8 sUltranecroziumZDesc[] = _(
     "into a new form.");
 
 //mints
-static const u8 sAdamantMintDesc[] = _(
+static const u8 sMintLonelyDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Adamant");
-
-static const u8 sBoldMintDesc[] = _(
+    "LONELY.");
+static const u8 sMintBraveDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Bold");
-
-static const u8 sBraveMintDesc[] = _(
+    "BRAVE.");
+static const u8 sMintAdamantDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Brave");
-
-static const u8 sCalmMintDesc[] = _(
+    "ADAMANT.");
+static const u8 sMintNaughtyDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Calm");
-
-static const u8 sCarefulMintDesc[] = _(
+    "NAUGHTY.");
+static const u8 sMintBrawnyDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Careful");
-
-static const u8 sGentleMintDesc[] = _(
+    "BRAWNY.");
+	
+static const u8 sMintBoldDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Gentle");
-
-static const u8 sHastyMintDesc[] = _(
+    "BOLD.");
+static const u8 sMintRelaxedDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Hasty");
-
-static const u8 sImpishMintDesc[] = _(
+    "RELAXED.");
+static const u8 sMintImpishDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Impish");
-
-static const u8 sJollyMintDesc[] = _(
+    "IMPISH.");
+static const u8 sMintLaxDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Jolly");
-
-static const u8 sLaxMintDesc[] = _(
+    "LAX.");
+static const u8 sMintGuardedDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Lax");
-
-static const u8 sLonelyMintDesc[] = _(
+    "GUARDED.");
+	
+static const u8 sMintTimidDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Lonely");
-
-static const u8 sMildMintDesc[] = _(
+    "TIMID.");
+static const u8 sMintHastyDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Mild");
-
-static const u8 sModestMintDesc[] = _(
+    "HASTY.");
+static const u8 sMintJollyDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Modest");
-
-static const u8 sNaiveMintDesc[] = _(
+    "JOLLY.");
+static const u8 sMintNaiveDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Naive");
-
-static const u8 sNaughtyMintDesc[] = _(
+    "NAIVE.");
+static const u8 sMintNeutralDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Naughty");
-
-static const u8 sQuietMintDesc[] = _(
+    "NEUTRAL.");
+	
+static const u8 sMintModestDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Quiet");
-
-static const u8 sRashMintDesc[] = _(
+    "MODEST.");
+static const u8 sMintMildDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Rash");
-
-static const u8 sRelaxedMintDesc[] = _(
+    "MILD.");
+static const u8 sMintQuietDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Relaxed");
-
-static const u8 sSassyMintDesc[] = _(
+    "QUIET.");
+static const u8 sMintRashDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Sassy");
-
-static const u8 sSeriousMintDesc[] = _(
+    "RASH.");
+static const u8 sMintWildDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Serious");
-
-static const u8 sTimidMintDesc[] = _(
+    "WILD.");
+	
+static const u8 sMintCalmDesc[] = _(
     "Changes the nature\n"
     "of a Pokémon to\n"
-    "Timid");
+    "CALM.");
+static const u8 sMintGentleDesc[] = _(
+    "Changes the nature\n"
+    "of a Pokémon to\n"
+    "GENTLE.");
+static const u8 sMintSassyDesc[] = _(
+    "Changes the nature\n"
+    "of a Pokémon to\n"
+    "SASSY.");
+static const u8 sMintCarefulDesc[] = _(
+    "Changes the nature\n"
+    "of a Pokémon to\n"
+    "CAREFUL.");
+static const u8 sMintWiseDesc[] = _(
+    "Changes the nature\n"
+    "of a Pokémon to\n"
+    "WISE.");

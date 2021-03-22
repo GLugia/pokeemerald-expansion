@@ -793,29 +793,37 @@
 #define ITEM_ULTRANECROZIUM_Z         645
 
 // Mints
-#define ITEM_ADAMANT_MINT             646
-#define ITEM_BOLD_MINT                647
-#define ITEM_BRAVE_MINT               648
-#define ITEM_CALM_MINT                649
-#define ITEM_CAREFUL_MINT             650
-#define ITEM_GENTLE_MINT              651
-#define ITEM_HASTY_MINT               652
-#define ITEM_IMPISH_MINT              653
-#define ITEM_JOLLY_MINT               654
-#define ITEM_LAX_MINT                 655
-#define ITEM_LONELY_MINT              656
-#define ITEM_MILD_MINT                657
-#define ITEM_MODEST_MINT              658
-#define ITEM_NAIVE_MINT               659
-#define ITEM_NAUGHTY_MINT             660
-#define ITEM_QUIET_MINT               661
-#define ITEM_RASH_MINT                662
-#define ITEM_RELAXED_MINT             663
-#define ITEM_SASSY_MINT               664
-#define ITEM_SERIOUS_MINT             665
-#define ITEM_TIMID_MINT               666
+#define ITEM_MINT_LONELY              646
+#define ITEM_MINT_BRAVE               647
+#define ITEM_MINT_ADAMANT             648
+#define ITEM_MINT_NAUGHTY             649
+#define ITEM_MINT_BRAWNY              650
 
-#define ITEMS_COUNT                   667
+#define ITEM_MINT_BOLD                651
+#define ITEM_MINT_RELAXED             652
+#define ITEM_MINT_IMPISH              653
+#define ITEM_MINT_LAX                 654
+#define ITEM_MINT_GUARDED             655
+
+#define ITEM_MINT_TIMID               656
+#define ITEM_MINT_HASTY               657
+#define ITEM_MINT_JOLLY               658
+#define ITEM_MINT_NAIVE               659
+#define ITEM_MINT_NEUTRAL             660
+
+#define ITEM_MINT_MODEST              661
+#define ITEM_MINT_MILD                662
+#define ITEM_MINT_QUIET               663
+#define ITEM_MINT_RASH                664
+#define ITEM_MINT_WILD                665
+
+#define ITEM_MINT_CALM                666
+#define ITEM_MINT_GENTLE              667
+#define ITEM_MINT_SASSY               668
+#define ITEM_MINT_CAREFUL             669
+#define ITEM_MINT_WISE                670
+
+#define ITEMS_COUNT                   671
 #define ITEM_FIELD_ARROW              ITEMS_COUNT
 
 // Range of berries given out by various NPCS

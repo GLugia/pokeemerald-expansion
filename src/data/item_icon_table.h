@@ -386,27 +386,40 @@ const u32 *const gItemIconTable[][2] =
     [ITEM_MAGMA_EMBLEM] = {gItemIcon_MagmaEmblem, gItemIconPalette_MagmaEmblem},
     [ITEM_OLD_SEA_MAP] = {gItemIcon_OldSeaMap, gItemIconPalette_OldSeaMap},
     // mints
-    [ITEM_ADAMANT_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
-    [ITEM_BOLD_MINT] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
-    [ITEM_BRAVE_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
-    [ITEM_CALM_MINT] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
-    [ITEM_CAREFUL_MINT] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
-    [ITEM_GENTLE_MINT] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
-    [ITEM_HASTY_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
-    [ITEM_IMPISH_MINT] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
-    [ITEM_JOLLY_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
-    [ITEM_LAX_MINT] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
-    [ITEM_LONELY_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
-    [ITEM_MILD_MINT] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
-    [ITEM_MODEST_MINT] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
-    [ITEM_NAIVE_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
-    [ITEM_NAUGHTY_MINT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
-    [ITEM_QUIET_MINT] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
-    [ITEM_RASH_MINT] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
-    [ITEM_RELAXED_MINT] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
-    [ITEM_SASSY_MINT] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
-    [ITEM_SERIOUS_MINT] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
-    [ITEM_TIMID_MINT] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
+	// Red -> ATK
+	// Blu -> DEF
+	// Grn -> SPD
+	// Pnk -> SPA
+	// Ylw -> SPE
+    [ITEM_MINT_LONELY] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_MINT_BRAVE] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_MINT_ADAMANT] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_MINT_NAUGHTY] = {gItemIcon_Mint, gItemIconPalette_RedMint},
+    [ITEM_MINT_BRAWNY] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
+	
+    [ITEM_MINT_BOLD] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
+    [ITEM_MINT_RELAXED] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
+    [ITEM_MINT_IMPISH] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
+    [ITEM_MINT_LAX] = {gItemIcon_Mint, gItemIconPalette_BlueMint},
+    [ITEM_MINT_GUARDED] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
+	
+    [ITEM_MINT_TIMID] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
+    [ITEM_MINT_HASTY] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
+    [ITEM_MINT_JOLLY] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
+    [ITEM_MINT_NAIVE] = {gItemIcon_Mint, gItemIconPalette_YellowMint},
+    [ITEM_MINT_NEUTRAL] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
+	
+    [ITEM_MINT_MODEST] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
+    [ITEM_MINT_MILD] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
+    [ITEM_MINT_QUIET] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
+    [ITEM_MINT_RASH] = {gItemIcon_Mint, gItemIconPalette_PinkMint},
+    [ITEM_MINT_WILD] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
+	
+    [ITEM_MINT_CALM] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
+    [ITEM_MINT_GENTLE] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
+    [ITEM_MINT_SASSY] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
+    [ITEM_MINT_CAREFUL] = {gItemIcon_Mint, gItemIconPalette_GreenMint},
+    [ITEM_MINT_WISE] = {gItemIcon_Mint, gItemIconPalette_LightBlueMint},
     // Return to field arrow
     [ITEM_FIELD_ARROW] = {gItemIcon_ReturnToFieldArrow, gItemIconPalette_ReturnToFieldArrow},
     // New items

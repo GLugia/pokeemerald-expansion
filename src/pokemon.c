@@ -2148,32 +2148,36 @@ const struct SpindaSpot gSpindaSpotGraphics[] =
 
 const s8 gNatureStatTable[NUM_NATURES][NUM_NATURE_STATS] =
 {
-    // Atk Def Spd Sp.Atk Sp.Def
-    {    0,  0,  0,     0,     0}, // Hardy
-    {   +1, -1,  0,     0,     0}, // Lonely
-    {   +1,  0, -1,     0,     0}, // Brave
-    {   +1,  0,  0,    -1,     0}, // Adamant
-    {   +1,  0,  0,     0,    -1}, // Naughty
-    {   -1, +1,  0,     0,     0}, // Bold
-    {    0,  0,  0,     0,     0}, // Docile
-    {    0, +1, -1,     0,     0}, // Relaxed
-    {    0, +1,  0,    -1,     0}, // Impish
-    {    0, +1,  0,     0,    -1}, // Lax
-    {   -1,  0, +1,     0,     0}, // Timid
-    {    0, -1, +1,     0,     0}, // Hasty
-    {    0,  0,  0,     0,     0}, // Serious
-    {    0,  0, +1,    -1,     0}, // Jolly
-    {    0,  0, +1,     0,    -1}, // Naive
-    {   -1,  0,  0,    +1,     0}, // Modest
-    {    0, -1,  0,    +1,     0}, // Mild
-    {    0,  0, -1,    +1,     0}, // Quiet
-    {    0,  0,  0,     0,     0}, // Bashful
-    {    0,  0,  0,    +1,    -1}, // Rash
-    {   -1,  0,  0,     0,    +1}, // Calm
-    {    0, -1,  0,     0,    +1}, // Gentle
-    {    0,  0, -1,     0,    +1}, // Sassy
-    {    0,  0,  0,    -1,    +1}, // Careful
-    {    0,  0,  0,     0,     0}, // Quirky
+    // Atk Def Spe SpA SpD
+    {   +1, -1,  0,  0,  0}, // Lonely
+    {   +1,  0, -1,  0,  0}, // Brave
+    {   +1,  0,  0, -1,  0}, // Adamant
+    {   +1,  0,  0,  0, -1}, // Naughty
+    {   +1, +1,  0, -1, -1}, // Brawny
+	
+    {   -1, +1,  0,  0,  0}, // Bold
+    {    0, +1, -1,  0,  0}, // Relaxed
+    {    0, +1,  0, -1,  0}, // Impish
+    {    0, +1,  0,  0, -1}, // Lax
+    {   -1, +1,  0, -1, +1}, // Guarded
+	
+    {   -1,  0, +1,  0,  0}, // Timid
+    {    0, -1, +1,  0,  0}, // Hasty
+    {    0,  0, +1, -1,  0}, // Jolly
+    {    0,  0, +1,  0, -1}, // Naive
+    {    0,  0,  0,  0,  0}, // Neutral
+	
+    {   -1,  0,  0, +1,  0}, // Modest
+    {    0, -1,  0, +1,  0}, // Mild
+    {    0,  0, -1, +1,  0}, // Quiet
+    {    0,  0,  0, +1, -1}, // Rash
+    {   +1, -1,  0, +1, -1}, // Wild
+	
+    {   -1,  0,  0,  0, +1}, // Calm
+    {    0, -1,  0,  0, +1}, // Gentle
+    {    0,  0, -1,  0, +1}, // Sassy
+    {    0,  0,  0, -1, +1}, // Careful
+    {   -1, -1,  0, +1, +1}, // Wise
 };
 
 #include "data/pokemon/tmhm_learnsets.h"
@@ -3101,6 +3105,9 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
 		}
 
 		rolls += ((gChainCount * gChainCount) + gChainCount) / SHINY_ODDS;
+		
+		if (rolls == 0)
+			rolls = 1;
 
 		do
 		{

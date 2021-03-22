@@ -8124,235 +8124,283 @@ const struct Item gItems[] =
     },
 
     //mints
-    [ITEM_ADAMANT_MINT] =
-    {
-        .name = _("Adamant Mint"),
-        .itemId = ITEM_ADAMANT_MINT,
-        .price = 20000,
-        .description = sAdamantMintDesc,
-        .pocket = POCKET_ITEMS,
-        .type = 1,
-        .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_ADAMANT,
-    },
-    [ITEM_BOLD_MINT] =
-    {
-        .name = _("Bold Mint"),
-        .itemId = ITEM_BOLD_MINT,
-        .price = 20000,
-        .description = sBoldMintDesc,
-        .pocket = POCKET_ITEMS,
-        .type = 1,
-        .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_BOLD,
-    },
-    [ITEM_BRAVE_MINT] =
-    {
-        .name = _("Brave Mint"),
-        .itemId = ITEM_BRAVE_MINT,
-        .price = 20000,
-        .description = sBraveMintDesc,
-        .pocket = POCKET_ITEMS,
-        .type = 1,
-        .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_BRAVE,
-    },
-    [ITEM_CALM_MINT] =
-    {
-        .name = _("Calm Mint"),
-        .itemId = ITEM_CALM_MINT,
-        .price = 20000,
-        .description = sCalmMintDesc,
-        .pocket = POCKET_ITEMS,
-        .type = 1,
-        .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_CALM,
-    },
-    [ITEM_CAREFUL_MINT] =
-    {
-        .name = _("Careful Mint"),
-        .itemId = ITEM_CAREFUL_MINT,
-        .price = 20000,
-        .description = sCarefulMintDesc,
-        .pocket = POCKET_ITEMS,
-        .type = 1,
-        .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_CAREFUL,
-    },
-    [ITEM_GENTLE_MINT] =
-    {
-        .name = _("Gentle Mint"),
-        .itemId = ITEM_GENTLE_MINT,
-        .price = 20000,
-        .description = sGentleMintDesc,
-        .pocket = POCKET_ITEMS,
-        .type = 1,
-        .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_GENTLE,
-    },
-    [ITEM_HASTY_MINT] =
-    {
-        .name = _("Hasty Mint"),
-        .itemId = ITEM_HASTY_MINT,
-        .price = 20000,
-        .description = sHastyMintDesc,
-        .pocket = POCKET_ITEMS,
-        .type = 1,
-        .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_HASTY,
-    },
-    [ITEM_IMPISH_MINT] =
-    {
-        .name = _("Impish Mint"),
-        .itemId = ITEM_IMPISH_MINT,
-        .price = 20000,
-        .description = sImpishMintDesc,
-        .pocket = POCKET_ITEMS,
-        .type = 1,
-        .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_IMPISH,
-    },
-    [ITEM_JOLLY_MINT] =
-    {
-        .name = _("Jolly Mint"),
-        .itemId = ITEM_JOLLY_MINT,
-        .price = 20000,
-        .description = sJollyMintDesc,
-        .pocket = POCKET_ITEMS,
-        .type = 1,
-        .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_JOLLY,
-    },
-    [ITEM_LAX_MINT] =
-    {
-        .name = _("Lax Mint"),
-        .itemId = ITEM_LAX_MINT,
-        .price = 20000,
-        .description = sLaxMintDesc,
-        .pocket = POCKET_ITEMS,
-        .type = 1,
-        .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_LAX,
-    },
-    [ITEM_LONELY_MINT] =
+    [ITEM_MINT_LONELY] =
     {
         .name = _("Lonely Mint"),
-        .itemId = ITEM_LONELY_MINT,
+        .itemId = ITEM_MINT_LONELY,
         .price = 20000,
-        .description = sLonelyMintDesc,
+        .description = sMintLonelyDesc,
         .pocket = POCKET_ITEMS,
         .type = 1,
         .fieldUseFunc = ItemUseOutOfBattle_Mints,
         .secondaryId = NATURE_LONELY,
     },
-    [ITEM_MILD_MINT] =
+    [ITEM_MINT_BRAVE] =
     {
-        .name = _("Mild Mint"),
-        .itemId = ITEM_MILD_MINT,
+        .name = _("Brave Mint"),
+        .itemId = ITEM_MINT_BRAVE,
         .price = 20000,
-        .description = sMildMintDesc,
+        .description = sMintBraveDesc,
         .pocket = POCKET_ITEMS,
         .type = 1,
         .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_MILD,
+        .secondaryId = NATURE_BRAVE,
     },
-    [ITEM_MODEST_MINT] =
+    [ITEM_MINT_ADAMANT] =
     {
-        .name = _("Modest Mint"),
-        .itemId = ITEM_MODEST_MINT,
+        .name = _("Adamant Mint"),
+        .itemId = ITEM_MINT_ADAMANT,
         .price = 20000,
-        .description = sModestMintDesc,
+        .description = sMintAdamantDesc,
         .pocket = POCKET_ITEMS,
         .type = 1,
         .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_MODEST,
+        .secondaryId = NATURE_ADAMANT,
     },
-    [ITEM_NAIVE_MINT] =
-    {
-        .name = _("Naive Mint"),
-        .itemId = ITEM_NAIVE_MINT,
-        .price = 20000,
-        .description = sNaiveMintDesc,
-        .pocket = POCKET_ITEMS,
-        .type = 1,
-        .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_NAIVE,
-    },
-    [ITEM_NAUGHTY_MINT] =
+    [ITEM_MINT_NAUGHTY] =
     {
         .name = _("Naughty Mint"),
-        .itemId = ITEM_NAUGHTY_MINT,
+        .itemId = ITEM_MINT_NAUGHTY,
         .price = 20000,
-        .description = sNaughtyMintDesc,
+        .description = sMintNaughtyDesc,
         .pocket = POCKET_ITEMS,
         .type = 1,
         .fieldUseFunc = ItemUseOutOfBattle_Mints,
         .secondaryId = NATURE_NAUGHTY,
     },
-    [ITEM_QUIET_MINT] =
+    [ITEM_MINT_BRAWNY] =
     {
-        .name = _("Quiet Mint"),
-        .itemId = ITEM_QUIET_MINT,
+        .name = _("Brawny Mint"),
+        .itemId = ITEM_MINT_BRAWNY,
         .price = 20000,
-        .description = sQuietMintDesc,
+        .description = sMintBrawnyDesc,
         .pocket = POCKET_ITEMS,
         .type = 1,
         .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_QUIET,
+        .secondaryId = NATURE_BRAWNY,
     },
-    [ITEM_RASH_MINT] =
+	
+    [ITEM_MINT_BOLD] =
     {
-        .name = _("Rash Mint"),
-        .itemId = ITEM_RASH_MINT,
+        .name = _("Bold Mint"),
+        .itemId = ITEM_MINT_BOLD,
         .price = 20000,
-        .description = sRashMintDesc,
+        .description = sMintBoldDesc,
         .pocket = POCKET_ITEMS,
         .type = 1,
         .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_RASH,
+        .secondaryId = NATURE_BOLD,
     },
-    [ITEM_RELAXED_MINT] =
+    [ITEM_MINT_RELAXED] =
     {
         .name = _("Relaxed Mint"),
-        .itemId = ITEM_RELAXED_MINT,
+        .itemId = ITEM_MINT_RELAXED,
         .price = 20000,
-        .description = sRelaxedMintDesc,
+        .description = sMintRelaxedDesc,
         .pocket = POCKET_ITEMS,
         .type = 1,
         .fieldUseFunc = ItemUseOutOfBattle_Mints,
         .secondaryId = NATURE_RELAXED,
     },
-    [ITEM_SASSY_MINT] =
+    [ITEM_MINT_IMPISH] =
+    {
+        .name = _("Impish Mint"),
+        .itemId = ITEM_MINT_IMPISH,
+        .price = 20000,
+        .description = sMintImpishDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_IMPISH,
+    },
+    [ITEM_MINT_LAX] =
+    {
+        .name = _("Lax Mint"),
+        .itemId = ITEM_MINT_LAX,
+        .price = 20000,
+        .description = sMintLaxDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_LAX,
+    },
+    [ITEM_MINT_GUARDED] =
+    {
+        .name = _("Guarded Mint"),
+        .itemId = ITEM_MINT_GUARDED,
+        .price = 20000,
+        .description = sMintGuardedDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_GUARDED,
+    },
+	
+    [ITEM_MINT_TIMID] =
+    {
+        .name = _("Timid Mint"),
+        .itemId = ITEM_MINT_TIMID,
+        .price = 20000,
+        .description = sMintTimidDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_TIMID,
+    },
+    [ITEM_MINT_HASTY] =
+    {
+        .name = _("Hasty Mint"),
+        .itemId = ITEM_MINT_HASTY,
+        .price = 20000,
+        .description = sMintHastyDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_HASTY,
+    },
+    [ITEM_MINT_JOLLY] =
+    {
+        .name = _("Jolly Mint"),
+        .itemId = ITEM_MINT_JOLLY,
+        .price = 20000,
+        .description = sMintJollyDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_JOLLY,
+    },
+    [ITEM_MINT_NAIVE] =
+    {
+        .name = _("Naive Mint"),
+        .itemId = ITEM_MINT_NAIVE,
+        .price = 20000,
+        .description = sMintNaiveDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_NAIVE,
+    },
+    [ITEM_MINT_NEUTRAL] =
+    {
+        .name = _("Neutral Mint"),
+        .itemId = ITEM_MINT_NEUTRAL,
+        .price = 20000,
+        .description = sMintNeutralDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_NEUTRAL,
+    },
+	
+    [ITEM_MINT_MODEST] =
+    {
+        .name = _("Modest Mint"),
+        .itemId = ITEM_MINT_MODEST,
+        .price = 20000,
+        .description = sMintModestDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_MODEST,
+    },
+    [ITEM_MINT_MILD] =
+    {
+        .name = _("Mild Mint"),
+        .itemId = ITEM_MINT_MILD,
+        .price = 20000,
+        .description = sMintMildDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_MILD,
+    },
+    [ITEM_MINT_QUIET] =
+    {
+        .name = _("Quiet Mint"),
+        .itemId = ITEM_MINT_QUIET,
+        .price = 20000,
+        .description = sMintQuietDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_QUIET,
+    },
+    [ITEM_MINT_RASH] =
+    {
+        .name = _("Rash Mint"),
+        .itemId = ITEM_MINT_RASH,
+        .price = 20000,
+        .description = sMintRashDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_RASH,
+    },
+    [ITEM_MINT_WILD] =
+    {
+        .name = _("Wild Mint"),
+        .itemId = ITEM_MINT_WILD,
+        .price = 20000,
+        .description = sMintWildDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_WILD,
+    },
+	
+    [ITEM_MINT_CALM] =
+    {
+        .name = _("Calm Mint"),
+        .itemId = ITEM_MINT_CALM,
+        .price = 20000,
+        .description = sMintCalmDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_CALM,
+    },
+    [ITEM_MINT_GENTLE] =
+    {
+        .name = _("Gentle Mint"),
+        .itemId = ITEM_MINT_GENTLE,
+        .price = 20000,
+        .description = sMintGentleDesc,
+        .pocket = POCKET_ITEMS,
+        .type = 1,
+        .fieldUseFunc = ItemUseOutOfBattle_Mints,
+        .secondaryId = NATURE_GENTLE,
+    },
+    [ITEM_MINT_SASSY] =
     {
         .name = _("Sassy Mint"),
-        .itemId = ITEM_SASSY_MINT,
+        .itemId = ITEM_MINT_SASSY,
         .price = 20000,
-        .description = sSassyMintDesc,
+        .description = sMintSassyDesc,
         .pocket = POCKET_ITEMS,
         .type = 1,
         .fieldUseFunc = ItemUseOutOfBattle_Mints,
         .secondaryId = NATURE_SASSY,
     },
-    [ITEM_SERIOUS_MINT] =
+    [ITEM_MINT_CAREFUL] =
     {
-        .name = _("Serious Mint"),
-        .itemId = ITEM_SERIOUS_MINT,
+        .name = _("Careful Mint"),
+        .itemId = ITEM_MINT_CAREFUL,
         .price = 20000,
-        .description = sSeriousMintDesc,
+        .description = sMintCarefulDesc,
         .pocket = POCKET_ITEMS,
         .type = 1,
         .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_SERIOUS,
+        .secondaryId = NATURE_CAREFUL,
     },
-    [ITEM_TIMID_MINT] =
+    [ITEM_MINT_WISE] =
     {
-        .name = _("Timid Mint"),
-        .itemId = ITEM_TIMID_MINT,
+        .name = _("Wise Mint"),
+        .itemId = ITEM_MINT_WISE,
         .price = 20000,
-        .description = sTimidMintDesc,
+        .description = sMintWiseDesc,
         .pocket = POCKET_ITEMS,
         .type = 1,
         .fieldUseFunc = ItemUseOutOfBattle_Mints,
-        .secondaryId = NATURE_TIMID,
+        .secondaryId = NATURE_WISE,
     },
 };
