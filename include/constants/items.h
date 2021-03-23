@@ -824,6 +824,15 @@
 #define ITEM_MINT_WISE                670
 
 #define ITEMS_COUNT                   671
+	// TODO (lilua): 112 items can be cut
+	// this includes mega stones, z crystals, FRLG items, and drives
+	// might be possible to use bits for plates/gems
+	// ie
+	// #define ITEM_GEM xxx
+	// #define ITEM_GEM_WATER (ITEM_GEM << 0)
+	// #define ITEM_GEM_FIRE (ITEM_GEM << 1)
+	// etc
+	// test it for mints after finishing save data wipe
 #define ITEM_FIELD_ARROW              ITEMS_COUNT
 
 // Range of berries given out by various NPCS

@@ -9,127 +9,119 @@
 
 #define GET_BASE_SPECIES_ID(speciesId) (GetFormSpeciesId(speciesId, 0))
 
-struct PokemonSubstruct0
-{
-    /*0x00*/ u16 species;
-    /*0x02*/ u16 heldItem;
-    /*0x04*/ u32 experience;
-    /*0x08*/ u8 ppBonuses;
-    /*0x09*/ u8 friendship;
-    /*0x0A*/ u16 pokeball:5; //31 balls
-    /*0x0A*/ u16 hiddenNature:5;
-	/*0x0A*/ u16 free_sub0:3;
-	/*0x0A*/ u16 free_sub0_b:3;
-	/*0x0C*/
-}; /* size = 16 */
-
-struct PokemonSubstruct1
-{
-    /*0x00*/ u16 moves[MAX_MON_MOVES];
-    /*0x08*/ u8 pp[MAX_MON_MOVES];
-}; /* size = 12 */
-
-struct PokemonSubstruct2
-{
-    /*0x00*/ u8 hpEV;
-    /*0x01*/ u8 attackEV;
-    /*0x02*/ u8 defenseEV;
-    /*0x03*/ u8 speedEV;
-    /*0x04*/ u8 spAttackEV;
-    /*0x05*/ u8 spDefenseEV;
-    /*0x06*/ u8 cool;
-    /*0x07*/ u8 beauty;
-    /*0x08*/ u8 cute;
-    /*0x09*/ u8 smart;
-    /*0x0A*/ u8 tough;
-    /*0x0B*/ u8 sheen;
-}; /* size = 12 */
-
-struct PokemonSubstruct3
-{
- /* 0x00 */ u8 pokerus;
- /* 0x01 */ u8 metLocation;
-
- /* 0x02 */ u16 metLevel:7;
- /* 0x02 */ u16 metGame:4;
- /* 0x03 */ u16 unused3_3:4;
- /* 0x03 */ u16 otGender:1;
-
- /* 0x04 */ u32 hpIV:5;
- /* 0x04 */ u32 attackIV:5;
- /* 0x05 */ u32 defenseIV:5;
- /* 0x05 */ u32 speedIV:5;
- /* 0x05 */ u32 spAttackIV:5;
- /* 0x06 */ u32 spDefenseIV:5;
- /* 0x07 */ u32 isEgg:1;
-
- /* 0x08 */ u32 coolRibbon:3;
- /* 0x08 */ u32 beautyRibbon:3;
- /* 0x08 */ u32 cuteRibbon:3;
- /* 0x09 */ u32 smartRibbon:3;
- /* 0x09 */ u32 toughRibbon:3;
- /* 0x09 */ u32 championRibbon:1;
- /* 0x0A */ u32 winningRibbon:1;
- /* 0x0A */ u32 victoryRibbon:1;
- /* 0x0A */ u32 artistRibbon:1;
- /* 0x0A */ u32 effortRibbon:1;
- /* 0x0A */ u32 giftRibbon1:1;
- /* 0x0A */ u32 giftRibbon2:1;
- /* 0x0A */ u32 giftRibbon3:1;
- /* 0x0A */ u32 giftRibbon4:1;
- /* 0x0B */ u32 giftRibbon5:1;
- /* 0x0B */ u32 giftRibbon6:1;
- /* 0x0B */ u32 giftRibbon7:1;
- /* 0x0B */ u32 fatefulEncounter:2;
- /* 0x0B */ u32 abilityNum:2;
- /* 0x0B */ u32 obedient:1;
-}; /* size = 12 */
-
-union PokemonSubstruct
-{
-    struct PokemonSubstruct0 type0;
-    struct PokemonSubstruct1 type1;
-    struct PokemonSubstruct2 type2;
-    struct PokemonSubstruct3 type3;
-    u16 raw[6];
-};
-
 struct BoxPokemon
 {
-    u32 personality;
-    u32 otId;
+	u32 personality;
+	u32 otId;
+	u8 isEgg;
     u8 nickname[POKEMON_NAME_LENGTH];
-    u8 language;
-    u8 isBadEgg:1;
-    u8 hasSpecies:1;
-    u8 isEgg:1;
-    u8 unused:5;
-    u8 otName[PLAYER_NAME_LENGTH];
-    u8 markings;
-    u16 checksum;
-    u16 unknown;
-
-    union
-    {
-        u32 raw[12];
-        union PokemonSubstruct substructs[4];
-    } secure;
+	u8 otName[PLAYER_NAME_LENGTH];
+	u8 metLocation;
+	u8 friendship;
+	u8 pokerus;
+	
+    u8 hpEV;
+    u8 attackEV;
+    u8 defenseEV;
+    u8 speedEV;
+    u8 spAttackEV;
+    u8 spDefenseEV;
+	
+    u8 cool;
+    u8 beauty;
+    u8 cute;
+    u8 smart;
+    u8 tough;
+    u8 sheen;
+	
+	u8 ppBonuses;
+	
+	u16 species:10;
+	u16 hpIV:5;
+	u16 championRibbon:1;
+	
+	u16 heldItem:10;
+	u16 attackIV:5;
+	u16 winningRibbon:1;
+	
+	u32 experience:21;
+	u32 move1:10;
+	u32 victoryRibbon:1;
+	
+	u16 move2:10;
+	u16 defenseIV:5;
+	u16 artistRibbon:1;
+	
+	u16 move3:10;
+	u16 speedIV:5;
+	u16 effortRibbon:1;
+	
+	u16 move4:10;
+	u16 spAttackIV:5;
+	u16 giftRibbon1:1;
+	
+	u16 metLevel:7;
+	u16 spDefenseIV:5;
+	u16 markings:4;
+	
+	u16 coolRibbon:3;
+    u16 beautyRibbon:3;
+    u16 cuteRibbon:3;
+    u16 smartRibbon:3;
+    u16 toughRibbon:3;
+    u16 giftRibbon2:1;
+	
+    u16 giftRibbon3:1;
+    u16 giftRibbon4:1;
+    u16 otGender:1;
+    u16 obedient:1;
+    u16 pokeball:5;
+	u16 abilityNum:2;
+	u16 hiddenNature:5;
+	
+	u8 padding[3];
+	// TODO (lilua): padding brings this struct to 68 bytes (544 bits)
+	//					because of this, we have space for 3 bytes
+	//					below are some ideas for data to store
+	
+	// BYTE 1
+	//u8 metGame:4; +4
+	//u8 form:3;	+3 (eevee would have 1 evolution with 8 different forms)
+				// 0b001 = VAPOREON
+				// 0b011 = JOLTEON
+				// 0b111 = FLAREON
+				// 0b010 = UMBREON
+				// 0b110 = ESPEON
+				// 0b100 = LEAFEON
+				// 0b101 = GLACEON
+				// 0b000 = SYLVEON
+				/*
+				u16 GetFormSpeciesId(struct BoxPokemon * mon)
+				{
+					return mon->species + mon->form;
+				}
+				*/
+	// u8 giftRibbon5:1; +1
+	
+	// BYTE 2
 };
 
 struct Pokemon
 {
-    struct BoxPokemon box;
-    u32 status;
-    u8 level;
-    u8 mail;
-    u16 hp;
-    u16 maxHP;
-    u16 attack;
-    u16 defense;
-    u16 speed;
-    u16 spAttack;
-    u16 spDefense;
-};
+    struct BoxPokemon box;	// 68 bytes
+    u32 status;			// TODO (lilua): probably can be smaller
+	
+    u64 hp:12;			// 12
+    u64 maxHP:12;		// 24
+    u64 attack:12;		// 36
+    u64 defense:12;		// 48
+    u64 speed:12;		// 60
+    u64 mail:4;			// 64
+	
+    u32 spAttack:12;	// 12
+    u32 spDefense:12;	// 24
+    u32 level:8;		// 32
+};	// 88 bytes -> 84 bytes
 
 struct Unknown_806F160_Struct
 {
