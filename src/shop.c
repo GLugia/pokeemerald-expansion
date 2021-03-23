@@ -512,7 +512,9 @@ static void SetShopItemsForSale(const u16 *items)
 
     while (gMartInfo.itemList[i])
     {
-        gMartInfo.itemCount++;
+		// check if the player already has the tm
+		if (!(gMartInfo.itemList[i] > ITEM_TM01 && gMartInfo.itemList[i] < ITEM_HM08 && CheckBagHasItem(gMartInfo.itemList[i], 1)))
+        	gMartInfo.itemCount++;
         i++;
     }
 }
