@@ -4097,6 +4097,28 @@ u8 AbilityBattleEffects(u8 caseID, u8 battler, u16 ability, u8 special, u16 move
 			case ABILITY_DRY_SKIN:
 				if (gBattleWeather & WEATHER_SUN_ANY)
 					goto SOLAR_POWER_HP_DROP;
+			case ABILITY_TANK_SHELL:
+				if (!BATTLER_MAX_HP(battler)
+				 && !(gStatuses3[battler] & STATUS3_HEAL_BLOCK))
+				{
+					u8 div = 16;
+					
+					if (WEATHER_HAS_EFFECT)
+					{
+						if (gBattleWeather & WEATHER_RAIN_ANY)
+							div = 8;
+						else if (gBattleWeather & WEATHER_SUN_ANY)
+							div = 32;
+					}
+					
+					BattleScriptPushCursorAndCallback(BattleScript_RainDishActivates);
+					gBattleMoveDamage = gBattleMons[battler].maxHP / div;
+					if (gBattleMoveDamage == 0)
+						gBattleMoveDamage = 1;
+					gBattleMoveDamage *= -1;
+					effect++;
+				}
+				break;
 			// Dry Skin works similarly to Rain Dish in Rain
 			case ABILITY_RAIN_DISH:
 				if (WEATHER_HAS_EFFECT
@@ -6094,6 +6116,24 @@ u8 ItemBattleEffects(u8 caseID, u8 battlerId, bool8 moveTurn)
 					gBattleScripting.statChanger = SET_STATCHANGER(STAT_SPATK, 1, FALSE);
 				}
 				break;
+			/* TODO (lilua): finish this
+			case HOLD_EFFECT_SHELL_BELL:
+				if (IsBattlerAlive(battlerId)
+					&& TARGET_TURN_DAMAGED
+					&& !BATTLER_MAX_HP(battlerId))
+				{
+					gLastUsedItem = atkItem;
+					gPotentialItemEffectBattler = gBattlerTarget;
+					gBattleScripting.battler = gBattlerTarget;
+					gBattleMoveDamage = (gSpecialStatuses[gBattlerTarget].dmg / atkHoldEffectParam) * -1;
+					if (gBattleMoveDamage == 0)
+						gBattleMoveDamage = -1;
+					gSpecialStatuses[gBattlerTarget].dmg = 0;
+					BattleScriptPushCursor();
+					gBattlescriptCurrInstr = BattleScript_ItemHealHP_Ret;
+					effect++;
+				}
+				break;*/
 			}
 		}
 		break;
