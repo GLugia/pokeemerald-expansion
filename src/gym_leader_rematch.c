@@ -42,6 +42,7 @@ void UpdateGymLeaderRematch(void)
 
 static void UpdateGymLeaderRematchFromArray(const u16 *data, size_t size, u32 maxRematch)
 {
+	#ifndef FREE_MATCH_CALL
     s32 whichLeader = 0;
     s32 lowestRematchIndex = 5;
     u32 i;
@@ -89,6 +90,7 @@ static void UpdateGymLeaderRematchFromArray(const u16 *data, size_t size, u32 ma
             }
         }
     }
+	#endif
 }
 
 static s32 GetRematchIndex(u32 trainerIdx)

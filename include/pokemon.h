@@ -109,7 +109,7 @@ struct BoxPokemon
 struct Pokemon
 {
     struct BoxPokemon box;	// 68 bytes
-    u32 status;			// TODO (lilua): probably can be smaller
+    u8 status;			//  3
 	
     u64 hp:12;			// 12
     u64 maxHP:12;		// 24

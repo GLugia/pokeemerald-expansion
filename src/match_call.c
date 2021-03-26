@@ -1371,7 +1371,11 @@ static void sub_8196694(u8 taskId)
 
 static bool32 TrainerIsEligibleForRematch(int matchCallId)
 {
+	#ifndef FREE_MATCH_CALL
     return gSaveBlock1Ptr->trainerRematches[matchCallId] > 0;
+	#else
+	return FALSE;
+	#endif
 }
 
 static u16 GetRematchTrainerLocation(int matchCallId)

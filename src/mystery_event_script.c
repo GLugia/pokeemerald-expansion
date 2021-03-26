@@ -96,16 +96,18 @@ static int CalcRecordMixingGiftChecksum(void)
 {
     unsigned int i;
     int sum = 0;
+	#ifndef FREE_MYSTERY_EVENT_BUFFERS
     u8 *data = (u8*)(&gSaveBlock1Ptr->recordMixingGift.data);
 
     for (i = 0; i < sizeof(gSaveBlock1Ptr->recordMixingGift.data); i++)
         sum += data[i];
-
+	#endif
     return sum;
 }
 
 static bool32 IsRecordMixingGiftValid(void)
 {
+	#ifndef FREE_MYSTERY_EVENT_BUFFERS
     struct RecordMixingGiftData *data = &gSaveBlock1Ptr->recordMixingGift.data;
     int checksum = CalcRecordMixingGiftChecksum();
 
@@ -117,15 +119,21 @@ static bool32 IsRecordMixingGiftValid(void)
         return FALSE;
     else
         return TRUE;
+	#else
+	return TRUE;
+	#endif
 }
 
 static void ClearRecordMixingGift(void)
 {
+	#ifndef FREE_MYSTERY_EVENT_BUFFERS
     CpuFill16(0, &gSaveBlock1Ptr->recordMixingGift, sizeof(gSaveBlock1Ptr->recordMixingGift));
+	#endif
 }
 
 static void SetRecordMixingGift(u8 unk, u8 quantity, u16 itemId)
 {
+	#ifndef FREE_MYSTERY_EVENT_BUFFERS
     if (!unk || !quantity || !itemId)
     {
         ClearRecordMixingGift();
@@ -137,10 +145,12 @@ static void SetRecordMixingGift(u8 unk, u8 quantity, u16 itemId)
         gSaveBlock1Ptr->recordMixingGift.data.itemId = itemId;
         gSaveBlock1Ptr->recordMixingGift.checksum = CalcRecordMixingGiftChecksum();
     }
+	#endif
 }
 
 u16 GetRecordMixingGift(void)
 {
+	#ifndef FREE_MYSTERY_EVENT_BUFFERS
     struct RecordMixingGiftData *data = &gSaveBlock1Ptr->recordMixingGift.data;
 
     if (!IsRecordMixingGiftValid())
@@ -159,6 +169,9 @@ u16 GetRecordMixingGift(void)
 
         return itemId;
     }
+	#else
+	return 0;
+	#endif
 }
 
 bool8 MEScrCmd_end(struct ScriptContext *ctx)
@@ -218,6 +231,7 @@ bool8 MEScrCmd_runscript(struct ScriptContext *ctx)
 
 bool8 MEScrCmd_setenigmaberry(struct ScriptContext *ctx)
 {
+	#ifndef FREE_MYSTERY_EVENT_BUFFERS
     u8 *str;
     const u8 *message;
     bool32 haveBerry = IsEnigmaBerryValid();
@@ -250,7 +264,7 @@ bool8 MEScrCmd_setenigmaberry(struct ScriptContext *ctx)
         VarSet(VAR_ENIGMA_BERRY_AVAILABLE, 1);
     else
         ctx->data[2] = 1;
-
+	#endif
     return FALSE;
 }
 
@@ -349,11 +363,13 @@ bool8 MEScrCmd_givepokemon(struct ScriptContext *ctx)
 
 bool8 MEScrCmd_addtrainer(struct ScriptContext *ctx)
 {
+	#ifndef FREE_MYSTERY_EVENT_BUFFERS
     u32 data = ScriptReadWord(ctx) - ctx->data[1] + ctx->data[0];
     memcpy((void*)(gSaveBlock2Ptr) + 0xBEC, (void *)data, 0xBC);
     ValidateEReaderTrainer();
     StringExpandPlaceholders(gStringVar4, gText_MysteryGiftNewTrainer);
     ctx->data[2] = 2;
+	#endif
     return FALSE;
 }
 
