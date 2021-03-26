@@ -173,116 +173,82 @@ const u8 gItemEffect_SacredAsh[7] = {
     [6] = ITEM6_HEAL_FULL,
 };
 
+#define ITEM_VITAMIN_EFFECT(i)		\
+	[(i)] = ITEM6_VITAMIN_ADD_EV,	\
+	[(i) + 1] = 5,					\
+	[(i) + 2] = 3,					\
+	[(i) + 3] = 2,					\
+	[(i) + 4] = ITEM10_IS_VITAMIN
+
 const u8 gItemEffect_HPUp[11] = {
     [4] = ITEM4_EV_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = 10,
-    [7] = 5,
-    [8] = 3,
-    [9] = 2,
-    [10] = ITEM10_IS_VITAMIN,
+    ITEM_VITAMIN_EFFECT(6),
 };
 
 const u8 gItemEffect_Protein[11] = {
     [4] = ITEM4_EV_ATK,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = 10,
-    [7] = 5,
-    [8] = 3,
-    [9] = 2,
-    [10] = ITEM10_IS_VITAMIN,
+    ITEM_VITAMIN_EFFECT(6),
 };
 
 const u8 gItemEffect_Iron[11] = {
     [5] = ITEM5_EV_DEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = 10,
-    [7] = 5,
-    [8] = 3,
-    [9] = 2,
-    [10] = ITEM10_IS_VITAMIN,
+    ITEM_VITAMIN_EFFECT(6),
 };
 
 const u8 gItemEffect_Carbos[11] = {
     [5] = ITEM5_EV_SPEED | ITEM5_FRIENDSHIP_ALL,
-    [6] = 10,
-    [7] = 5,
-    [8] = 3,
-    [9] = 2,
-    [10] = ITEM10_IS_VITAMIN,
+    ITEM_VITAMIN_EFFECT(6),
 };
 
 const u8 gItemEffect_Calcium[11] = {
     [5] = ITEM5_EV_SPATK | ITEM5_FRIENDSHIP_ALL,
-    [6] = 10,
-    [7] = 5,
-    [8] = 3,
-    [9] = 2,
-    [10] = ITEM10_IS_VITAMIN,
+    ITEM_VITAMIN_EFFECT(6),
 };
 
 const u8 gItemEffect_Zinc[11] = {
     [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = 10,
-    [7] = 5,
-    [8] = 3,
-    [9] = 2,
-    [10] = ITEM10_IS_VITAMIN,
+    ITEM_VITAMIN_EFFECT(6),
 };
+
+#define ITEM_WING_EFFECT(i)			\
+	[(i)] = ITEM6_WING_ADD_EV,		\
+	[(i) + 1] = 3,					\
+	[(i) + 2] = 2,					\
+	[(i) + 3] = 1,					\
+	[(i) + 4] = ITEM10_IS_VITAMIN
 
 const u8 gItemEffect_HpWing[11] = {
     [4] = ITEM4_EV_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = 1,
-    [7] = 3,
-    [8] = 2,
-    [9] = 1,
-    [10] = 0,
+    ITEM_WING_EFFECT(6),
 };
 
 const u8 gItemEffect_AtkWing[11] = {
     [4] = ITEM4_EV_ATK,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = 1,
-    [7] = 3,
-    [8] = 2,
-    [9] = 1,
-    [10] = 0,
+    ITEM_WING_EFFECT(6),
 };
 
 const u8 gItemEffect_DefWing[11] = {
     [5] = ITEM5_EV_DEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = 1,
-    [7] = 3,
-    [8] = 2,
-    [9] = 1,
-    [10] = 0,
+    ITEM_WING_EFFECT(6),
 };
 
 const u8 gItemEffect_SpeedWing[11] = {
     [5] = ITEM5_EV_SPEED | ITEM5_FRIENDSHIP_ALL,
-    [6] = 1,
-    [7] = 3,
-    [8] = 2,
-    [9] = 1,
-    [10] = 0,
+    ITEM_WING_EFFECT(6),
 };
 
 const u8 gItemEffect_SpatkWing[11] = {
     [5] = ITEM5_EV_SPATK | ITEM5_FRIENDSHIP_ALL,
-    [6] = 1,
-    [7] = 3,
-    [8] = 2,
-    [9] = 1,
-    [10] = 0,
+    ITEM_WING_EFFECT(6),
 };
 
 const u8 gItemEffect_SpdefWing[11] = {
     [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = 1,
-    [7] = 3,
-    [8] = 2,
-    [9] = 1,
-    [10] = 0,
+    ITEM_WING_EFFECT(6),
 };
 
 const u8 gItemEffect_RareCandy[10] = {
@@ -435,54 +401,42 @@ const u8 gItemEffect_SitrusBerry[7] = {
     [6] = ITEM6_HEAL_QUARTER,
 };
 
+#define ITEM_BERRY_EFFECT(i)		\
+    [(i)] = ITEM6_BERRY_REMOVE_EV,	\
+    [(i) + 1] = 10,					\
+    [(i) + 2] = 5,					\
+    [(i) + 3] = 2
+
 const u8 gItemEffect_PomegBerry[10] = {
     [4] = ITEM4_EV_HP,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = -10,
-    [7] = 10,
-    [8] = 5,
-    [9] = 2,
+	ITEM_BERRY_EFFECT(6),
 };
 
 const u8 gItemEffect_KelpsyBerry[10] = {
     [4] = ITEM4_EV_ATK,
     [5] = ITEM5_FRIENDSHIP_ALL,
-    [6] = -10,
-    [7] = 10,
-    [8] = 5,
-    [9] = 2,
+	ITEM_BERRY_EFFECT(6),
 };
 
 const u8 gItemEffect_QualotBerry[10] = {
     [5] = ITEM5_EV_DEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = -10,
-    [7] = 10,
-    [8] = 5,
-    [9] = 2,
+	ITEM_BERRY_EFFECT(6),
 };
 
 const u8 gItemEffect_HondewBerry[10] = {
     [5] = ITEM5_EV_SPATK | ITEM5_FRIENDSHIP_ALL,
-    [6] = -10,
-    [7] = 10,
-    [8] = 5,
-    [9] = 2,
+	ITEM_BERRY_EFFECT(6),
 };
 
 const u8 gItemEffect_GrepaBerry[10] = {
     [5] = ITEM5_EV_SPDEF | ITEM5_FRIENDSHIP_ALL,
-    [6] = -10,
-    [7] = 10,
-    [8] = 5,
-    [9] = 2,
+	ITEM_BERRY_EFFECT(6),
 };
 
 const u8 gItemEffect_TamatoBerry[10] = {
     [5] = ITEM5_EV_SPEED | ITEM5_FRIENDSHIP_ALL,
-    [6] = -10,
-    [7] = 10,
-    [8] = 5,
-    [9] = 2,
+	ITEM_BERRY_EFFECT(6),
 };
 
 const u8 *const gItemEffectTable[] =
